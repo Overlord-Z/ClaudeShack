@@ -55,6 +55,29 @@ The **Oracle** is a sophisticated memory and learning system that maintains inst
 
 **Location:** `.claude/skills/oracle/`
 
+---
+
+### 🎨 Style Master (CSS & Frontend Styling)
+
+The **Style Master** is an expert in CSS, design systems, and frontend styling. It excels at:
+
+- **Codebase Analysis**: Detect styling approaches, extract design tokens, identify patterns
+- **Style Guide Maintenance**: Generate and maintain living style guides automatically
+- **Expert Suggestions**: Modernization, performance, accessibility improvements
+- **Design System Development**: Create cohesive, scalable design systems
+- **Framework Expertise**: Tailwind, CSS-in-JS, Sass, and modern CSS techniques
+- **Accessibility First**: Ensure WCAG compliance and inclusive design
+
+**Use When:**
+- Setting up or maintaining a design system
+- Ensuring visual consistency across your application
+- Need expert CSS/styling guidance
+- Modernizing legacy styles
+- Creating accessible, performant UIs
+- Integrating with Oracle to remember style preferences
+
+**Location:** `.claude/skills/style-master/`
+
 ## 🚀 Getting Started
 
 ### Installation
@@ -74,12 +97,13 @@ Use the summoner skill to implement [complex task description]
 ```
 ClaudeShack/
 ├── .claude/
-│   └── skills/          # All Claude Code skills
-│       ├── summoner/    # Multi-agent orchestration skill
-│       ├── oracle/      # Project memory & learning skill
-│       └── ...          # Future skills
+│   └── skills/           # All Claude Code skills
+│       ├── summoner/     # Multi-agent orchestration skill
+│       ├── oracle/       # Project memory & learning skill
+│       ├── style-master/ # CSS & frontend styling expert
+│       └── ...           # Future skills
 ├── README.md
-└── docs/                # Additional documentation
+└── docs/                 # Additional documentation
 ```
 
 ## 🛠️ Skill Development
