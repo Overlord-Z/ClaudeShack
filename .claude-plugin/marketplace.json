@@ -2,64 +2,24 @@
   "name": "claudeshack",
   "owner": {
     "name": "Overlord-Z",
-    "email": "[email protected]",
-    "url": "https://github.com/Overlord-Z"
+    "email": "[email protected]"
   },
   "metadata": {
     "description": "Personal skill center featuring orchestration, memory, styling, and documentation tools",
-    "version": "1.0.0",
-    "homepage": "https://github.com/Overlord-Z/ClaudeShack",
-    "totalPlugins": 4,
-    "lastUpdated": "2025-11-19"
+    "version": "1.0.0"
   },
   "plugins": [
     {
-      "name": "summoner",
-      "source": "./plugins/summoner",
-      "description": "Multi-agent orchestration skill for complex tasks requiring coordination, decomposition, and quality control. Use for large implementations, refactoring projects, multi-component features, or any work requiring multiple specialized agents working in concert.",
-      "version": "1.0.0",
-      "category": "productivity",
-      "keywords": ["orchestration", "multi-agent", "planning", "quality-control", "task-management", "mcd"],
-      "author": {
-        "name": "Overlord-Z",
-        "email": "[email protected]"
-      }
-    },
-    {
-      "name": "oracle",
-      "source": "./plugins/oracle",
-      "description": "Project memory and learning system that tracks interactions, learns from corrections, maintains knowledge across sessions, and generates token-efficient context. Use when you need to remember project-specific patterns, avoid repeating mistakes, or maintain institutional knowledge.",
-      "version": "1.0.0",
-      "category": "productivity",
-      "keywords": ["memory", "learning", "knowledge-management", "session-tracking", "context", "automation"],
-      "author": {
-        "name": "Overlord-Z",
-        "email": "[email protected]"
-      }
-    },
-    {
-      "name": "style-master",
-      "source": "./plugins/style-master",
-      "description": "Expert CSS and frontend styling specialist that analyzes codebases, maintains style guides, suggests improvements, and stays current with modern design patterns. Use when working on frontend styling, creating design systems, or ensuring visual consistency.",
-      "version": "1.0.0",
-      "category": "frontend",
-      "keywords": ["css", "styling", "design-system", "accessibility", "wcag", "frontend"],
-      "author": {
-        "name": "Overlord-Z",
-        "email": "[email protected]"
-      }
-    },
-    {
-      "name": "documentation-wizard",
-      "source": "./plugins/documentation-wizard",
-      "description": "Keeps documentation in perfect sync with code and knowledge. Integrates with Oracle, Summoner, and Style Master. Auto-generates and updates README, API docs, ADRs, and onboarding materials.",
-      "version": "1.0.0",
-      "category": "documentation",
-      "keywords": ["documentation", "api-docs", "adr", "sync", "automation", "readme", "changelog"],
-      "author": {
-        "name": "Overlord-Z",
-        "email": "[email protected]"
-      }
+      "name": "claudeshack-skills",
+      "description": "Collection of productivity skills including multi-agent orchestration, project memory, CSS styling, and living documentation",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./skills/summoner",
+        "./skills/oracle",
+        "./skills/style-master",
+        "./skills/documentation-wizard"
+      ]
     }
   ]
 }
