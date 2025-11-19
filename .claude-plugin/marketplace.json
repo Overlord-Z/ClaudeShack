@@ -1,96 +1,66 @@
 {
-  "name": "ClaudeShack",
-  "displayName": "ClaudeShack Skills Marketplace",
-  "version": "1.0.0",
-  "description": "Personal skill center featuring orchestration, memory, styling, and documentation tools",
-  "owner": "Overlord-Z",
-  "author": "Overlord-Z",
-  "license": "MIT",
-  "repository": "https://github.com/Overlord-Z/ClaudeShack",
-  "homepage": "https://github.com/Overlord-Z/ClaudeShack",
+  "name": "claudeshack",
+  "owner": {
+    "name": "Overlord-Z",
+    "email": "[email protected]",
+    "url": "https://github.com/Overlord-Z"
+  },
+  "metadata": {
+    "description": "Personal skill center featuring orchestration, memory, styling, and documentation tools",
+    "version": "1.0.0",
+    "homepage": "https://github.com/Overlord-Z/ClaudeShack",
+    "pluginRoot": "./.claude/skills",
+    "totalPlugins": 4,
+    "lastUpdated": "2025-11-19"
+  },
   "plugins": [
     {
-      "id": "summoner",
-      "name": "Summoner",
-      "version": "1.0.0",
+      "name": "summoner",
+      "source": "./.claude/skills/summoner",
       "description": "Multi-agent orchestration skill for complex tasks requiring coordination, decomposition, and quality control. Use for large implementations, refactoring projects, multi-component features, or any work requiring multiple specialized agents working in concert. Excels at preventing context bloat, eliminating assumptions, and ensuring SOLID principles across complex deliverables.",
+      "version": "1.0.0",
       "category": "orchestration",
-      "tags": ["orchestration", "quality", "multi-agent", "planning", "mcd"],
-      "path": "skills/summoner",
-      "icon": "🧙"
+      "keywords": ["orchestration", "quality", "multi-agent", "planning", "mcd", "task-management", "coordination", "quality-control"],
+      "author": {
+        "name": "Overlord-Z",
+        "email": "[email protected]"
+      }
     },
     {
-      "id": "oracle",
-      "name": "Oracle",
-      "version": "1.0.0",
+      "name": "oracle",
+      "source": "./.claude/skills/oracle",
       "description": "Project memory and learning system that tracks interactions, learns from corrections, maintains knowledge across sessions, and generates token-efficient context. Use when you need to remember project-specific patterns, avoid repeating mistakes, track what works and what doesn't, or maintain institutional knowledge across multiple sessions. Excels at preventing context loss and wasted effort.",
+      "version": "1.0.0",
       "category": "knowledge",
-      "tags": ["memory", "learning", "automation", "knowledge-base", "context"],
-      "path": "skills/oracle",
-      "icon": "🧠"
+      "keywords": ["memory", "learning", "automation", "knowledge-base", "context", "session-tracking", "pattern-recognition", "institutional-knowledge"],
+      "author": {
+        "name": "Overlord-Z",
+        "email": "[email protected]"
+      }
     },
     {
-      "id": "style-master",
-      "name": "Style Master",
-      "version": "1.0.0",
+      "name": "style-master",
+      "source": "./.claude/skills/style-master",
       "description": "Expert CSS and frontend styling specialist that analyzes codebases, maintains style guides, suggests improvements, and stays current with modern design patterns. Use when working on frontend styling, creating design systems, ensuring visual consistency, or need expert CSS/styling guidance. Integrates with Oracle to remember style preferences and with Summoner for complex styling refactors.",
-      "category": "frontend",
-      "tags": ["css", "design-system", "styling", "accessibility", "wcag"],
-      "path": "skills/style-master",
-      "icon": "🎨"
-    },
-    {
-      "id": "documentation-wizard",
-      "name": "Documentation Wizard",
       "version": "1.0.0",
+      "category": "frontend",
+      "keywords": ["css", "design-system", "styling", "accessibility", "wcag", "frontend", "ui-design", "tailwind", "sass"],
+      "author": {
+        "name": "Overlord-Z",
+        "email": "[email protected]"
+      }
+    },
+    {
+      "name": "documentation-wizard",
+      "source": "./.claude/skills/documentation-wizard",
       "description": "Keeps documentation in perfect sync with code and knowledge. Integrates with Oracle to leverage learnings, Summoner for design docs, and Style Master for style guides. Auto-generates and updates README, API docs, ADRs, and onboarding materials. Detects stale documentation and ensures it evolves with the codebase.",
+      "version": "1.0.0",
       "category": "documentation",
-      "tags": ["documentation", "api-docs", "adr", "sync", "automation"],
-      "path": "skills/documentation-wizard",
-      "icon": "📚"
-    }
-  ],
-  "categories": {
-    "orchestration": {
-      "name": "Orchestration",
-      "description": "Skills for coordinating complex, multi-agent tasks",
-      "icon": "🧙"
-    },
-    "knowledge": {
-      "name": "Knowledge Management",
-      "description": "Skills for project memory and learning",
-      "icon": "🧠"
-    },
-    "frontend": {
-      "name": "Frontend Development",
-      "description": "Skills for CSS, styling, and design systems",
-      "icon": "🎨"
-    },
-    "documentation": {
-      "name": "Documentation",
-      "description": "Skills for generating and maintaining documentation",
-      "icon": "📚"
-    }
-  },
-  "featured": ["summoner", "oracle"],
-  "bundles": [
-    {
-      "id": "all",
-      "name": "Complete ClaudeShack",
-      "description": "All four skills for complete coverage",
-      "plugins": ["summoner", "oracle", "style-master", "documentation-wizard"]
-    },
-    {
-      "id": "core",
-      "name": "Core Skills",
-      "description": "Essential orchestration and memory",
-      "plugins": ["summoner", "oracle"]
-    },
-    {
-      "id": "frontend",
-      "name": "Frontend Bundle",
-      "description": "Frontend styling and documentation with knowledge management",
-      "plugins": ["style-master", "documentation-wizard", "oracle"]
+      "keywords": ["documentation", "api-docs", "adr", "sync", "automation", "readme", "changelog", "onboarding"],
+      "author": {
+        "name": "Overlord-Z",
+        "email": "[email protected]"
+      }
     }
   ]
 }
