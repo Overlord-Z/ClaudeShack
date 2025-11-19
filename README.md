@@ -14,7 +14,7 @@ To provide production-ready, high-quality skills that:
 
 ## 📦 Available Skills
 
-### 🧙 Summoner Skill (Featured)
+### 🧙 Summoner (Multi-Agent Orchestration)
 
 The **Summoner** is a meta-skill for orchestrating complex, multi-agent tasks. It excels at:
 
@@ -31,6 +31,29 @@ The **Summoner** is a meta-skill for orchestrating complex, multi-agent tasks. I
 - Multiple specialized agents would be more effective than a single generalist
 
 **Location:** `.claude/skills/summoner/`
+
+---
+
+### 🧠 Oracle (Project Memory & Learning)
+
+The **Oracle** is a sophisticated memory and learning system that maintains institutional knowledge across sessions. It excels at:
+
+- **Session Recording**: Track interactions, decisions, corrections, and learnings
+- **Learning from Mistakes**: Remember corrections and avoid repeating errors
+- **Smart Context Injection**: Load only relevant knowledge when needed
+- **Pattern Detection**: Identify automation opportunities from repeated tasks
+- **Knowledge Compounding**: Build and maintain project knowledge over time
+- **Token Efficiency**: KISS approach with strategic, minimal context loading
+
+**Use When:**
+- Need to remember project-specific patterns and preferences across sessions
+- Avoid repeating the same mistakes or corrections
+- Track what works and what doesn't in your project
+- Want to automate repeated patterns and save tokens
+- Building long-term institutional knowledge
+- Onboarding new team members or returning to a project after time away
+
+**Location:** `.claude/skills/oracle/`
 
 ## 🚀 Getting Started
 
@@ -53,6 +76,7 @@ ClaudeShack/
 ├── .claude/
 │   └── skills/          # All Claude Code skills
 │       ├── summoner/    # Multi-agent orchestration skill
+│       ├── oracle/      # Project memory & learning skill
 │       └── ...          # Future skills
 ├── README.md
 └── docs/                # Additional documentation
