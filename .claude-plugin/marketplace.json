@@ -10,16 +10,32 @@
   },
   "plugins": [
     {
-      "name": "claudeshack-skills",
-      "description": "Collection of productivity skills including multi-agent orchestration, project memory, CSS styling, and living documentation",
+      "name": "summoner",
+      "description": "Multi-agent orchestration skill for complex tasks requiring coordination, decomposition, and quality control. Use for large implementations, refactoring projects, multi-component features, or any work requiring multiple specialized agents working in concert.",
       "source": "./",
       "strict": false,
-      "skills": [
-        "./skills/summoner",
-        "./skills/oracle",
-        "./skills/style-master",
-        "./skills/documentation-wizard"
-      ]
+      "skills": ["./skills/summoner"]
+    },
+    {
+      "name": "oracle",
+      "description": "Project memory and learning system that tracks interactions, learns from corrections, maintains knowledge across sessions, and generates token-efficient context. Use when you need to remember project-specific patterns, avoid repeating mistakes, or maintain institutional knowledge.",
+      "source": "./",
+      "strict": false,
+      "skills": ["./skills/oracle"]
+    },
+    {
+      "name": "style-master",
+      "description": "Expert CSS and frontend styling specialist that analyzes codebases, maintains style guides, suggests improvements, and stays current with modern design patterns. Use when working on frontend styling, creating design systems, or ensuring visual consistency.",
+      "source": "./",
+      "strict": false,
+      "skills": ["./skills/style-master"]
+    },
+    {
+      "name": "documentation-wizard",
+      "description": "Keeps documentation in perfect sync with code and knowledge. Integrates with Oracle, Summoner, and Style Master. Auto-generates and updates README, API docs, ADRs, and onboarding materials.",
+      "source": "./",
+      "strict": false,
+      "skills": ["./skills/documentation-wizard"]
     }
   ]
 }
