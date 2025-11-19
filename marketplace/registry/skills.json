@@ -1,0 +1,216 @@
+{
+  "marketplace": "ClaudeShack",
+  "version": "1.0.0",
+  "updated": "2025-11-19",
+  "skills": [
+    {
+      "id": "summoner",
+      "name": "Summoner",
+      "version": "1.0.0",
+      "description": "Multi-agent orchestration for complex tasks",
+      "longDescription": "Breaks down complex projects into atomic tasks, coordinates specialized agents, and ensures quality with DRY, CLEAN, SOLID principles. Creates Mission Control Documents for systematic execution.",
+      "category": "orchestration",
+      "tags": ["orchestration", "quality", "multi-agent", "planning", "mcd"],
+      "author": "ClaudeShack",
+      "license": "MIT",
+      "homepage": "https://github.com/Overlord-Z/ClaudeShack",
+      "repository": "https://github.com/Overlord-Z/ClaudeShack",
+      "documentation": ".claude/skills/summoner/README.md",
+      "icon": "🧙",
+      "screenshots": [],
+      "dependencies": [],
+      "integrations": ["oracle"],
+      "compatibility": {
+        "claudeCode": ">=1.0.0"
+      },
+      "install": {
+        "command": "/plugin install summoner@claudeshack",
+        "manual": "Skills available in .claude/skills/summoner/"
+      },
+      "features": [
+        "Task decomposition into atomic units",
+        "Mission Control Document system",
+        "Quality gates (DRY, CLEAN, SOLID)",
+        "Agent coordination and orchestration",
+        "Context preservation across tasks"
+      ],
+      "useCases": [
+        "Large feature implementations",
+        "Refactoring projects",
+        "Migration efforts",
+        "Complex bug fixes",
+        "Multi-component features"
+      ]
+    },
+    {
+      "id": "oracle",
+      "name": "Oracle",
+      "version": "1.0.0",
+      "description": "Project memory and learning system",
+      "longDescription": "Tracks sessions, learns from corrections, maintains institutional knowledge across sessions, and generates automation scripts for repeated patterns. Prevents context loss and wasted tokens.",
+      "category": "knowledge",
+      "tags": ["memory", "learning", "automation", "knowledge-base", "context"],
+      "author": "ClaudeShack",
+      "license": "MIT",
+      "homepage": "https://github.com/Overlord-Z/ClaudeShack",
+      "repository": "https://github.com/Overlord-Z/ClaudeShack",
+      "documentation": ".claude/skills/oracle/README.md",
+      "icon": "🧠",
+      "screenshots": [],
+      "dependencies": [],
+      "integrations": ["summoner", "style-master", "documentation-wizard"],
+      "compatibility": {
+        "claudeCode": ">=1.0.0",
+        "python": ">=3.7"
+      },
+      "install": {
+        "command": "/plugin install oracle@claudeshack",
+        "manual": "Skills available in .claude/skills/oracle/",
+        "postInstall": "python .claude/skills/oracle/Scripts/init_oracle.py"
+      },
+      "features": [
+        "Session recording and tracking",
+        "Learning from corrections",
+        "Pattern detection and automation",
+        "Knowledge categorization (patterns, gotchas, solutions, corrections)",
+        "Smart context injection",
+        "Auto-script generation"
+      ],
+      "useCases": [
+        "Long-term project memory",
+        "Team knowledge sharing",
+        "Preventing repeated mistakes",
+        "Onboarding new developers",
+        "Context preservation across sessions"
+      ]
+    },
+    {
+      "id": "style-master",
+      "name": "Style Master",
+      "version": "1.0.0",
+      "description": "CSS and frontend styling expert",
+      "longDescription": "Analyzes codebases for styling approaches, maintains style guides, suggests modern improvements, and ensures WCAG accessibility compliance. Expertise in Tailwind, CSS-in-JS, and modern CSS.",
+      "category": "frontend",
+      "tags": ["css", "design-system", "styling", "accessibility", "wcag"],
+      "author": "ClaudeShack",
+      "license": "MIT",
+      "homepage": "https://github.com/Overlord-Z/ClaudeShack",
+      "repository": "https://github.com/Overlord-Z/ClaudeShack",
+      "documentation": ".claude/skills/style-master/README.md",
+      "icon": "🎨",
+      "screenshots": [],
+      "dependencies": [],
+      "integrations": ["oracle", "documentation-wizard"],
+      "compatibility": {
+        "claudeCode": ">=1.0.0",
+        "python": ">=3.7"
+      },
+      "install": {
+        "command": "/plugin install style-master@claudeshack",
+        "manual": "Skills available in .claude/skills/style-master/"
+      },
+      "features": [
+        "Codebase style analysis",
+        "Design token extraction",
+        "Style guide generation",
+        "Consistency validation",
+        "Modern CSS suggestions (Grid, Container Queries, etc.)",
+        "WCAG compliance checking"
+      ],
+      "useCases": [
+        "Design system creation",
+        "Visual consistency enforcement",
+        "CSS modernization",
+        "Accessibility improvements",
+        "Style guide maintenance"
+      ]
+    },
+    {
+      "id": "documentation-wizard",
+      "name": "Documentation Wizard",
+      "version": "1.0.0",
+      "description": "Living documentation expert",
+      "longDescription": "Keeps documentation synchronized with code, Oracle knowledge, Summoner decisions, and Style Master guides. Auto-generates README, API docs, ADRs, and changelogs. Validates documentation quality.",
+      "category": "documentation",
+      "tags": ["documentation", "api-docs", "adr", "sync", "automation"],
+      "author": "ClaudeShack",
+      "license": "MIT",
+      "homepage": "https://github.com/Overlord-Z/ClaudeShack",
+      "repository": "https://github.com/Overlord-Z/ClaudeShack",
+      "documentation": ".claude/skills/documentation-wizard/README.md",
+      "icon": "📚",
+      "screenshots": [],
+      "dependencies": [],
+      "integrations": ["oracle", "summoner", "style-master"],
+      "compatibility": {
+        "claudeCode": ">=1.0.0",
+        "python": ">=3.7"
+      },
+      "install": {
+        "command": "/plugin install documentation-wizard@claudeshack",
+        "manual": "Skills available in .claude/skills/documentation-wizard/"
+      },
+      "features": [
+        "Auto-generate README, API docs, ADRs",
+        "Sync from Oracle, Summoner, Style Master",
+        "Documentation validation",
+        "Changelog generation",
+        "Broken link detection",
+        "Example validation"
+      ],
+      "useCases": [
+        "Project documentation setup",
+        "Keeping docs in sync with code",
+        "Architecture Decision Records",
+        "Onboarding guide generation",
+        "Changelog automation"
+      ]
+    }
+  ],
+  "categories": {
+    "orchestration": {
+      "name": "Orchestration",
+      "description": "Skills for coordinating complex, multi-agent tasks",
+      "skills": ["summoner"]
+    },
+    "knowledge": {
+      "name": "Knowledge Management",
+      "description": "Skills for project memory and learning",
+      "skills": ["oracle"]
+    },
+    "frontend": {
+      "name": "Frontend Development",
+      "description": "Skills for CSS, styling, and design systems",
+      "skills": ["style-master"]
+    },
+    "documentation": {
+      "name": "Documentation",
+      "description": "Skills for generating and maintaining documentation",
+      "skills": ["documentation-wizard"]
+    }
+  },
+  "featured": ["summoner", "oracle"],
+  "bundles": [
+    {
+      "id": "all",
+      "name": "Complete ClaudeShack",
+      "description": "All four skills for complete coverage",
+      "skills": ["summoner", "oracle", "style-master", "documentation-wizard"],
+      "install": "/plugin install all@claudeshack"
+    },
+    {
+      "id": "core",
+      "name": "Core Skills",
+      "description": "Essential orchestration and memory",
+      "skills": ["summoner", "oracle"],
+      "install": "/plugin install core@claudeshack"
+    },
+    {
+      "id": "frontend",
+      "name": "Frontend Bundle",
+      "description": "Frontend styling and documentation",
+      "skills": ["style-master", "documentation-wizard", "oracle"],
+      "install": "/plugin install frontend@claudeshack"
+    }
+  ]
+}

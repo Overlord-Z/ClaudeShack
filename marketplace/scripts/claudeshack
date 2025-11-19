@@ -1,0 +1,231 @@
+#!/usr/bin/env python3
+"""
+ClaudeShack Marketplace CLI
+
+Manage ClaudeShack skills installation, updates, and discovery.
+
+Usage:
+    claudeshack install <skill-name>
+    claudeshack install all
+    claudeshack list
+    claudeshack info <skill-name>
+    claudeshack update [skill-name]
+    claudeshack verify
+    claudeshack version
+"""
+
+import os
+import sys
+import json
+import argparse
+import subprocess
+from pathlib import Path
+
+
+VERSION = "1.0.0"
+
+
+def get_claudeshack_root():
+    """Find ClaudeShack installation."""
+    # Check if we're running from ClaudeShack directory
+    current = Path(__file__).parent.parent.parent
+    if (current / '.claude' / 'plugin.json').exists():
+        return current
+
+    # Check environment variable
+    if 'CLAUDESHACK_HOME' in os.environ:
+        return Path(os.environ['CLAUDESHACK_HOME'])
+
+    # Check common locations
+    locations = [
+        Path.home() / 'ClaudeShack',
+        Path.home() / '.claudeshack',
+        Path('/usr/local/share/claudeshack'),
+    ]
+
+    for loc in locations:
+        if (loc / '.claude' / 'plugin.json').exists():
+            return loc
+
+    return None
+
+
+def load_plugin_manifest(root):
+    """Load plugin.json manifest."""
+    manifest_path = root / '.claude' / 'plugin.json'
+    with open(manifest_path, 'r') as f:
+        return json.load(f)
+
+
+def cmd_list(args, root):
+    """List all available skills."""
+    manifest = load_plugin_manifest(root)
+
+    print("📦 ClaudeShack Skills\n")
+    print(f"{'Skill':<25} {'Version':<10} {'Category':<15} {'Status'}")
+    print("─" * 70)
+
+    for skill in manifest['skills']:
+        name = skill['name']
+        version = skill['version']
+        category = skill['category']
+        skill_path = root / '.claude' / skill['path']
+        status = "✅ Installed" if skill_path.exists() else "❌ Missing"
+
+        print(f"{name:<25} {version:<10} {category:<15} {status}")
+
+    print(f"\nTotal: {len(manifest['skills'])} skills")
+    print(f"Marketplace: {manifest['displayName']}")
+
+
+def cmd_info(args, root):
+    """Show detailed information about a skill."""
+    manifest = load_plugin_manifest(root)
+
+    skill_name = args.skill
+    skill_info = None
+
+    for skill in manifest['skills']:
+        if skill['id'] == skill_name or skill['name'].lower() == skill_name.lower():
+            skill_info = skill
+            break
+
+    if not skill_info:
+        print(f"❌ Skill '{skill_name}' not found")
+        return
+
+    print(f"📚 {skill_info['name']} (v{skill_info['version']})\n")
+    print(f"ID: {skill_info['id']}")
+    print(f"Category: {skill_info['category']}")
+    print(f"Author: {skill_info['author']}")
+    print(f"\nDescription:")
+    print(f"  {skill_info['description']}")
+    print(f"\nTags: {', '.join(skill_info['tags'])}")
+
+    if skill_info.get('integrations'):
+        print(f"\nIntegrations: {', '.join(skill_info['integrations'])}")
+
+    skill_path = root / '.claude' / skill_info['path']
+    if skill_path.exists():
+        readme = skill_path / 'README.md'
+        if readme.exists():
+            print(f"\nDocumentation: {readme}")
+
+    print(f"\nInstall command:")
+    print(f"  /plugin install {skill_info['id']}@claudeshack")
+
+
+def cmd_verify(args, root):
+    """Verify ClaudeShack installation."""
+    print("🔍 Verifying ClaudeShack installation...\n")
+
+    manifest = load_plugin_manifest(root)
+    issues = []
+
+    # Check each skill
+    for skill in manifest['skills']:
+        skill_path = root / '.claude' / skill['path']
+        skill_md = skill_path / 'SKILL.md'
+
+        if not skill_path.exists():
+            issues.append(f"❌ {skill['name']}: Skill directory missing")
+        elif not skill_md.exists():
+            issues.append(f"⚠️  {skill['name']}: SKILL.md missing")
+        else:
+            print(f"✅ {skill['name']}: OK")
+
+    # Check marketplace files
+    required_files = [
+        '.claude/plugin.json',
+        'MARKETPLACE.md',
+        'README.md',
+        'CONTRIBUTING.md'
+    ]
+
+    for file in required_files:
+        file_path = root / file
+        if not file_path.exists():
+            issues.append(f"❌ {file}: Missing")
+
+    if issues:
+        print(f"\n⚠️  Issues found:")
+        for issue in issues:
+            print(f"  {issue}")
+        return False
+    else:
+        print(f"\n✅ ClaudeShack installation is valid!")
+        return True
+
+
+def cmd_version(args, root):
+    """Show version information."""
+    manifest = load_plugin_manifest(root)
+
+    print(f"ClaudeShack CLI v{VERSION}")
+    print(f"Marketplace: {manifest['displayName']} v{manifest['version']}")
+    print(f"Location: {root}")
+    print(f"\nSkills installed: {len(manifest['skills'])}")
+
+
+def main():
+    parser = argparse.ArgumentParser(
+        description='ClaudeShack Marketplace CLI',
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog="""
+Examples:
+  claudeshack list                    # List all skills
+  claudeshack info summoner           # Show skill details
+  claudeshack verify                  # Verify installation
+  claudeshack version                 # Show version info
+
+For skill installation in Claude Code:
+  /plugin install summoner@claudeshack
+  /plugin install all@claudeshack
+        """
+    )
+
+    subparsers = parser.add_subparsers(dest='command', help='Command to run')
+
+    # list command
+    subparsers.add_parser('list', help='List all available skills')
+
+    # info command
+    info_parser = subparsers.add_parser('info', help='Show skill information')
+    info_parser.add_argument('skill', help='Skill name or ID')
+
+    # verify command
+    subparsers.add_parser('verify', help='Verify installation')
+
+    # version command
+    subparsers.add_parser('version', help='Show version information')
+
+    args = parser.parse_args()
+
+    if not args.command:
+        parser.print_help()
+        return
+
+    # Find ClaudeShack root
+    root = get_claudeshack_root()
+
+    if not root:
+        print("❌ ClaudeShack not found!")
+        print("\nPlease set CLAUDESHACK_HOME environment variable or install to:")
+        print("  ~/ClaudeShack")
+        print("  ~/.claudeshack")
+        sys.exit(1)
+
+    # Execute command
+    if args.command == 'list':
+        cmd_list(args, root)
+    elif args.command == 'info':
+        cmd_info(args, root)
+    elif args.command == 'verify':
+        success = cmd_verify(args, root)
+        sys.exit(0 if success else 1)
+    elif args.command == 'version':
+        cmd_version(args, root)
+
+
+if __name__ == '__main__':
+    main()

@@ -141,21 +141,53 @@ Use the documentation wizard to generate API docs
 
 See [MARKETPLACE.md](./MARKETPLACE.md) for detailed installation and usage instructions.
 
+### ClaudeShack CLI
+
+Manage skills with the marketplace CLI:
+
+```bash
+# Set up CLI
+export CLAUDESHACK_HOME="/path/to/ClaudeShack"
+export PATH="$PATH:$CLAUDESHACK_HOME/marketplace/scripts"
+
+# List all skills
+claudeshack list
+
+# Get skill info
+claudeshack info oracle
+
+# Verify installation
+claudeshack verify
+
+# Show version
+claudeshack version
+```
+
+See [marketplace/INSTALL.md](./marketplace/INSTALL.md) for complete installation guide.
+
 ## 📁 Repository Structure
 
 ```
 ClaudeShack/
 ├── .claude/
-│   ├── plugin.json           # Marketplace plugin manifest
-│   └── skills/               # All Claude Code skills
-│       ├── summoner/         # Multi-agent orchestration
-│       ├── oracle/           # Project memory & learning
-│       ├── style-master/     # CSS & frontend styling
-│       ├── documentation-wizard/  # Living documentation
-│       └── ...               # Future skills
-├── README.md                 # This file
-├── MARKETPLACE.md            # Marketplace documentation
-└── docs/                     # Additional documentation
+│   ├── plugin.json                  # Plugin manifest
+│   └── skills/                      # All Claude Code skills
+│       ├── summoner/                # Multi-agent orchestration (10 files)
+│       ├── oracle/                  # Project memory & learning (15 files)
+│       ├── style-master/            # CSS & frontend styling (9 files)
+│       ├── documentation-wizard/    # Living documentation (9 files)
+│       └── ...                      # Future skills
+├── marketplace/                     # Marketplace infrastructure
+│   ├── scripts/
+│   │   └── claudeshack              # CLI management tool
+│   ├── registry/
+│   │   └── skills.json              # Complete skill catalog
+│   ├── INSTALL.md                   # Installation guide
+│   └── README.md                    # Marketplace docs
+├── README.md                        # This file
+├── MARKETPLACE.md                   # User-facing marketplace guide
+├── CONTRIBUTING.md                  # Contribution guidelines
+└── docs/                            # Additional documentation
 ```
 
 ## 🛠️ Skill Development
