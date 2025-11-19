@@ -78,32 +78,84 @@ The **Style Master** is an expert in CSS, design systems, and frontend styling. 
 
 **Location:** `.claude/skills/style-master/`
 
+---
+
+### 📚 Documentation Wizard (Living Documentation)
+
+The **Documentation Wizard** keeps documentation perfectly synchronized with code and knowledge. It excels at:
+
+- **Auto-Generation**: Create README, API docs, ADRs, changelogs from code and knowledge
+- **Continuous Sync**: Keep docs current with Oracle learnings, Summoner decisions, Style Master guides
+- **Validation**: Detect stale docs, broken links, invalid examples
+- **Integration Powerhouse**: Leverages Oracle, Summoner, and Style Master for comprehensive documentation
+- **Living Documentation**: Docs that evolve with your project
+
+**Use When:**
+- Setting up project documentation
+- Keeping docs synchronized with code changes
+- Generating Architecture Decision Records (ADRs)
+- Creating onboarding materials from Oracle sessions
+- Automating changelog generation
+- Ensuring documentation quality
+
+**Location:** `.claude/skills/documentation-wizard/`
+
 ## 🚀 Getting Started
 
-### Installation
+### Marketplace Installation
 
-This is a skills repository for Claude Code. Skills are automatically available when Claude Code runs in this directory.
+Install skills as plugins in Claude Code:
+
+```bash
+# Install individual skills
+/plugin install summoner@claudeshack
+/plugin install oracle@claudeshack
+/plugin install style-master@claudeshack
+/plugin install documentation-wizard@claudeshack
+
+# Or install all skills
+/plugin install all@claudeshack
+```
+
+### Manual Installation
+
+Clone this repository to use skills locally:
+
+```bash
+git clone https://github.com/Overlord-Z/ClaudeShack.git
+cd ClaudeShack
+```
+
+Skills are automatically available when Claude Code runs in this directory.
 
 ### Using Skills
 
-Skills in this repository can be invoked by Claude Code when their trigger contexts are detected, or you can explicitly request a skill:
+Skills activate automatically based on context, or you can explicitly request them:
 
 ```
 Use the summoner skill to implement [complex task description]
+Use the oracle skill to remember this pattern
+Use the style master skill to analyze our CSS
+Use the documentation wizard to generate API docs
 ```
+
+See [MARKETPLACE.md](./MARKETPLACE.md) for detailed installation and usage instructions.
 
 ## 📁 Repository Structure
 
 ```
 ClaudeShack/
 ├── .claude/
-│   └── skills/           # All Claude Code skills
-│       ├── summoner/     # Multi-agent orchestration skill
-│       ├── oracle/       # Project memory & learning skill
-│       ├── style-master/ # CSS & frontend styling expert
-│       └── ...           # Future skills
-├── README.md
-└── docs/                 # Additional documentation
+│   ├── plugin.json           # Marketplace plugin manifest
+│   └── skills/               # All Claude Code skills
+│       ├── summoner/         # Multi-agent orchestration
+│       ├── oracle/           # Project memory & learning
+│       ├── style-master/     # CSS & frontend styling
+│       ├── documentation-wizard/  # Living documentation
+│       └── ...               # Future skills
+├── README.md                 # This file
+├── MARKETPLACE.md            # Marketplace documentation
+└── docs/                     # Additional documentation
 ```
 
 ## 🛠️ Skill Development
@@ -112,8 +164,20 @@ Want to create your own skill? Check out:
 - [Anthropic's Skill Creator Guide](https://github.com/anthropics/skills/tree/main/skill-creator)
 - [Official Claude Code Skills Documentation](https://docs.claude.com/en/docs/claude-code/skills)
 
+## 🔗 Skill Integrations
+
+Skills work powerfully together:
+
+- **Summoner** ← Oracle (context) + Style Master (styling) + Doc Wizard (documentation)
+- **Oracle** → All skills (provides memory and learning)
+- **Style Master** ← Oracle (preferences) → Doc Wizard (style guide docs)
+- **Documentation Wizard** ← Oracle + Summoner + Style Master (comprehensive docs)
+
+**Example**: Summoner orchestrates a refactor, Oracle provides patterns, Style Master handles styling, Documentation Wizard auto-generates the updated docs.
+
 ## 📚 Resources
 
+- **Marketplace**: [MARKETPLACE.md](./MARKETPLACE.md) - Full installation and usage guide
 - **Official Skills Repository**: [anthropics/skills](https://github.com/anthropics/skills)
 - **Claude Code Documentation**: [docs.claude.com](https://docs.claude.com)
 - **Community Skills**: [awesome-claude-skills](https://github.com/travisvn/awesome-claude-skills)

@@ -1,0 +1,78 @@
+{
+  "name": "claudeshack",
+  "displayName": "ClaudeShack Skills Marketplace",
+  "version": "1.0.0",
+  "description": "Professional skill center providing orchestration, memory, styling, and documentation expertise for Claude Code",
+  "author": "ClaudeShack",
+  "repository": "https://github.com/Overlord-Z/ClaudeShack",
+  "license": "MIT",
+  "skills": [
+    {
+      "id": "summoner",
+      "name": "Summoner",
+      "version": "1.0.0",
+      "description": "Multi-agent orchestration for complex tasks. Breaks down projects, coordinates specialists, ensures quality (DRY, CLEAN, SOLID).",
+      "category": "orchestration",
+      "tags": ["orchestration", "quality", "multi-agent", "planning"],
+      "path": "skills/summoner",
+      "author": "ClaudeShack",
+      "dependencies": [],
+      "integrations": ["oracle"]
+    },
+    {
+      "id": "oracle",
+      "name": "Oracle",
+      "version": "1.0.0",
+      "description": "Project memory and learning system. Tracks sessions, learns from corrections, prevents repeated mistakes, generates automation scripts.",
+      "category": "knowledge",
+      "tags": ["memory", "learning", "automation", "knowledge-base"],
+      "path": "skills/oracle",
+      "author": "ClaudeShack",
+      "dependencies": [],
+      "integrations": ["summoner", "style-master", "documentation-wizard"]
+    },
+    {
+      "id": "style-master",
+      "name": "Style Master",
+      "version": "1.0.0",
+      "description": "CSS and frontend styling expert. Analyzes codebases, maintains style guides, suggests improvements, ensures accessibility.",
+      "category": "frontend",
+      "tags": ["css", "design-system", "styling", "accessibility"],
+      "path": "skills/style-master",
+      "author": "ClaudeShack",
+      "dependencies": [],
+      "integrations": ["oracle", "documentation-wizard"]
+    },
+    {
+      "id": "documentation-wizard",
+      "name": "Documentation Wizard",
+      "version": "1.0.0",
+      "description": "Living documentation expert. Keeps docs in sync with code, generates README/API docs/ADRs, integrates with Oracle/Summoner/Style Master.",
+      "category": "documentation",
+      "tags": ["documentation", "api-docs", "sync", "automation"],
+      "path": "skills/documentation-wizard",
+      "author": "ClaudeShack",
+      "dependencies": [],
+      "integrations": ["oracle", "summoner", "style-master"]
+    }
+  ],
+  "installation": {
+    "command": "/plugin install {{skill-id}}@claudeshack",
+    "examples": [
+      "/plugin install summoner@claudeshack",
+      "/plugin install oracle@claudeshack",
+      "/plugin install style-master@claudeshack",
+      "/plugin install documentation-wizard@claudeshack",
+      "/plugin install all@claudeshack"
+    ]
+  },
+  "marketplace": {
+    "featured": ["summoner", "oracle"],
+    "categories": {
+      "orchestration": ["summoner"],
+      "knowledge": ["oracle"],
+      "frontend": ["style-master"],
+      "documentation": ["documentation-wizard"]
+    }
+  }
+}
