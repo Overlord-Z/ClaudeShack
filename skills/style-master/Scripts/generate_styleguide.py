@@ -359,10 +359,10 @@ def main():
     root_path = Path(args.path).resolve()
 
     if not root_path.exists():
-        print(f"❌ Error: Path does not exist: {root_path}")
+        print(f"[ERROR] Error: Path does not exist: {root_path}")
         sys.exit(1)
 
-    print(f"📝 Generating style guide for: {root_path}")
+    print(f"[NOTE] Generating style guide for: {root_path}")
 
     # Generate style guide
     if args.format == 'markdown':
@@ -372,8 +372,8 @@ def main():
         with open(output_path, 'w') as f:
             f.write(styleguide)
 
-        print(f"✅ Style guide created: {output_path}")
-        print(f"\n📖 Review and customize the generated style guide")
+        print(f"[OK] Style guide created: {output_path}")
+        print(f"\n Review and customize the generated style guide")
         print(f"   Add component examples, update guidelines, refine tokens\n")
     else:
         # JSON format (for programmatic use)
@@ -390,7 +390,7 @@ def main():
         with open(output_path, 'w') as f:
             json.dump(data, f, indent=2)
 
-        print(f"✅ Style guide data exported: {output_path}")
+        print(f"[OK] Style guide data exported: {output_path}")
 
 
 if __name__ == '__main__':

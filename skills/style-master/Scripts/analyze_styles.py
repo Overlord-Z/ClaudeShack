@@ -177,7 +177,7 @@ def analyze_file_content(file_path):
 def generate_report(style_files, root_path, detailed=False):
     """Generate analysis report."""
     print("="*70)
-    print("🎨 Style Master - Codebase Analysis")
+    print(" Style Master - Codebase Analysis")
     print("="*70)
     print(f"\nAnalyzing: {root_path}\n")
 
@@ -185,7 +185,7 @@ def generate_report(style_files, root_path, detailed=False):
     approaches = detect_styling_approach(style_files, root_path)
     print("## Styling Approach\n")
     for approach in approaches:
-        print(f"  ✓ {approach}")
+        print(f"  [CHECK] {approach}")
     print()
 
     # File counts
@@ -193,7 +193,7 @@ def generate_report(style_files, root_path, detailed=False):
     print(f"## Files Found: {total_files}\n")
     for file_type, files in style_files.items():
         if files:
-            print(f"  • {file_type}: {len(files)}")
+            print(f"   {file_type}: {len(files)}")
     print()
 
     # Detailed analysis
@@ -224,7 +224,7 @@ def generate_report(style_files, root_path, detailed=False):
             print(f"**Colors Found**: {len(color_counts)} unique colors")
             print(f"\nMost used colors:")
             for color, count in color_counts.most_common(10):
-                print(f"  • {color}: used {count} times")
+                print(f"   {color}: used {count} times")
             print()
 
         # Spacing analysis
@@ -233,7 +233,7 @@ def generate_report(style_files, root_path, detailed=False):
             print(f"**Spacing Values**: {len(spacing_counts)} unique values")
             print(f"\nMost used spacing:")
             for value, count in spacing_counts.most_common(10):
-                print(f"  • {value}: used {count} times")
+                print(f"   {value}: used {count} times")
             print()
 
         # Custom properties
@@ -241,7 +241,7 @@ def generate_report(style_files, root_path, detailed=False):
             print(f"**CSS Custom Properties**: {len(all_custom_props)} defined")
             print("\nExamples:")
             for prop, value in list(all_custom_props.items())[:10]:
-                print(f"  • --{prop}: {value}")
+                print(f"   --{prop}: {value}")
             print()
 
         # Size stats
@@ -255,28 +255,28 @@ def generate_report(style_files, root_path, detailed=False):
     suggestions = []
 
     if not any(style_files.values()):
-        suggestions.append("⚠️  No style files found. Consider adding styling to your project.")
+        suggestions.append("[WARNING]  No style files found. Consider adding styling to your project.")
 
     if 'Tailwind CSS' not in approaches and 'CSS-in-JS' not in approaches:
-        suggestions.append("💡 Consider modern approaches like Tailwind CSS or CSS-in-JS")
+        suggestions.append("[TIP] Consider modern approaches like Tailwind CSS or CSS-in-JS")
 
     if style_files['css'] and not style_files['css_modules']:
-        suggestions.append("💡 Consider CSS Modules to avoid global namespace pollution")
+        suggestions.append("[TIP] Consider CSS Modules to avoid global namespace pollution")
 
     if not style_files['tailwind_config'] and len(all_colors) > 20:
-        suggestions.append("⚠️  Many color values detected - consider establishing a color system")
+        suggestions.append("[WARNING]  Many color values detected - consider establishing a color system")
 
     if len(all_spacing) > 30:
-        suggestions.append("⚠️  Many spacing values - consider a consistent spacing scale")
+        suggestions.append("[WARNING]  Many spacing values - consider a consistent spacing scale")
 
     if detailed and not all_custom_props:
-        suggestions.append("💡 No CSS custom properties found - consider using them for theming")
+        suggestions.append("[TIP] No CSS custom properties found - consider using them for theming")
 
     for suggestion in suggestions:
         print(f"  {suggestion}")
 
     if not suggestions:
-        print("  ✅ Styling approach looks good!")
+        print("  [OK] Styling approach looks good!")
 
     print("\n" + "="*70)
 
@@ -320,7 +320,7 @@ def main():
     root_path = Path(args.path).resolve()
 
     if not root_path.exists():
-        print(f"❌ Error: Path does not exist: {root_path}")
+        print(f"[ERROR] Error: Path does not exist: {root_path}")
         sys.exit(1)
 
     # Find style files
@@ -333,7 +333,7 @@ def main():
     if args.export:
         with open(args.export, 'w') as f:
             json.dump(report_data, f, indent=2)
-        print(f"\n📄 Report exported to: {args.export}")
+        print(f"\n Report exported to: {args.export}")
 
 
 if __name__ == '__main__':

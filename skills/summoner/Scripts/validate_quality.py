@@ -25,9 +25,9 @@ class Level(Enum):
 
 
 class Severity(Enum):
-    CRITICAL = '🔴'
-    WARNING = '🟡'
-    INFO = '🟢'
+    CRITICAL = ''
+    WARNING = ''
+    INFO = ''
 
 
 # Quality Gate Definitions
@@ -168,15 +168,15 @@ def interactive_validation(gates):
     current = 0
 
     print("\n" + "="*70)
-    print("🔍 Quality Gates Validation")
+    print("[SEARCH] Quality Gates Validation")
     print("="*70)
     print(f"\nTotal checks: {total_checks}")
     print("\nFor each check, respond: y (yes/pass), n (no/fail), s (skip)\n")
 
     for category, checks in gates.items():
-        print(f"\n{'─'*70}")
-        print(f"📋 {category}")
-        print(f"{'─'*70}")
+        print(f"\n{''*70}")
+        print(f" {category}")
+        print(f"{''*70}")
 
         category_results = []
 
@@ -186,15 +186,15 @@ def interactive_validation(gates):
                 response = input(f"  [{current}/{total_checks}] {check}? [y/n/s]: ").lower().strip()
 
                 if response in ['y', 'yes']:
-                    print(f"    ✅ Pass")
+                    print(f"    [OK] Pass")
                     category_results.append(('pass', check))
                     break
                 elif response in ['n', 'no']:
-                    print(f"    ❌ Fail")
+                    print(f"    [ERROR] Fail")
                     category_results.append(('fail', check))
                     break
                 elif response in ['s', 'skip']:
-                    print(f"    ⏭️  Skip")
+                    print(f"      Skip")
                     category_results.append(('skip', check))
                     break
                 else:
@@ -213,37 +213,37 @@ def print_summary(results, level):
     total_checks = total_pass + total_fail + total_skip
 
     print("\n" + "="*70)
-    print("📊 VALIDATION SUMMARY")
+    print("[INFO] VALIDATION SUMMARY")
     print("="*70)
 
     print(f"\nLevel: {level.value.upper()}")
     print(f"\nResults:")
-    print(f"  ✅ Passed: {total_pass}/{total_checks}")
-    print(f"  ❌ Failed: {total_fail}/{total_checks}")
-    print(f"  ⏭️  Skipped: {total_skip}/{total_checks}")
+    print(f"  [OK] Passed: {total_pass}/{total_checks}")
+    print(f"  [ERROR] Failed: {total_fail}/{total_checks}")
+    print(f"    Skipped: {total_skip}/{total_checks}")
 
     if total_fail > 0:
-        print(f"\n🔴 FAILED CHECKS:")
+        print(f"\n FAILED CHECKS:")
         for category, checks in results.items():
             failed = [(status, check) for status, check in checks if status == 'fail']
             if failed:
                 print(f"\n  {category}:")
                 for _, check in failed:
-                    print(f"    ❌ {check}")
+                    print(f"    [ERROR] {check}")
 
     print("\n" + "="*70)
 
     if total_fail == 0 and total_skip == 0:
-        print("🎉 ALL QUALITY GATES PASSED!")
+        print(" ALL QUALITY GATES PASSED!")
         print("="*70)
         return True
     elif total_fail == 0:
-        print(f"⚠️  All checked gates passed, but {total_skip} checks were skipped.")
+        print(f"[WARNING]  All checked gates passed, but {total_skip} checks were skipped.")
         print("="*70)
         return True
     else:
-        print(f"❌ {total_fail} QUALITY GATES FAILED")
-        print("🔧 Please address failed checks before proceeding.")
+        print(f"[ERROR] {total_fail} QUALITY GATES FAILED")
+        print("[TOOL] Please address failed checks before proceeding.")
         print("="*70)
         return False
 

@@ -46,7 +46,7 @@ def generate_session_id():
 def interactive_session_record():
     """Interactive mode for recording a session."""
     print("="*70)
-    print("📝 Oracle Session Recording (Interactive Mode)")
+    print("[NOTE] Oracle Session Recording (Interactive Mode)")
     print("="*70)
     print("\nPress Enter to skip any field.\n")
 
@@ -113,13 +113,13 @@ def interactive_session_record():
     session['learnings'] = learnings
 
     # Corrections
-    print("\nCorrections (what was wrong → what's right, empty line to finish):")
+    print("\nCorrections (what was wrong  what's right, empty line to finish):")
     corrections = []
     while True:
-        wrong = input("❌ What was wrong: ").strip()
+        wrong = input("[ERROR] What was wrong: ").strip()
         if not wrong:
             break
-        right = input("✓  What's right: ").strip()
+        right = input("[CHECK]  What's right: ").strip()
         context = input("   When this applies: ").strip()
 
         corrections.append({
@@ -193,7 +193,7 @@ def create_session_log(oracle_path, session_id, session_data):
         content += "## Learnings\n\n"
         for learning in session_data['learnings']:
             priority = learning.get('priority', 'medium')
-            priority_emoji = {'critical': '🔴', 'high': '🟡', 'medium': '🔵', 'low': '⚪'}.get(priority, '⚪')
+            priority_emoji = {'critical': '', 'high': '', 'medium': '', 'low': ''}.get(priority, '')
             content += f"- {priority_emoji} **[{priority.upper()}]** {learning['content']}\n"
         content += "\n"
 
@@ -201,10 +201,10 @@ def create_session_log(oracle_path, session_id, session_data):
     if session_data.get('corrections'):
         content += "## Corrections\n\n"
         for correction in session_data['corrections']:
-            content += f"- ❌ Wrong: {correction['wrong']}\n"
-            content += f"  ✓ Right: {correction['right']}\n"
+            content += f"- [ERROR] Wrong: {correction['wrong']}\n"
+            content += f"  [CHECK] Right: {correction['right']}\n"
             if correction.get('context'):
-                content += f"  📝 Context: {correction['context']}\n"
+                content += f"  [NOTE] Context: {correction['context']}\n"
             content += "\n"
 
     # Questions
@@ -274,7 +274,7 @@ def update_knowledge_base(oracle_path, session_id, session_data):
                 'category': 'correction',
                 'priority': 'high',  # Corrections are high priority
                 'title': f"Don't: {correction['wrong'][:50]}...",
-                'content': f"❌ Wrong: {correction['wrong']}\n✓ Right: {correction['right']}",
+                'content': f"[ERROR] Wrong: {correction['wrong']}\n[CHECK] Right: {correction['right']}",
                 'context': correction.get('context', ''),
                 'examples': [],
                 'learned_from': session_id,
@@ -386,7 +386,7 @@ def main():
     oracle_path = find_oracle_root()
 
     if not oracle_path:
-        print("❌ Error: .oracle directory not found.")
+        print("[ERROR] Error: .oracle directory not found.")
         print("   Run: python .claude/skills/oracle/Scripts/init_oracle.py")
         sys.exit(1)
 
@@ -424,26 +424,26 @@ def main():
     # Generate session ID
     session_id = generate_session_id()
 
-    print(f"\n📝 Recording session: {session_id}\n")
+    print(f"\n[NOTE] Recording session: {session_id}\n")
 
     # Create session log
     log_file = create_session_log(oracle_path, session_id, session_data)
-    print(f"✅ Session log created: {log_file}")
+    print(f"[OK] Session log created: {log_file}")
 
     # Update knowledge base
     updated_categories = update_knowledge_base(oracle_path, session_id, session_data)
     if updated_categories:
-        print(f"✅ Knowledge base updated: {', '.join(updated_categories)}")
+        print(f"[OK] Knowledge base updated: {', '.join(updated_categories)}")
 
     # Update timeline
     update_timeline(oracle_path, session_id, session_data)
-    print(f"✅ Timeline updated")
+    print(f"[OK] Timeline updated")
 
     # Update index
     update_index(oracle_path, session_id)
-    print(f"✅ Index updated")
+    print(f"[OK] Index updated")
 
-    print(f"\n🎉 Session recorded successfully!\n")
+    print(f"\n Session recorded successfully!\n")
     print(f"View log: {log_file}")
     print(f"Query knowledge: python .claude/skills/oracle/Scripts/query_knowledge.py\n")
 

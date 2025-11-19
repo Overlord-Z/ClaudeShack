@@ -32,11 +32,11 @@ def find_oracle_root():
 
 def sync_from_oracle(oracle_path, output_dir):
     """Sync documentation from Oracle knowledge base."""
-    print("📚 Syncing from Oracle knowledge base...")
+    print(" Syncing from Oracle knowledge base...")
 
     knowledge_dir = oracle_path / 'knowledge'
     if not knowledge_dir.exists():
-        print("  ⚠️  No Oracle knowledge found")
+        print("  [WARNING]  No Oracle knowledge found")
         return
 
     patterns_file = knowledge_dir / 'patterns.json'
@@ -71,7 +71,7 @@ def sync_from_oracle(oracle_path, output_dir):
                 title = gotcha.get('title', 'Untitled')
                 content = gotcha.get('content', '')
                 priority = gotcha.get('priority', 'medium')
-                emoji = {'critical': '🔴', 'high': '🟡', 'medium': '🔵', 'low': '⚪'}.get(priority, '⚪')
+                emoji = {'critical': '', 'high': '', 'medium': '', 'low': ''}.get(priority, '')
                 sections.append(f"### {emoji} {title}\n\n{content}\n\n")
 
     if sections:
@@ -82,15 +82,15 @@ def sync_from_oracle(oracle_path, output_dir):
             f.write(f"*Last updated: {datetime.now().strftime('%Y-%m-%d %H:%M')}*\n\n")
             f.write(''.join(sections))
 
-        print(f"  ✅ Created {output_file}")
-        print(f"  📝 Synced {len(patterns if patterns_file.exists() else [])} patterns, {len(gotchas if gotchas_file.exists() else [])} gotchas")
+        print(f"  [OK] Created {output_file}")
+        print(f"  [NOTE] Synced {len(patterns if patterns_file.exists() else [])} patterns, {len(gotchas if gotchas_file.exists() else [])} gotchas")
     else:
-        print("  ⚠️  No patterns or gotchas to sync")
+        print("  [WARNING]  No patterns or gotchas to sync")
 
 
 def sync_from_style_master(project_path, output_dir):
     """Sync from Style Master style guide."""
-    print("🎨 Syncing from Style Master...")
+    print(" Syncing from Style Master...")
 
     style_guide = project_path / 'STYLEGUIDE.md'
     if style_guide.exists():
@@ -102,27 +102,27 @@ def sync_from_style_master(project_path, output_dir):
         with open(output_file, 'w') as f:
             f.write(content)
 
-        print(f"  ✅ Synced {output_file}")
+        print(f"  [OK] Synced {output_file}")
     else:
-        print("  ⚠️  No STYLEGUIDE.md found")
+        print("  [WARNING]  No STYLEGUIDE.md found")
 
 
 def sync_from_summoner(project_path, output_dir):
     """Sync from Summoner Mission Control Documents."""
-    print("🧙 Syncing from Summoner MCDs...")
+    print(" Syncing from Summoner MCDs...")
 
     # Look for mission-*.md files
     mcds = list(project_path.glob('mission-*.md'))
 
     if not mcds:
-        print("  ⚠️  No Summoner MCDs found")
+        print("  [WARNING]  No Summoner MCDs found")
         return
 
     adr_dir = output_dir / 'adr'
     adr_dir.mkdir(exist_ok=True)
 
     for mcd in mcds:
-        print(f"  📋 Processing {mcd.name}")
+        print(f"   Processing {mcd.name}")
 
         with open(mcd, 'r') as f:
             content = f.read()
@@ -157,7 +157,7 @@ From Mission Control Document: {mcd.name}
             with open(adr_file, 'w') as f:
                 f.write(adr_content)
 
-            print(f"    ✅ Created ADR: {adr_file.name}")
+            print(f"    [OK] Created ADR: {adr_file.name}")
 
 
 def main():
@@ -185,14 +185,14 @@ def main():
     output_dir = project_path / args.output
     output_dir.mkdir(exist_ok=True)
 
-    print(f"🔄 Syncing documentation to {output_dir}\n")
+    print(f" Syncing documentation to {output_dir}\n")
 
     if args.source in ['oracle', 'all']:
         oracle_path = find_oracle_root()
         if oracle_path:
             sync_from_oracle(oracle_path, output_dir)
         else:
-            print("⚠️  Oracle not initialized for this project")
+            print("[WARNING]  Oracle not initialized for this project")
         print()
 
     if args.source in ['style-master', 'all']:
@@ -203,7 +203,7 @@ def main():
         sync_from_summoner(project_path, output_dir)
         print()
 
-    print("✅ Documentation sync complete!")
+    print("[OK] Documentation sync complete!")
 
 
 if __name__ == '__main__':

@@ -106,8 +106,8 @@ def format_entry(entry, compact=False):
         return f"  [{entry['_category']}] {entry.get('title', 'Untitled')} (Priority: {entry.get('priority', 'N/A')})"
 
     output = []
-    output.append("─" * 70)
-    output.append(f"📚 {entry.get('title', 'Untitled')}")
+    output.append("" * 70)
+    output.append(f" {entry.get('title', 'Untitled')}")
     output.append(f"   Category: {entry['_category']} | Priority: {entry.get('priority', 'N/A')}")
 
     if entry.get('tags'):
@@ -139,13 +139,13 @@ def format_entry(entry, compact=False):
 def display_results(results, compact=False, limit=None):
     """Display search results."""
     if not results:
-        print("❌ No knowledge found matching your criteria.")
+        print("[ERROR] No knowledge found matching your criteria.")
         return
 
     total = len(results)
     display_count = min(limit, total) if limit else total
 
-    print(f"\n🔍 Found {total} result(s)")
+    print(f"\n[SEARCH] Found {total} result(s)")
     if limit and total > limit:
         print(f"   Showing first {display_count} results\n")
     else:
@@ -165,14 +165,14 @@ def display_summary(oracle_path):
     index_path = oracle_path / 'index.json'
 
     if not index_path.exists():
-        print("⚠️  No index found. Knowledge base may be empty.")
+        print("[WARNING]  No index found. Knowledge base may be empty.")
         return
 
     with open(index_path, 'r') as f:
         index = json.load(f)
 
     print("="*70)
-    print("📊 Oracle Knowledge Base Summary")
+    print("[INFO] Oracle Knowledge Base Summary")
     print("="*70)
     print(f"\nCreated: {index.get('created', 'Unknown')}")
     print(f"Last Updated: {index.get('last_updated', 'Unknown')}")
@@ -180,7 +180,7 @@ def display_summary(oracle_path):
 
     print("\nEntries by Category:")
     for category, count in index.get('categories', {}).items():
-        print(f"  • {category.capitalize()}: {count}")
+        print(f"   {category.capitalize()}: {count}")
 
     print(f"\nSessions Recorded: {len(index.get('sessions', []))}")
     print("="*70)
@@ -262,7 +262,7 @@ Examples:
     oracle_path = find_oracle_root()
 
     if not oracle_path:
-        print("❌ Error: .oracle directory not found.")
+        print("[ERROR] Error: .oracle directory not found.")
         print("   Run: python .claude/skills/oracle/Scripts/init_oracle.py")
         sys.exit(1)
 
@@ -275,7 +275,7 @@ Examples:
     knowledge = load_knowledge(oracle_path, args.category)
 
     if not knowledge:
-        print("❌ No knowledge entries found.")
+        print("[ERROR] No knowledge entries found.")
         print("   Start recording sessions to build the knowledge base.")
         sys.exit(0)
 

@@ -52,13 +52,13 @@ See LICENSE file.
     with open(output, 'w') as f:
         f.write(readme)
 
-    print(f"✅ Generated: {output}")
+    print(f"[OK] Generated: {output}")
 
 def main():
     project = Path(sys.argv[1] if len(sys.argv) > 1 else '.').resolve()
-    print(f"📝 Generating documentation for: {project}\n")
+    print(f"[NOTE] Generating documentation for: {project}\n")
     generate_readme(project)
-    print("\n✅ Documentation generated!")
+    print("\n[OK] Documentation generated!")
 
 if __name__ == '__main__':
     main()

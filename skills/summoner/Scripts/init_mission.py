@@ -35,7 +35,7 @@ def create_mission_control(task_name, output_dir='.'):
     template_path = Path(__file__).parent.parent / 'References' / 'mission-control-template.md'
 
     if not template_path.exists():
-        print(f"❌ Error: Template not found at {template_path}")
+        print(f"[ERROR] Error: Template not found at {template_path}")
         return False
 
     with open(template_path, 'r') as f:
@@ -59,8 +59,8 @@ def create_mission_control(task_name, output_dir='.'):
     with open(output_path, 'w') as f:
         f.write(content)
 
-    print(f"✅ Mission Control Document created: {output_path}")
-    print(f"\n📋 Next steps:")
+    print(f"[OK] Mission Control Document created: {output_path}")
+    print(f"\n Next steps:")
     print(f"   1. Open {output_path}")
     print(f"   2. Fill in Executive Summary and Context")
     print(f"   3. Define Success Criteria")

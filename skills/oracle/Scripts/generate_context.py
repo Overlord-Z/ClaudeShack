@@ -153,7 +153,7 @@ def generate_session_start_context(oracle_path):
 
     # Critical Knowledge
     if critical_items:
-        context += "## ⚠️  Critical Knowledge\n\n"
+        context += "## [WARNING]  Critical Knowledge\n\n"
 
         for item in critical_items[:10]:  # Top 10
             context += f"### {item.get('title', 'Untitled')}\n\n"
@@ -167,7 +167,7 @@ def generate_session_start_context(oracle_path):
 
     # Recent Corrections
     if recent_corrections:
-        context += "## 🔄 Recent Corrections (Learn from these!)\n\n"
+        context += "##  Recent Corrections (Learn from these!)\n\n"
 
         for correction in recent_corrections:
             context += f"- **{correction.get('title', 'Correction')}**\n"
@@ -213,11 +213,11 @@ def generate_task_context(oracle_path, task_description):
 
     # Format by category
     category_names = {
-        'patterns': '📐 Patterns',
-        'preferences': '⚙️  Preferences',
-        'gotchas': '⚠️  Gotchas',
-        'solutions': '✅ Solutions',
-        'corrections': '🔄 Corrections'
+        'patterns': ' Patterns',
+        'preferences': '  Preferences',
+        'gotchas': '[WARNING]  Gotchas',
+        'solutions': '[OK] Solutions',
+        'corrections': ' Corrections'
     }
 
     for category, items in by_category.items():
@@ -269,8 +269,8 @@ def generate_compact_context(oracle_path):
         for correction in recent_corrections:
             content = correction.get('content', '')
             # Extract just the "right" part if it's a correction
-            if '✓ Right:' in content:
-                right_part = content.split('✓ Right:')[1].split('\n')[0].strip()
+            if '[CHECK] Right:' in content:
+                right_part = content.split('[CHECK] Right:')[1].split('\n')[0].strip()
                 context += f"- {right_part}\n"
             else:
                 context += f"- {correction.get('title', '')}\n"
@@ -303,7 +303,7 @@ def update_claude_md(oracle_path, project_path):
         with open(claude_md, 'w') as f:
             f.write(content)
 
-        print(f"✅ Created new claude.md with Oracle context")
+        print(f"[OK] Created new claude.md with Oracle context")
         return
 
     # Update existing claude.md
@@ -315,11 +315,11 @@ def update_claude_md(oracle_path, project_path):
         import re
         pattern = r'<!-- ORACLE_CONTEXT_START -->.*?<!-- ORACLE_CONTEXT_END -->'
         content = re.sub(pattern, context, content, flags=re.DOTALL)
-        print(f"✅ Updated Oracle context in claude.md")
+        print(f"[OK] Updated Oracle context in claude.md")
     else:
         # Add Oracle section at the top
         content = f"## Project Knowledge (Oracle)\n\n{context}\n\n{content}"
-        print(f"✅ Added Oracle context to claude.md")
+        print(f"[OK] Added Oracle context to claude.md")
 
     with open(claude_md, 'w') as f:
         f.write(content)
@@ -367,7 +367,7 @@ def main():
     oracle_path = find_oracle_root()
 
     if not oracle_path:
-        print("❌ Error: .oracle directory not found.")
+        print("[ERROR] Error: .oracle directory not found.")
         sys.exit(1)
 
     # Generate context
@@ -387,7 +387,7 @@ def main():
         output_path = Path(args.output)
         with open(output_path, 'w') as f:
             f.write(context)
-        print(f"✅ Context written to: {output_path}")
+        print(f"[OK] Context written to: {output_path}")
     else:
         print(context)
 

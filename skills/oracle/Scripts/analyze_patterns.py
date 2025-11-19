@@ -166,7 +166,7 @@ def generate_automation_script(activity):
 
 set -e  # Exit on error
 
-echo "🤖 Automated task: {activity}"
+echo " Automated task: {activity}"
 echo "---"
 
 # TODO: Implement automation logic
@@ -202,7 +202,7 @@ echo "---"
 
     script += """
 echo "---"
-echo "✅ Completed: {activity}"
+echo "[OK] Completed: {activity}"
 """.format(activity=activity)
 
     return script_name, script
@@ -211,7 +211,7 @@ echo "✅ Completed: {activity}"
 def generate_report(oracle_path, sessions, threshold):
     """Generate analysis report."""
     print("="*70)
-    print("🔍 Oracle Pattern Analysis Report")
+    print("[SEARCH] Oracle Pattern Analysis Report")
     print("="*70)
     print(f"\nAnalyzing {len(sessions)} sessions\n")
 
@@ -222,7 +222,7 @@ def generate_report(oracle_path, sessions, threshold):
     if activity_counts:
         print("Top repeated tasks:\n")
         for activity, count in activity_counts.most_common(10):
-            emoji = "🔁" if count >= threshold else "📋"
+            emoji = "" if count >= threshold else ""
             print(f"  {emoji} [{count}x] {activity}")
     else:
         print("  No repeated activities found\n")
@@ -236,7 +236,7 @@ def generate_report(oracle_path, sessions, threshold):
     if candidates:
         print(f"Found {len(candidates)} automation candidates:\n")
         for candidate in candidates:
-            confidence_emoji = "🟢" if candidate['confidence'] == 'high' else "🟡"
+            confidence_emoji = "" if candidate['confidence'] == 'high' else ""
             print(f"  {confidence_emoji} [{candidate['count']}x] {candidate['activity']}")
             print(f"      Confidence: {candidate['confidence']}, Score: {candidate['automation_score']}\n")
     else:
@@ -251,9 +251,9 @@ def generate_report(oracle_path, sessions, threshold):
     if correction_themes:
         print("Corrections by theme:\n")
         for theme, corrections in sorted(correction_themes.items(), key=lambda x: len(x[1]), reverse=True):
-            print(f"  • {theme.capitalize()}: {len(corrections)} corrections")
+            print(f"   {theme.capitalize()}: {len(corrections)} corrections")
 
-        print("\n⚠️  Consider updating documentation or creating safeguards for common themes\n")
+        print("\n[WARNING]  Consider updating documentation or creating safeguards for common themes\n")
     else:
         print("  No corrections recorded yet\n")
 
@@ -268,7 +268,7 @@ def generate_report(oracle_path, sessions, threshold):
         for file_path, count in file_changes.most_common(10):
             print(f"  [{count}x] {file_path}")
 
-        print("\n💡 Consider if these files need refactoring or better structure\n")
+        print("\n[TIP] Consider if these files need refactoring or better structure\n")
     else:
         print("  No file change patterns found\n")
 
@@ -276,7 +276,7 @@ def generate_report(oracle_path, sessions, threshold):
 
     # Recommendations
     print("="*70)
-    print("📊 Recommendations")
+    print("[INFO] Recommendations")
     print("="*70)
     print()
 
@@ -314,7 +314,7 @@ def save_automation_scripts(oracle_path, candidates):
 
         scripts_generated.append(script_path)
 
-        print(f"✅ Generated: {script_path}")
+        print(f"[OK] Generated: {script_path}")
 
     # Create README in scripts dir
     readme_path = scripts_dir / 'README.md'
@@ -347,7 +347,7 @@ These scripts are templates. Review and customize them for your specific needs.
     with open(readme_path, 'w') as f:
         f.write(readme_content)
 
-    print(f"\n📄 Created README: {readme_path}")
+    print(f"\n Created README: {readme_path}")
 
     return scripts_generated
 
@@ -377,14 +377,14 @@ def main():
     oracle_path = find_oracle_root()
 
     if not oracle_path:
-        print("❌ Error: .oracle directory not found.")
+        print("[ERROR] Error: .oracle directory not found.")
         sys.exit(1)
 
     # Load sessions
     sessions = load_all_sessions(oracle_path)
 
     if not sessions:
-        print("⚠️  No sessions found. Start recording sessions to enable pattern analysis.")
+        print("[WARNING]  No sessions found. Start recording sessions to enable pattern analysis.")
         sys.exit(0)
 
     # Generate report
@@ -397,16 +397,16 @@ def main():
 
         if candidates:
             print("\n" + "="*70)
-            print("🤖 Generating Automation Scripts")
+            print(" Generating Automation Scripts")
             print("="*70 + "\n")
 
             scripts = save_automation_scripts(oracle_path, candidates)
 
-            print(f"\n🎉 Generated {len(scripts)} automation scripts!")
+            print(f"\n Generated {len(scripts)} automation scripts!")
             print(f"   Location: {oracle_path / 'scripts'}")
-            print("\n⚠️  Review and customize these scripts before use.\n")
+            print("\n[WARNING]  Review and customize these scripts before use.\n")
         else:
-            print("\n⚠️  No automation candidates found (threshold: {args.threshold})\n")
+            print("\n[WARNING]  No automation candidates found (threshold: {args.threshold})\n")
 
 
 if __name__ == '__main__':

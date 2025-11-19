@@ -16,16 +16,16 @@ def validate_colors(root_path):
             except: pass
 
     counts = Counter(colors)
-    print(f"🎨 Colors: {len(counts)} unique colors found")
+    print(f" Colors: {len(counts)} unique colors found")
     if len(counts) > 20:
-        print(f"  ⚠️  Consider consolidating to a color system")
+        print(f"  [WARNING]  Consider consolidating to a color system")
     return counts
 
 def main():
     root = Path(sys.argv[1] if len(sys.argv) > 1 else '.').resolve()
-    print("🔍 Validating style consistency...\n")
+    print("[SEARCH] Validating style consistency...\n")
     validate_colors(root)
-    print("\n✅ Validation complete")
+    print("\n[OK] Validation complete")
 
 if __name__ == '__main__':
     main()

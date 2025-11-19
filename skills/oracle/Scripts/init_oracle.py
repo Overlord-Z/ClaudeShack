@@ -58,18 +58,18 @@ def create_oracle_structure(base_path):
     oracle_path = Path(base_path) / '.oracle'
 
     if oracle_path.exists():
-        response = input(f"⚠️  Oracle already exists at {oracle_path}. Reinitialize? [y/N]: ")
+        response = input(f"[WARNING]  Oracle already exists at {oracle_path}. Reinitialize? [y/N]: ")
         if response.lower() != 'y':
-            print("❌ Initialization cancelled.")
+            print("[ERROR] Initialization cancelled.")
             return False
 
-    print(f"📁 Creating Oracle structure at {oracle_path}")
+    print(f" Creating Oracle structure at {oracle_path}")
 
     # Create directories and files
     for dir_name, contents in ORACLE_STRUCTURE.items():
         dir_path = oracle_path / dir_name
         dir_path.mkdir(parents=True, exist_ok=True)
-        print(f"   ✅ Created {dir_name}/")
+        print(f"   [OK] Created {dir_name}/")
 
         # Create files in directory
         for filename, content in contents.items():
@@ -82,7 +82,7 @@ def create_oracle_structure(base_path):
                 with open(file_path, 'w') as f:
                     f.write(content)
 
-            print(f"      📄 Created {filename}")
+            print(f"       Created {filename}")
 
     # Create index.json
     index_data = INDEX_TEMPLATE.copy()
@@ -92,7 +92,7 @@ def create_oracle_structure(base_path):
     with open(oracle_path / 'index.json', 'w') as f:
         json.dump(index_data, f, indent=2)
 
-    print(f"   ✅ Created index.json")
+    print(f"   [OK] Created index.json")
 
     # Create README
     readme_content = """# Oracle Knowledge Base
@@ -141,7 +141,7 @@ python .claude/skills/oracle/Scripts/analyze_patterns.py
     with open(oracle_path / 'README.md', 'w') as f:
         f.write(readme_content)
 
-    print(f"   ✅ Created README.md")
+    print(f"   [OK] Created README.md")
 
     # Create .gitignore
     gitignore_content = """# Session logs may contain sensitive information
@@ -164,7 +164,7 @@ scripts/*
     (oracle_path / 'scripts' / '.gitkeep').touch()
     (oracle_path / 'hooks' / '.gitkeep').touch()
 
-    print(f"   ✅ Created .gitignore")
+    print(f"   [OK] Created .gitignore")
 
     return oracle_path
 
@@ -172,12 +172,12 @@ scripts/*
 def create_integration_hints(oracle_path, project_path):
     """Create hints for integrating Oracle."""
     print("\n" + "="*70)
-    print("🎉 Oracle Initialized Successfully!")
+    print(" Oracle Initialized Successfully!")
     print("="*70)
 
-    print(f"\n📍 Location: {oracle_path}")
+    print(f"\n Location: {oracle_path}")
 
-    print("\n📚 Next Steps:\n")
+    print("\n Next Steps:\n")
 
     print("1. **Add to claude.md** (if you have one):")
     print("   Add this section to your project's claude.md:")
@@ -204,7 +204,7 @@ def create_integration_hints(oracle_path, project_path):
     print("   python .claude/skills/oracle/Scripts/query_knowledge.py \"search term\"")
 
     print("\n" + "="*70)
-    print("Oracle is ready to learn and remember! 🧠")
+    print("Oracle is ready to learn and remember! ")
     print("="*70 + "\n")
 
 
@@ -231,10 +231,10 @@ Examples:
     project_path = Path(args.path).resolve()
 
     if not project_path.exists():
-        print(f"❌ Error: Path does not exist: {project_path}")
+        print(f"[ERROR] Error: Path does not exist: {project_path}")
         sys.exit(1)
 
-    print(f"🚀 Initializing Oracle for project at: {project_path}\n")
+    print(f"> Initializing Oracle for project at: {project_path}\n")
 
     oracle_path = create_oracle_structure(project_path)
 

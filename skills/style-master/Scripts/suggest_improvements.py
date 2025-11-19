@@ -13,26 +13,26 @@ def analyze_and_suggest(root_path):
         content = ''.join([f.read_text() for f in css_files[:10] if 'node_modules' not in str(f)])
 
         if 'float:' in content:
-            suggestions.append("💡 Consider replacing float layouts with Flexbox or Grid")
+            suggestions.append("[TIP] Consider replacing float layouts with Flexbox or Grid")
         if 'px' in content and 'rem' not in content:
-            suggestions.append("💡 Consider using rem units for better accessibility")
+            suggestions.append("[TIP] Consider using rem units for better accessibility")
         if '@media' in content and '@container' not in content:
-            suggestions.append("💡 Consider container queries for component-level responsiveness")
+            suggestions.append("[TIP] Consider container queries for component-level responsiveness")
         if not re.search(r'--[\w-]+:', content):
-            suggestions.append("💡 Consider using CSS custom properties for theming")
+            suggestions.append("[TIP] Consider using CSS custom properties for theming")
 
     return suggestions
 
 def main():
     root = Path(sys.argv[1] if len(sys.argv) > 1 else '.').resolve()
-    print("🔮 Analyzing for improvement opportunities...\n")
+    print(" Analyzing for improvement opportunities...\n")
 
     suggestions = analyze_and_suggest(root)
     for s in suggestions:
         print(f"  {s}")
 
     if not suggestions:
-        print("  ✅ No immediate improvements suggested!")
+        print("  [OK] No immediate improvements suggested!")
 
 if __name__ == '__main__':
     main()

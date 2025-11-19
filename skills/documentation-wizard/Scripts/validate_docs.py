@@ -11,9 +11,9 @@ def validate_docs(project_path):
     # Check README exists
     readme = project_path / 'README.md'
     if not readme.exists():
-        issues.append("❌ README.md missing")
+        issues.append("[ERROR] README.md missing")
     else:
-        print("✅ README.md found")
+        print("[OK] README.md found")
 
         # Check for broken internal links
         content = readme.read_text()
@@ -22,17 +22,17 @@ def validate_docs(project_path):
             if not link.startswith('http'):
                 link_path = project_path / link.lstrip('./')
                 if not link_path.exists():
-                    issues.append(f"❌ Broken link in README: {link}")
+                    issues.append(f"[ERROR] Broken link in README: {link}")
 
     # Check for CONTRIBUTING.md
     if not (project_path / 'CONTRIBUTING.md').exists():
-        issues.append("⚠️  CONTRIBUTING.md missing (recommended)")
+        issues.append("[WARNING]  CONTRIBUTING.md missing (recommended)")
 
     return issues
 
 def main():
     project = Path(sys.argv[1] if len(sys.argv) > 1 else '.').resolve()
-    print(f"🔍 Validating documentation for: {project}\n")
+    print(f"[SEARCH] Validating documentation for: {project}\n")
 
     issues = validate_docs(project)
 
@@ -41,7 +41,7 @@ def main():
         for issue in issues:
             print(f"  {issue}")
     else:
-        print("\n✅ All documentation checks passed!")
+        print("\n[OK] All documentation checks passed!")
 
 if __name__ == '__main__':
     main()

@@ -133,16 +133,16 @@ def main():
 
     args = parser.parse_args()
 
-    print(f"📝 Generating changelog...")
+    print(f"[NOTE] Generating changelog...")
 
     # Get commits
     commits = get_git_commits(args.since)
 
     if not commits:
-        print("  ⚠️  No commits found")
+        print("  [WARNING]  No commits found")
         return
 
-    print(f"  📊 Found {len(commits)} commits")
+    print(f"  [INFO] Found {len(commits)} commits")
 
     # Categorize commits
     changes_by_category = defaultdict(list)
@@ -158,12 +158,12 @@ def main():
         with open(args.output, 'w') as f:
             f.write(changelog)
 
-        print(f"  ✅ Generated {args.output}")
+        print(f"  [OK] Generated {args.output}")
 
         # Print summary
         print(f"\n  Summary:")
         for category, changes in changes_by_category.items():
-            print(f"    • {category.capitalize()}: {len(changes)}")
+            print(f"     {category.capitalize()}: {len(changes)}")
 
     elif args.format == 'json':
         output = {
@@ -176,9 +176,9 @@ def main():
         with open(output_file, 'w') as f:
             json.dump(output, f, indent=2)
 
-        print(f"  ✅ Generated {output_file}")
+        print(f"  [OK] Generated {output_file}")
 
-    print("\n✅ Changelog generated successfully!")
+    print("\n[OK] Changelog generated successfully!")
 
 
 if __name__ == '__main__':
