@@ -11,10 +11,6 @@ ClaudeShack is a curated marketplace of production-ready Claude Code skills that
 
 Break down complex projects into manageable tasks, coordinate specialized agents, and ensure quality with built-in DRY, CLEAN, and SOLID enforcement.
 
-```bash
-/plugin install summoner@claudeshack
-```
-
 **Use for**: Large features, refactoring projects, migrations, complex bug fixes
 
 ---
@@ -23,10 +19,6 @@ Break down complex projects into manageable tasks, coordinate specialized agents
 **Never forget, always improve**
 
 Track sessions, learn from corrections, build institutional knowledge, and automatically generate scripts for repeated tasks.
-
-```bash
-/plugin install oracle@claudeshack
-```
 
 **Use for**: Long-term projects, team collaboration, preventing repeated mistakes
 
@@ -37,10 +29,6 @@ Track sessions, learn from corrections, build institutional knowledge, and autom
 
 Analyze codebases, maintain style guides, suggest modern improvements, and ensure WCAG compliance.
 
-```bash
-/plugin install style-master@claudeshack
-```
-
 **Use for**: Design systems, visual consistency, accessibility, frontend modernization
 
 ---
@@ -50,37 +38,29 @@ Analyze codebases, maintain style guides, suggest modern improvements, and ensur
 
 Auto-generate and maintain README, API docs, ADRs, and onboarding materials from code, Oracle knowledge, and Summoner decisions.
 
-```bash
-/plugin install documentation-wizard@claudeshack
-```
-
 **Use for**: Documentation setup, keeping docs current, generating changelogs
 
 ---
 
 ## 📦 Installation
 
-### Install Individual Skills
+### Add ClaudeShack Marketplace
+
+First, add the ClaudeShack marketplace to Claude Code:
 
 ```bash
-# Multi-agent orchestration
-/plugin install summoner@claudeshack
-
-# Project memory and learning
-/plugin install oracle@claudeshack
-
-# CSS and styling expert
-/plugin install style-master@claudeshack
-
-# Documentation automation
-/plugin install documentation-wizard@claudeshack
+/plugin marketplace add Overlord-Z/ClaudeShack
 ```
 
-### Install All Skills
+### Browse and Install Skills
 
-```bash
-/plugin install all@claudeshack
-```
+After adding the marketplace, use the `/plugin` menu to browse and install:
+
+- **Individual skills**: summoner, oracle, style-master, documentation-wizard
+- **Skill bundles**:
+  - **all** - All four skills for complete coverage
+  - **core** - Summoner + Oracle for essential orchestration and memory
+  - **frontend** - Style Master + Documentation Wizard + Oracle for frontend work
 
 ### Manual Installation
 
@@ -206,12 +186,7 @@ A: Yes! Each skill works independently, but they're more powerful together.
 
 ## 🔄 Updates
 
-Check for updates:
-```bash
-/plugin update @claudeshack
-```
-
-Or pull latest from git:
+Updates are available through the Claude Code plugin system or by pulling the latest from git:
 ```bash
 cd ClaudeShack
 git pull origin main

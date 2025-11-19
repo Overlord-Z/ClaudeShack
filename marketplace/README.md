@@ -2,21 +2,33 @@
 
 This directory contains the marketplace infrastructure for ClaudeShack skills.
 
+## Important: Installation vs Management
+
+**For Installing Skills in Claude Code:**
+```bash
+# Use the built-in Claude Code plugin system:
+/plugin marketplace add Overlord-Z/ClaudeShack
+# Then browse and install via the /plugin menu
+```
+
+**For Local Repository Management:**
+The `claudeshack` CLI tool is for managing your local ClaudeShack repository (verification, info, etc.), NOT for plugin installation.
+
 ## Contents
 
 ### Scripts
 
-**`claudeshack` CLI Tool**
-- List available skills
+**`claudeshack` CLI Tool** (Local Repository Management)
+- List available skills in the repository
 - Show skill information
-- Verify installation
+- Verify local installation
 - Version management
 
 Usage:
 ```bash
 claudeshack list                # List all skills
 claudeshack info summoner       # Show skill details
-claudeshack verify              # Verify installation
+claudeshack verify              # Verify local installation
 claudeshack version             # Show version
 ```
 
@@ -125,22 +137,11 @@ Skills are organized by category:
 
 ### Skill Bundles
 
-Pre-configured bundles for common use cases:
+Pre-configured bundles for common use cases (available through `/plugin` menu after adding marketplace):
 
-**All Bundle**: All four skills
-```bash
-/plugin install all@claudeshack
-```
-
-**Core Bundle**: Summoner + Oracle
-```bash
-/plugin install core@claudeshack
-```
-
-**Frontend Bundle**: Style Master + Doc Wizard + Oracle
-```bash
-/plugin install frontend@claudeshack
-```
+- **All Bundle**: All four skills for complete coverage
+- **Core Bundle**: Summoner + Oracle for essential orchestration and memory
+- **Frontend Bundle**: Style Master + Doc Wizard + Oracle for frontend development
 
 ### Integration Tracking
 
@@ -169,12 +170,13 @@ The registry tracks which skills integrate with each other:
 
 ## API
 
-### Plugin Manifest (`.claude/plugin.json`)
+### Marketplace Manifest (`.claude-plugin/marketplace.json`)
 
 Used by Claude Code plugin system:
 ```json
 {
-  "name": "claudeshack",
+  "name": "ClaudeShack",
+  "displayName": "ClaudeShack Skills Marketplace",
   "version": "1.0.0",
   "skills": [...]
 }

@@ -9,14 +9,12 @@ Complete guide to installing and setting up ClaudeShack skills marketplace.
 Use Claude Code's plugin system to install skills:
 
 ```bash
-# Install individual skills
-/plugin install summoner@claudeshack
-/plugin install oracle@claudeshack
-/plugin install style-master@claudeshack
-/plugin install documentation-wizard@claudeshack
+# Add ClaudeShack marketplace
+/plugin marketplace add Overlord-Z/ClaudeShack
 
-# Or install all skills at once
-/plugin install all@claudeshack
+# Then use the /plugin menu to browse and install:
+# - Individual skills: summoner, oracle, style-master, documentation-wizard
+# - Bundles: all, core, frontend
 ```
 
 ### Method 2: Git Clone
@@ -122,9 +120,7 @@ python $CLAUDESHACK_HOME/.claude/skills/documentation-wizard/Scripts/generate_do
 
 ### Via Plugin System
 
-```bash
-/plugin update @claudeshack
-```
+Updates are available through the Claude Code plugin system. Check for updates in the `/plugin` menu.
 
 ### Via Git
 
@@ -180,12 +176,7 @@ chmod +x .claude/skills/*/Scripts/*.py
 
 ### Remove via Plugin System
 
-```bash
-/plugin uninstall summoner@claudeshack
-/plugin uninstall oracle@claudeshack
-/plugin uninstall style-master@claudeshack
-/plugin uninstall documentation-wizard@claudeshack
-```
+Use the `/plugin` menu to remove individual skills or the entire marketplace.
 
 ### Remove Manual Installation
 

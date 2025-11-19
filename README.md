@@ -104,17 +104,15 @@ The **Documentation Wizard** keeps documentation perfectly synchronized with cod
 
 ### Marketplace Installation
 
-Install skills as plugins in Claude Code:
+Add ClaudeShack marketplace to Claude Code, then browse and install skills:
 
 ```bash
-# Install individual skills
-/plugin install summoner@claudeshack
-/plugin install oracle@claudeshack
-/plugin install style-master@claudeshack
-/plugin install documentation-wizard@claudeshack
+# Add ClaudeShack marketplace
+/plugin marketplace add Overlord-Z/ClaudeShack
 
-# Or install all skills
-/plugin install all@claudeshack
+# Then use the /plugin menu to browse and install:
+# - Individual skills (summoner, oracle, style-master, documentation-wizard)
+# - Or install complete bundles (all, core, frontend)
 ```
 
 ### Manual Installation
@@ -169,8 +167,9 @@ See [marketplace/INSTALL.md](./marketplace/INSTALL.md) for complete installation
 
 ```
 ClaudeShack/
+├── .claude-plugin/
+│   └── marketplace.json             # Marketplace manifest
 ├── .claude/
-│   ├── plugin.json                  # Plugin manifest
 │   └── skills/                      # All Claude Code skills
 │       ├── summoner/                # Multi-agent orchestration (10 files)
 │       ├── oracle/                  # Project memory & learning (15 files)
