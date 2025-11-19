@@ -1,0 +1,29 @@
+{
+  "name": "claudeshack",
+  "owner": {
+    "name": "Overlord-Z",
+    "email": "[email protected]",
+    "url": "https://github.com/Overlord-Z"
+  },
+  "metadata": {
+    "description": "Personal skill center featuring orchestration, memory, styling, and documentation tools",
+    "version": "1.0.0",
+    "homepage": "https://github.com/Overlord-Z/ClaudeShack",
+    "totalPlugins": 1,
+    "lastUpdated": "2025-11-19"
+  },
+  "plugins": [
+    {
+      "name": "claudeshack",
+      "source": "./plugins/claudeshack",
+      "description": "Personal skill center with 4 powerful skills: summoner (multi-agent orchestration), oracle (project memory), style-master (CSS/frontend), and documentation-wizard (living docs)",
+      "version": "1.0.0",
+      "category": "productivity",
+      "keywords": ["orchestration", "memory", "knowledge-management", "css", "styling", "documentation", "multi-agent", "quality-control", "design-system", "api-docs"],
+      "author": {
+        "name": "Overlord-Z",
+        "email": "[email protected]"
+      }
+    }
+  ]
+}

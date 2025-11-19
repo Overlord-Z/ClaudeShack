@@ -44,21 +44,21 @@ Auto-generate and maintain README, API docs, ADRs, and onboarding materials from
 
 ## 📦 Installation
 
-### Install ClaudeShack Plugin
+### Add ClaudeShack Marketplace
 
-Install ClaudeShack as a Claude Code plugin:
+First, add the ClaudeShack marketplace:
 
 ```bash
-/plugin add Overlord-Z/ClaudeShack
+/plugin marketplace add Overlord-Z/ClaudeShack
 ```
 
-This installs all four skills at once:
+Then browse and install the claudeshack plugin using the `/plugin` menu. The plugin includes all four skills:
 - **summoner** - Multi-agent orchestration
 - **oracle** - Project memory and learning
 - **style-master** - CSS and frontend styling
 - **documentation-wizard** - Living documentation
 
-All skills are enabled by default after installation.
+All skills are enabled by default when the plugin is installed.
 
 ### Manual Installation
 

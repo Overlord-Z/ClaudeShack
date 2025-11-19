@@ -30,7 +30,7 @@ The **Summoner** is a meta-skill for orchestrating complex, multi-agent tasks. I
 - You need to ensure consistency and quality across a large implementation
 - Multiple specialized agents would be more effective than a single generalist
 
-**Location:** `skills/summoner/`
+**Location:** `plugins/claudeshack/skills/summoner/`
 
 ---
 
@@ -53,7 +53,7 @@ The **Oracle** is a sophisticated memory and learning system that maintains inst
 - Building long-term institutional knowledge
 - Onboarding new team members or returning to a project after time away
 
-**Location:** `skills/oracle/`
+**Location:** `plugins/claudeshack/skills/oracle/`
 
 ---
 
@@ -76,7 +76,7 @@ The **Style Master** is an expert in CSS, design systems, and frontend styling. 
 - Creating accessible, performant UIs
 - Integrating with Oracle to remember style preferences
 
-**Location:** `skills/style-master/`
+**Location:** `plugins/claudeshack/skills/style-master/`
 
 ---
 
@@ -98,20 +98,23 @@ The **Documentation Wizard** keeps documentation perfectly synchronized with cod
 - Automating changelog generation
 - Ensuring documentation quality
 
-**Location:** `skills/documentation-wizard/`
+**Location:** `plugins/claudeshack/skills/documentation-wizard/`
 
 ## 🚀 Getting Started
 
-### Plugin Installation
+### Marketplace Installation
 
-Install ClaudeShack as a plugin in Claude Code:
+Add the ClaudeShack marketplace and install the plugin:
 
 ```bash
-# Install the ClaudeShack plugin (includes all 4 skills)
-/plugin add Overlord-Z/ClaudeShack
+# Add the marketplace
+/plugin marketplace add Overlord-Z/ClaudeShack
+
+# Then install the claudeshack plugin from the marketplace
+# (Use the /plugin menu to browse and install)
 ```
 
-This installs all four skills:
+The claudeshack plugin includes all four skills:
 - **summoner** - Multi-agent orchestration
 - **oracle** - Project memory and learning
 - **style-master** - CSS and frontend styling
@@ -170,13 +173,16 @@ See [marketplace/INSTALL.md](./marketplace/INSTALL.md) for complete installation
 ```
 ClaudeShack/
 ├── .claude-plugin/
-│   └── plugin.json                  # Plugin manifest
-├── skills/                          # All Claude Code skills
-│   ├── summoner/                    # Multi-agent orchestration (10 files)
-│   ├── oracle/                      # Project memory & learning (15 files)
-│   ├── style-master/                # CSS & frontend styling (9 files)
-│   ├── documentation-wizard/        # Living documentation (9 files)
-│   └── ...                          # Future skills
+│   └── marketplace.json             # Marketplace manifest
+├── plugins/
+│   └── claudeshack/                 # The ClaudeShack plugin
+│       ├── .claude-plugin/
+│       │   └── plugin.json          # Plugin manifest
+│       └── skills/                  # All 4 skills
+│           ├── summoner/            # Multi-agent orchestration (10 files)
+│           ├── oracle/              # Project memory & learning (15 files)
+│           ├── style-master/        # CSS & frontend styling (9 files)
+│           └── documentation-wizard/# Living documentation (9 files)
 ├── marketplace/                     # Repository management tools
 │   ├── scripts/
 │   │   └── claudeshack              # CLI management tool
