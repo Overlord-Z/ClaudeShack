@@ -1,18 +1,17 @@
-# ClaudeShack Marketplace Infrastructure
+# ClaudeShack Repository Management
 
-This directory contains the marketplace infrastructure for ClaudeShack skills.
+This directory contains repository management tools for ClaudeShack.
 
 ## Important: Installation vs Management
 
-**For Installing Skills in Claude Code:**
+**For Installing ClaudeShack Plugin:**
 ```bash
 # Use the built-in Claude Code plugin system:
-/plugin marketplace add Overlord-Z/ClaudeShack
-# Then browse and install via the /plugin menu
+/plugin add Overlord-Z/ClaudeShack
 ```
 
 **For Local Repository Management:**
-The `claudeshack` CLI tool is for managing your local ClaudeShack repository (verification, info, etc.), NOT for plugin installation.
+The `claudeshack` CLI tool is for managing your local ClaudeShack clone (verification, info, etc.), NOT for plugin installation.
 
 ## Contents
 

@@ -1,21 +1,23 @@
 # ClaudeShack Installation Guide
 
-Complete guide to installing and setting up ClaudeShack skills marketplace.
+Complete guide to installing and setting up ClaudeShack plugin with all 4 skills.
 
 ## Installation Methods
 
 ### Method 1: Plugin System (Recommended)
 
-Use Claude Code's plugin system to install skills:
+Use Claude Code's plugin system to install ClaudeShack:
 
 ```bash
-# Add ClaudeShack marketplace
-/plugin marketplace add Overlord-Z/ClaudeShack
-
-# Then use the /plugin menu to browse and install:
-# - Individual skills: summoner, oracle, style-master, documentation-wizard
-# - Bundles: all, core, frontend
+# Install ClaudeShack plugin (includes all 4 skills)
+/plugin add Overlord-Z/ClaudeShack
 ```
+
+This automatically installs and enables:
+- summoner - Multi-agent orchestration
+- oracle - Project memory and learning
+- style-master - CSS and frontend styling
+- documentation-wizard - Living documentation
 
 ### Method 2: Git Clone
 

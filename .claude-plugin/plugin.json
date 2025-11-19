@@ -1,0 +1,24 @@
+{
+  "name": "claudeshack",
+  "version": "1.0.0",
+  "description": "Personal skill center featuring orchestration, memory, styling, and documentation tools for Claude Code",
+  "author": {
+    "name": "Overlord-Z",
+    "email": "[email protected]"
+  },
+  "repository": "https://github.com/Overlord-Z/ClaudeShack",
+  "license": "MIT",
+  "keywords": [
+    "orchestration",
+    "memory",
+    "knowledge-management",
+    "css",
+    "styling",
+    "documentation",
+    "multi-agent",
+    "quality-control",
+    "design-system",
+    "api-docs"
+  ],
+  "category": "productivity"
+}
