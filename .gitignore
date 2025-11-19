@@ -1,0 +1,42 @@
+# Mission Control Documents (may contain sensitive project info)
+# Ignore generated mission control docs, but not templates
+/mission-*.md
+docs/mission-*.md
+examples/mission-*.md
+
+# Keep templates in skills directory
+!.claude/skills/**/mission-control-template.md
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.venv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+
+# Personal notes
+notes.md
+todo.md
+scratch.md
