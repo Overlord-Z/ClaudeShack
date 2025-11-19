@@ -1,0 +1,13 @@
+{
+  "name": "documentation-wizard",
+  "version": "1.0.0",
+  "description": "Keeps documentation in perfect sync with code and knowledge, auto-generating README, API docs, ADRs, and changelogs",
+  "author": {
+    "name": "Overlord-Z",
+    "email": "[email protected]"
+  },
+  "repository": "https://github.com/Overlord-Z/ClaudeShack",
+  "license": "MIT",
+  "keywords": ["documentation", "api-docs", "adr", "sync", "automation"],
+  "category": "documentation"
+}

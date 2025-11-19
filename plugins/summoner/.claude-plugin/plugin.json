@@ -1,0 +1,13 @@
+{
+  "name": "summoner",
+  "version": "1.0.0",
+  "description": "Multi-agent orchestration skill for complex tasks requiring coordination, decomposition, and quality control",
+  "author": {
+    "name": "Overlord-Z",
+    "email": "[email protected]"
+  },
+  "repository": "https://github.com/Overlord-Z/ClaudeShack",
+  "license": "MIT",
+  "keywords": ["orchestration", "multi-agent", "planning", "quality-control", "task-management"],
+  "category": "productivity"
+}

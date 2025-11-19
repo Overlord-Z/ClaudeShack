@@ -1,0 +1,13 @@
+{
+  "name": "style-master",
+  "version": "1.0.0",
+  "description": "Expert CSS and frontend styling specialist that analyzes codebases, maintains style guides, and ensures visual consistency",
+  "author": {
+    "name": "Overlord-Z",
+    "email": "[email protected]"
+  },
+  "repository": "https://github.com/Overlord-Z/ClaudeShack",
+  "license": "MIT",
+  "keywords": ["css", "styling", "design-system", "accessibility", "frontend"],
+  "category": "frontend"
+}
