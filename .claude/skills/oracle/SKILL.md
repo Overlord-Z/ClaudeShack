@@ -1,6 +1,6 @@
 ---
-name: Oracle
-description: Project memory and learning system that tracks interactions, learns from corrections, maintains knowledge across sessions, and generates token-efficient context. Use when you need to remember project-specific patterns, avoid repeating mistakes, track what works and what doesn't, or maintain institutional knowledge across multiple sessions. Excels at preventing context loss and wasted effort.
+name: oracle
+description: Project memory and learning system that tracks interactions, learns from corrections, maintains knowledge across sessions, and generates token-efficient context. Use when you need to remember project-specific patterns, avoid repeating mistakes, track what works and what doesn't, or maintain institutional knowledge across multiple sessions. Excels at preventing context loss and wasted effort. (project)
 ---
 
 # Oracle: Project Memory & Learning System

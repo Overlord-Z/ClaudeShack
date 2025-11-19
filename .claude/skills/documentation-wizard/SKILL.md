@@ -1,6 +1,6 @@
 ---
-name: Documentation Wizard
-description: Keeps documentation in perfect sync with code and knowledge. Integrates with Oracle to leverage learnings, Summoner for design docs, and Style Master for style guides. Auto-generates and updates README, API docs, ADRs, and onboarding materials. Detects stale documentation and ensures it evolves with the codebase.
+name: documentation-wizard
+description: Keeps documentation in perfect sync with code and knowledge. Integrates with Oracle to leverage learnings, Summoner for design docs, and Style Master for style guides. Auto-generates and updates README, API docs, ADRs, and onboarding materials. Detects stale documentation and ensures it evolves with the codebase. (project)
 ---
 
 # Documentation Wizard: Living Documentation Expert

@@ -1,6 +1,6 @@
 ---
-name: Summoner
-description: Multi-agent orchestration skill for complex tasks requiring coordination, decomposition, and quality control. Use for large implementations, refactoring projects, multi-component features, or any work requiring multiple specialized agents working in concert. Excels at preventing context bloat, eliminating assumptions, and ensuring SOLID principles across complex deliverables.
+name: summoner
+description: Multi-agent orchestration skill for complex tasks requiring coordination, decomposition, and quality control. Use for large implementations, refactoring projects, multi-component features, or any work requiring multiple specialized agents working in concert. Excels at preventing context bloat, eliminating assumptions, and ensuring SOLID principles across complex deliverables. (project)
 ---
 
 # Summoner: Multi-Agent Orchestration Skill
