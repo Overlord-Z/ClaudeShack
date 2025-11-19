@@ -3,11 +3,12 @@
   "displayName": "ClaudeShack Skills Marketplace",
   "version": "1.0.0",
   "description": "Personal skill center featuring orchestration, memory, styling, and documentation tools",
+  "owner": "Overlord-Z",
   "author": "Overlord-Z",
   "license": "MIT",
   "repository": "https://github.com/Overlord-Z/ClaudeShack",
   "homepage": "https://github.com/Overlord-Z/ClaudeShack",
-  "skills": [
+  "plugins": [
     {
       "id": "summoner",
       "name": "Summoner",
@@ -77,19 +78,19 @@
       "id": "all",
       "name": "Complete ClaudeShack",
       "description": "All four skills for complete coverage",
-      "skills": ["summoner", "oracle", "style-master", "documentation-wizard"]
+      "plugins": ["summoner", "oracle", "style-master", "documentation-wizard"]
     },
     {
       "id": "core",
       "name": "Core Skills",
       "description": "Essential orchestration and memory",
-      "skills": ["summoner", "oracle"]
+      "plugins": ["summoner", "oracle"]
     },
     {
       "id": "frontend",
       "name": "Frontend Bundle",
       "description": "Frontend styling and documentation with knowledge management",
-      "skills": ["style-master", "documentation-wizard", "oracle"]
+      "plugins": ["style-master", "documentation-wizard", "oracle"]
     }
   ]
 }
