@@ -1,0 +1,101 @@
+name: Feature Request
+description: Suggest a new feature or improvement for ClaudeShack
+title: "[Feature] "
+labels: ["enhancement", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting a feature! Your ideas help shape ClaudeShack's future.
+
+  - type: dropdown
+    id: type
+    attributes:
+      label: What type of feature is this?
+      options:
+        - New skill
+        - Enhancement to existing skill
+        - New Guardian template
+        - Developer tooling
+        - Documentation
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: skill
+    attributes:
+      label: If this is for a specific skill, which one?
+      options:
+        - Oracle
+        - Guardian
+        - Summoner
+        - Evaluator
+        - N/A - New skill
+        - N/A - General
+    validations:
+      required: false
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem or Use Case
+      description: What problem does this feature solve? What use case does it enable?
+      placeholder: |
+        Example: "When working with large codebases, I often need to find files by content across multiple directories. Oracle currently only searches knowledge base, not actual files."
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed Solution
+      description: How would you like this feature to work?
+      placeholder: |
+        Example: "Add a new Oracle command: /oracle search-files <query> that uses grep/ripgrep to search actual codebase files and returns relevant matches with context."
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives Considered
+      description: What other solutions have you considered?
+      placeholder: "Example: Using external grep, but it would be better integrated into Oracle workflow"
+    validations:
+      required: false
+
+  - type: textarea
+    id: examples
+    attributes:
+      label: Examples or Mockups
+      description: If applicable, provide examples of how this would work
+      placeholder: |
+        Example usage:
+        ```
+        /oracle search-files "authentication"
+
+        Found 12 matches:
+        1. src/auth/login.py:45 - "def authenticate_user(username, password):"
+        2. src/middleware/auth.py:12 - "# Authentication middleware"
+        ...
+        ```
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: help
+    attributes:
+      label: Are you willing to contribute?
+      options:
+        - label: I'm willing to submit a PR for this feature
+        - label: I can help test this feature
+        - label: I can help document this feature
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Context
+      description: Any other context or screenshots
+    validations:
+      required: false
