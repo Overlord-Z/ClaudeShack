@@ -1,0 +1,96 @@
+name: Bug Report
+description: Report a bug or issue with ClaudeShack skills
+title: "[Bug] "
+labels: ["bug", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a bug! This helps make ClaudeShack better.
+
+  - type: dropdown
+    id: skill
+    attributes:
+      label: Which skill has the bug?
+      options:
+        - Oracle
+        - Guardian
+        - Summoner
+        - Evaluator
+        - Other/General
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Bug Description
+      description: A clear and concise description of what the bug is
+      placeholder: "Example: Guardian triggers on every small edit instead of only on large code volumes"
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to Reproduce
+      description: Steps to reproduce the behavior
+      placeholder: |
+        1. Enable Guardian with default settings
+        2. Edit a file, add 1 line
+        3. See Guardian trigger immediately
+        4. Expected: Should only trigger after 50+ lines
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+      description: What you expected to happen
+      placeholder: "Guardian should only trigger after 50+ lines of code (default threshold)"
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual Behavior
+      description: What actually happened
+      placeholder: "Guardian triggers on every single edit, even 1-line changes"
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Your environment details
+      placeholder: |
+        - OS: [e.g., Windows 11, macOS 14, Ubuntu 22.04]
+        - Python version: [e.g., 3.11.5]
+        - ClaudeShack version/commit: [e.g., main branch, commit abc123]
+      value: |
+        - OS:
+        - Python version:
+        - ClaudeShack version/commit:
+    validations:
+      required: false
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant Logs or Error Messages
+      description: If applicable, paste any error messages or logs
+      placeholder: Paste error messages here (remove any sensitive information)
+      render: shell
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Context
+      description: Any other context about the problem
+    validations:
+      required: false
