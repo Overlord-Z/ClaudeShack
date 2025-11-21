@@ -1,0 +1,99 @@
+name: Skill Feedback
+description: Provide feedback on ClaudeShack skills to help us improve
+title: "[Feedback] "
+labels: ["feedback", "skill"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to provide feedback! Your input helps make ClaudeShack better for everyone.
+
+  - type: dropdown
+    id: skill
+    attributes:
+      label: Which skill is this feedback about?
+      options:
+        - Oracle
+        - Guardian
+        - Summoner
+        - Evaluator
+        - Other/General
+    validations:
+      required: true
+
+  - type: dropdown
+    id: rating
+    attributes:
+      label: How useful is this skill?
+      options:
+        - ⭐⭐⭐⭐⭐ Very useful
+        - ⭐⭐⭐⭐ Useful
+        - ⭐⭐⭐ Somewhat useful
+        - ⭐⭐ Not very useful
+        - ⭐ Not useful at all
+    validations:
+      required: true
+
+  - type: textarea
+    id: what-works
+    attributes:
+      label: What works well?
+      description: Tell us what you like about this skill
+      placeholder: |
+        Example: "Oracle's pattern search is incredibly fast and the relevance scoring is spot-on!"
+    validations:
+      required: false
+
+  - type: textarea
+    id: what-doesnt
+    attributes:
+      label: What could be improved?
+      description: Tell us what could be better
+      placeholder: |
+        Example: "Guardian triggers too frequently on test files. Would be great to have better ignore rules."
+    validations:
+      required: false
+
+  - type: dropdown
+    id: frequency
+    attributes:
+      label: How often do you use this skill?
+      options:
+        - Multiple times per day
+        - Daily
+        - Weekly
+        - Monthly
+        - Rarely
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: use-cases
+    attributes:
+      label: What do you primarily use this skill for?
+      description: Select all that apply
+      options:
+        - label: Code review
+        - label: Bug fixing
+        - label: Learning patterns
+        - label: Task planning
+        - label: Security auditing
+        - label: Performance optimization
+        - label: Other
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional context
+      description: Anything else you want to share?
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: anonymous
+    attributes:
+      label: Privacy
+      description: Your feedback helps improve ClaudeShack for everyone
+      options:
+        - label: I consent to my feedback being used to improve ClaudeShack
+          required: true
