@@ -137,6 +137,105 @@ After each phase:
 5. Deliverable + Updated Documentation
 ```
 
+## Summoner vs Guardian vs Wizard
+
+### Summoner (YOU - Task Orchestration)
+**Purpose**: Coordinate multiple agents for complex, multi-component tasks
+
+**When to Use**:
+- Large feature spanning 3+ components
+- Multi-phase refactoring projects
+- Complex research requiring multiple specialized agents
+- Migration projects with many dependencies
+- Coordinating documentation research (with Wizard)
+
+**Key Traits**:
+- **Proactive**: Plans ahead, orchestrates workflows
+- **Multi-Agent**: Coordinates multiple specialists
+- **Mission Control**: Creates MCD as single source of truth
+- **Parallel Work**: Can run agents in parallel when dependencies allow
+
+**Example**: "Build REST API with auth, rate limiting, caching, and WebSocket support" → Summoner decomposes into 5 subtasks, assigns to specialized agents, coordinates execution
+
+### Guardian (Quality Gates)
+**Purpose**: Monitor session health, detect issues, review code automatically
+
+**When to Use**:
+- Automatic code review (when 50+ lines written)
+- Detecting repeated errors (same error 3+ times)
+- Session health monitoring (context bloat, file churn)
+- Security/performance audits (using templates)
+
+**Key Traits**:
+- **Reactive**: Triggers based on thresholds
+- **Single-Agent**: Spawns one focused Haiku reviewer
+- **Minimal Context**: Only passes relevant code + Oracle patterns
+- **Validation**: Cross-checks suggestions against Oracle
+
+**Example**: You write 60 lines of auth code → Guardian automatically triggers security review → Presents suggestions with confidence scores
+
+### Wizard (Documentation Maintenance)
+**Purpose**: Keep documentation accurate, up-to-date, and comprehensive
+
+**When to Use**:
+- Updating README for new features
+- Generating skill documentation
+- Validating documentation accuracy
+- Syncing docs across files
+
+**Key Traits**:
+- **Research-First**: Uses Oracle + conversation history + code analysis
+- **No Hallucinations**: Facts only, with references
+- **Uses Both**: Summoner for research coordination, Guardian for doc review
+- **Accuracy Focused**: Verifies all claims against code
+
+**Example**: "Document the Guardian skill" → Wizard uses Summoner to coordinate research agents → Generates comprehensive docs → Guardian validates accuracy
+
+### When to Use Which
+
+**Use Summoner When:**
+- ✅ Task has 3+ distinct components
+- ✅ Need to coordinate multiple specialists
+- ✅ Complex research requiring different expertise
+- ✅ Multi-phase execution with dependencies
+- ✅ Wizard needs comprehensive research coordination
+
+**Use Guardian When:**
+- ✅ Need automatic quality checks
+- ✅ Code review for security/performance
+- ✅ Session is degrading (errors, churn, corrections)
+- ✅ Validating Wizard's documentation against code
+
+**Use Wizard When:**
+- ✅ Documentation needs updating
+- ✅ New feature needs documenting
+- ✅ Need to verify documentation accuracy
+- ✅ Cross-referencing docs with code
+
+**Use Together:**
+```
+User: "Comprehensively document the Guardian skill"
+
+Wizard: "This is complex research - using Summoner"
+  ↓
+Summoner creates Mission Control Document with tasks:
+  Task 1: Analyze all Guardian scripts
+  Task 2: Search Oracle for Guardian patterns
+  Task 3: Search conversation history for Guardian design
+  ↓
+Summoner coordinates 3 research agents in parallel
+  ↓
+Summoner synthesizes findings into structured data
+  ↓
+Wizard generates comprehensive documentation with references
+  ↓
+Guardian reviews documentation for accuracy and quality
+  ↓
+Wizard applies Guardian's suggestions
+  ↓
+Final accurate, comprehensive documentation
+```
+
 ## When to Use This Skill
 
 **Ideal For:**
@@ -145,6 +244,7 @@ After each phase:
 - Migration projects
 - Complex bug fixes requiring multiple fixes
 - New architectural implementations
+- Comprehensive research coordination (for Wizard)
 - Any task where coordination overhead > execution overhead
 
 **Not Needed For:**
@@ -152,6 +252,8 @@ After each phase:
 - Straightforward bug fixes
 - Simple feature additions
 - Routine maintenance
+- Simple code reviews (use Guardian)
+- Simple documentation updates (use Wizard directly)
 
 ## Templates & Scripts
 
