@@ -171,6 +171,7 @@ Guardian stores minimal data in `.guardian/`:
 4. **Learning from Feedback** - Adjust sensitivity based on user acceptance
 5. **Haiku Only** - All subagents use haiku model (fast & cheap)
 6. **User Authority** - User has final say on all suggestions
+7. **Read-Only Subagents** - Subagents can ONLY read and analyze, NEVER modify files
 
 ## Integration with Oracle
 
