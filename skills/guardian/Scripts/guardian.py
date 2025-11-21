@@ -237,30 +237,68 @@ def perform_review(
     print()
 
     # Extract minimal context
-    context = extract_context('review', file_path=file_path, focus=focus)
+    context_text = extract_context('review', file_path=file_path, focus=focus)
 
-    # TODO: This is where we would spawn a Haiku subagent via the Task tool
-    # For now, we'll output the context that would be passed
-    print("=" * 60)
-    print("MINIMAL CONTEXT EXTRACTED (would be passed to Haiku agent):")
-    print("=" * 60)
-    print(context)
-    print("=" * 60)
+    # Build read-only prompt for Haiku agent
+    agent_prompt = f"""You are a READ-ONLY code reviewer for Guardian. You can ONLY analyze and suggest.
+
+CRITICAL CONSTRAINTS:
+- DO NOT use Write, Edit, NotebookEdit, or Bash tools
+- DO NOT modify any files
+- DO NOT execute any code
+- ONLY read the provided context and return suggestions
+
+Your task: Review the code for potential issues and return suggestions.
+
+{context_text}
+
+Return your findings as a JSON array of suggestions with this format:
+[
+  {{
+    "text": "Clear description of the issue and recommended fix",
+    "category": "security|performance|style|bugs|maintainability",
+    "file": "file path (if applicable)",
+    "line": line_number (if applicable, otherwise null)
+  }}
+]
+
+If you find no issues, return an empty array: []
+
+Remember: You are READ-ONLY. Only analyze and suggest, never modify."""
+
+    print("Spawning Haiku review agent with minimal context...")
     print()
 
-    # TODO: Parse subagent response and extract suggestions
-    # For now, create a mock suggestion for testing
+    # Note: This would be implemented when Guardian is used as a skill
+    # For standalone script usage, we output instructions instead
+    print("=" * 60)
+    print("READY TO SPAWN HAIKU AGENT")
+    print("=" * 60)
+    print("To complete this review, use the Task tool with:")
+    print(f"  subagent_type: general-purpose")
+    print(f"  model: haiku")
+    print(f"  prompt: <see agent_prompt below>")
+    print()
+    print("Agent Prompt:")
+    print("-" * 60)
+    print(agent_prompt)
+    print("=" * 60)
+    print()
+    print("Once you have the agent's response, the suggestions will be:")
+    print("  1. Validated against Oracle knowledge")
+    print("  2. Presented with confidence scores")
+    print("  3. Offered for user acceptance/rejection")
+    print()
+    print("Example suggestion handling:")
     mock_suggestions = [
         {
             'text': 'Consider using bcrypt for password hashing instead of MD5',
-            'category': 'security'
+            'category': 'security',
+            'file': file_path,
+            'line': None
         }
     ]
-
-    # Validate suggestions
     validated = validate_suggestions(mock_suggestions)
-
-    # Format and present to user
     presentation = format_suggestions_for_user(validated)
     print(presentation)
 
@@ -275,16 +313,52 @@ def perform_planning(task_description: str) -> None:
     print()
 
     # Extract minimal context
-    context = extract_context('plan', description=task_description)
+    context_text = extract_context('plan', description=task_description)
+
+    # Build read-only prompt for Haiku planner
+    agent_prompt = f"""You are a READ-ONLY task planner for Guardian. You can ONLY analyze and plan.
+
+CRITICAL CONSTRAINTS:
+- DO NOT use Write, Edit, NotebookEdit, or Bash tools
+- DO NOT modify any files
+- DO NOT execute any code
+- ONLY analyze the task and return a breakdown plan
+
+Your task: Break down this complex task into manageable subtasks.
+
+{context_text}
+
+Return your plan as a JSON array of subtasks with this format:
+[
+  {{
+    "task": "Clear description of the subtask",
+    "estimated_lines": approximate lines of code needed,
+    "dependencies": ["list", "of", "prerequisite", "subtask", "numbers"],
+    "files_affected": ["list of files that will be created/modified"],
+    "priority": "high|medium|low"
+  }}
+]
+
+Consider:
+- Dependencies between tasks
+- Logical ordering
+- Potential complexity and risks
+- Integration points
+
+Remember: You are READ-ONLY. Only analyze and plan, never modify."""
 
     print("=" * 60)
-    print("MINIMAL CONTEXT EXTRACTED (would be passed to Haiku agent):")
+    print("READY TO SPAWN HAIKU PLANNER")
     print("=" * 60)
-    print(context)
-    print("=" * 60)
+    print("To complete this planning task, use the Task tool with:")
+    print(f"  subagent_type: Plan")
+    print(f"  model: haiku")
+    print(f"  prompt: <see agent_prompt below>")
     print()
-
-    print("TODO: Spawn Haiku planning agent and present breakdown")
+    print("Agent Prompt:")
+    print("-" * 60)
+    print(agent_prompt)
+    print("=" * 60)
 
 
 def perform_debug(file_path: str, error_message: str) -> None:
@@ -298,16 +372,58 @@ def perform_debug(file_path: str, error_message: str) -> None:
     print()
 
     # Extract minimal context
-    context = extract_context('debug', file_path=file_path, error_message=error_message)
+    context_text = extract_context('debug', file_path=file_path, error_message=error_message)
+
+    # Build read-only prompt for Haiku debugger
+    agent_prompt = f"""You are a READ-ONLY error debugger for Guardian. You can ONLY analyze and suggest fixes.
+
+CRITICAL CONSTRAINTS:
+- DO NOT use Write, Edit, NotebookEdit, or Bash tools
+- DO NOT modify any files
+- DO NOT execute any code
+- ONLY analyze the error and return debugging suggestions
+
+Your task: Analyze this error and suggest potential fixes.
+
+{context_text}
+
+Return your analysis as a JSON object with this format:
+{{
+  "root_cause": "Most likely cause of the error",
+  "affected_code": {{
+    "file": "file path",
+    "line": line_number (if known)
+  }},
+  "suggestions": [
+    {{
+      "text": "Clear description of the fix",
+      "category": "bug",
+      "confidence": 0.0 to 1.0
+    }}
+  ],
+  "similar_patterns": ["Any similar error patterns from Oracle knowledge"]
+}}
+
+Consider:
+- What the error message indicates
+- Common causes of this error type
+- Relevant Oracle patterns or gotchas
+- Edge cases that might trigger this
+
+Remember: You are READ-ONLY. Only analyze and suggest, never modify."""
 
     print("=" * 60)
-    print("MINIMAL CONTEXT EXTRACTED (would be passed to Haiku agent):")
+    print("READY TO SPAWN HAIKU DEBUGGER")
     print("=" * 60)
-    print(context)
-    print("=" * 60)
+    print("To complete this debug task, use the Task tool with:")
+    print(f"  subagent_type: general-purpose")
+    print(f"  model: haiku")
+    print(f"  prompt: <see agent_prompt below>")
     print()
-
-    print("TODO: Spawn Haiku debug agent and present analysis")
+    print("Agent Prompt:")
+    print("-" * 60)
+    print(agent_prompt)
+    print("=" * 60)
 
 
 def check_if_should_trigger() -> bool:
