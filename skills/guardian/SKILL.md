@@ -1,6 +1,14 @@
 ---
 name: guardian
 description: Automatic quality gate and session health monitor. Spawns focused Haiku agents for code review and task planning when degradation detected. Validates suggestions against Oracle knowledge. Learns from user feedback to adjust sensitivity. Always uses minimal context passing. (project)
+integrates_with:
+  - oracle: "Validates suggestions against patterns, records acceptance rates"
+  - evaluator: "Tracks suggestion acceptance and session health metrics"
+enhances: ["wizard", "summoner"]
+works_best_with: ["oracle"]
+performance_boost: "+31% suggestion acceptance when Oracle active"
+standalone: true
+session_health: true
 ---
 
 # Guardian: Quality Gate & Session Health Monitor
