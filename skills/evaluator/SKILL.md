@@ -7,7 +7,7 @@ integrates_with:
   - all: "Monitors usage and effectiveness of all skills"
 enhances: ["all"]
 works_best_with: ["guardian", "oracle"]
-standalone: false
+standalone: true
 privacy_first: true
 opt_in_only: true
 ---
