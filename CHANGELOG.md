@@ -89,11 +89,14 @@ ClaudeShack v0.1-beta is the first public release! This is a **beta** release - 
 
 #### Documentation & Community
 - Comprehensive README with all 6 skills
+- **Creating Templates** section - Guide for extending skills with custom templates
+- **Community Feedback Loop** section - How Evaluator + user feedback shapes improvements
 - CONTRIBUTING.md with privacy principles and guidelines
 - CODE_OF_CONDUCT.md (Contributor Covenant 2.0)
 - REPO_SETUP_GUIDE.md for public release configuration
 - GitHub issue templates (bug report, feature request, skill feedback)
 - Pull request template
+- Transparency report commitment (quarterly updates)
 
 ### Performance Metrics
 
