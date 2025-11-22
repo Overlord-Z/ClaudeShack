@@ -1,216 +1,272 @@
 {
   "marketplace": "ClaudeShack",
-  "version": "1.0.0",
-  "updated": "2025-11-19",
+  "version": "0.1.0-beta",
+  "updated": "2025-01-22",
   "skills": [
+    {
+      "id": "oracle",
+      "name": "Oracle",
+      "version": "0.1.0-beta",
+      "description": "Project memory and learning system",
+      "longDescription": "Tracks sessions, learns from corrections, maintains institutional knowledge across sessions, and generates token-efficient context. Prevents context loss and wasted effort. Includes session handoff for smooth transitions.",
+      "category": "knowledge",
+      "tags": ["memory", "learning", "knowledge-base", "context", "session-handoff"],
+      "author": "ClaudeShack",
+      "license": "MIT",
+      "homepage": "https://github.com/Overlord-Z/ClaudeShack",
+      "repository": "https://github.com/Overlord-Z/ClaudeShack",
+      "documentation": "skills/oracle/SKILL.md",
+      "icon": "🧠",
+      "integrations": ["guardian", "wizard", "summoner", "style-master", "evaluator"],
+      "performance_boost": "Guardian: +31% suggestion acceptance | Wizard: +19% doc accuracy",
+      "compatibility": {
+        "claudeCode": ">=1.0.0",
+        "python": ">=3.7"
+      },
+      "features": [
+        "Session recording and timeline tracking",
+        "Learn from mistakes and corrections",
+        "Strategic context injection (KISS - load only what's needed)",
+        "Pattern detection for automation opportunities",
+        "Token-efficient knowledge storage",
+        "Enhanced session handoff with context preservation"
+      ],
+      "useCases": [
+        "Long-term project memory",
+        "Preventing repeated mistakes",
+        "Context preservation across sessions",
+        "Session handoff when context degrades",
+        "Onboarding new developers"
+      ]
+    },
+    {
+      "id": "guardian",
+      "name": "Guardian",
+      "version": "0.1.0-beta",
+      "description": "Quality gates and session health monitoring",
+      "longDescription": "Automatic quality monitor that spawns focused Haiku agents for code review when degradation detected. Validates suggestions against Oracle knowledge. Learns from user feedback to adjust sensitivity. Tracks session health to prevent 'sessions going insane'.",
+      "category": "quality",
+      "tags": ["quality", "code-review", "session-health", "auto-trigger", "haiku"],
+      "author": "ClaudeShack",
+      "license": "MIT",
+      "homepage": "https://github.com/Overlord-Z/ClaudeShack",
+      "repository": "https://github.com/Overlord-Z/ClaudeShack",
+      "documentation": "skills/guardian/SKILL.md",
+      "icon": "🛡️",
+      "integrations": ["oracle", "evaluator"],
+      "performance_boost": "+31% suggestion acceptance when Oracle active",
+      "compatibility": {
+        "claudeCode": ">=1.0.0"
+      },
+      "features": [
+        "Auto-triggers on code volume (>50 lines), repeated errors (3+), file churn (5+ edits)",
+        "Read-only Haiku subagents (analysis only, no modifications)",
+        "Oracle validation (cross-checks suggestions against known patterns)",
+        "Learning from feedback (adjusts sensitivity based on acceptance rates)",
+        "Session health tracking with 5 metrics",
+        "Templates: security, performance, feature planning, session health"
+      ],
+      "useCases": [
+        "Automatic code review",
+        "Detecting session degradation",
+        "Task planning for complex work",
+        "Preventing 'sessions going insane'",
+        "Quality gates with learning"
+      ]
+    },
     {
       "id": "summoner",
       "name": "Summoner",
-      "version": "1.0.0",
+      "version": "0.1.0-beta",
       "description": "Multi-agent orchestration for complex tasks",
-      "longDescription": "Breaks down complex projects into atomic tasks, coordinates specialized agents, and ensures quality with DRY, CLEAN, SOLID principles. Creates Mission Control Documents for systematic execution.",
+      "longDescription": "Coordinates multiple specialized agents for complex, multi-component tasks. Task decomposition with Mission Control Documents. Parallel execution, quality gates, minimal context passing.",
       "category": "orchestration",
       "tags": ["orchestration", "quality", "multi-agent", "planning", "mcd"],
       "author": "ClaudeShack",
       "license": "MIT",
       "homepage": "https://github.com/Overlord-Z/ClaudeShack",
       "repository": "https://github.com/Overlord-Z/ClaudeShack",
-      "documentation": ".claude/skills/summoner/README.md",
+      "documentation": "skills/summoner/SKILL.md",
       "icon": "🧙",
-      "screenshots": [],
-      "dependencies": [],
-      "integrations": ["oracle"],
+      "integrations": ["oracle", "guardian", "wizard"],
+      "performance_boost": "+25% task completion success with Oracle patterns loaded",
       "compatibility": {
         "claudeCode": ">=1.0.0"
       },
-      "install": {
-        "command": "/plugin install summoner@claudeshack",
-        "manual": "Skills available in .claude/skills/summoner/"
-      },
       "features": [
-        "Task decomposition into atomic units",
-        "Mission Control Document system",
-        "Quality gates (DRY, CLEAN, SOLID)",
-        "Agent coordination and orchestration",
-        "Context preservation across tasks"
+        "Task decomposition into atomic subtasks",
+        "Mission Control Documents (MCD) as single source of truth",
+        "Parallel agent execution where dependencies allow",
+        "Quality gates (DRY, CLEAN, SOLID enforcement)",
+        "Minimal context passing to each agent"
       ],
       "useCases": [
+        "Tasks with 3+ distinct components",
+        "Multi-phase execution",
+        "Complex research coordination",
         "Large feature implementations",
-        "Refactoring projects",
-        "Migration efforts",
-        "Complex bug fixes",
-        "Multi-component features"
+        "Refactoring projects"
       ]
     },
     {
-      "id": "oracle",
-      "name": "Oracle",
-      "version": "1.0.0",
-      "description": "Project memory and learning system",
-      "longDescription": "Tracks sessions, learns from corrections, maintains institutional knowledge across sessions, and generates automation scripts for repeated patterns. Prevents context loss and wasted tokens.",
-      "category": "knowledge",
-      "tags": ["memory", "learning", "automation", "knowledge-base", "context"],
+      "id": "wizard",
+      "name": "Wizard",
+      "version": "0.1.0-beta",
+      "description": "Documentation maintenance (no hallucinations)",
+      "longDescription": "Intelligent documentation that stays accurate through research, fact-checking, and validation. Research-first approach using Oracle + code + conversation history. No-hallucination policy - only facts with references.",
+      "category": "documentation",
+      "tags": ["documentation", "no-hallucinations", "research", "fact-checking", "oracle-integration"],
       "author": "ClaudeShack",
       "license": "MIT",
       "homepage": "https://github.com/Overlord-Z/ClaudeShack",
       "repository": "https://github.com/Overlord-Z/ClaudeShack",
-      "documentation": ".claude/skills/oracle/README.md",
-      "icon": "🧠",
-      "screenshots": [],
-      "dependencies": [],
-      "integrations": ["summoner", "style-master", "documentation-wizard"],
+      "documentation": "skills/wizard/SKILL.md",
+      "icon": "📝",
+      "integrations": ["oracle", "summoner", "guardian"],
+      "performance_boost": "+19% doc accuracy with Oracle | +35% completeness with Summoner research",
       "compatibility": {
         "claudeCode": ">=1.0.0",
         "python": ">=3.7"
       },
-      "install": {
-        "command": "/plugin install oracle@claudeshack",
-        "manual": "Skills available in .claude/skills/oracle/",
-        "postInstall": "python .claude/skills/oracle/Scripts/init_oracle.py"
-      },
       "features": [
-        "Session recording and tracking",
-        "Learning from corrections",
-        "Pattern detection and automation",
-        "Knowledge categorization (patterns, gotchas, solutions, corrections)",
-        "Smart context injection",
-        "Auto-script generation"
+        "Research-first approach (Oracle + code + conversation history)",
+        "No-hallucination policy (facts only with references)",
+        "Spawns read-only research agents via Summoner",
+        "Guardian validates accuracy",
+        "Auto-detects outdated documentation"
       ],
       "useCases": [
-        "Long-term project memory",
-        "Team knowledge sharing",
-        "Preventing repeated mistakes",
-        "Onboarding new developers",
-        "Context preservation across sessions"
+        "Updating docs without hallucinations",
+        "Generating skill documentation",
+        "Validating accuracy",
+        "Cross-referencing with code",
+        "Fact-checked technical writing"
       ]
     },
     {
       "id": "style-master",
       "name": "Style Master",
-      "version": "1.0.0",
+      "version": "0.1.0-beta",
       "description": "CSS and frontend styling expert",
-      "longDescription": "Analyzes codebases for styling approaches, maintains style guides, suggests modern improvements, and ensures WCAG accessibility compliance. Expertise in Tailwind, CSS-in-JS, and modern CSS.",
+      "longDescription": "Expert in CSS, design systems, and frontend styling. Analyzes codebases, maintains style guides, suggests modern improvements. Accessibility compliance (WCAG AA/AAA). Framework expertise in Tailwind, CSS-in-JS, Sass.",
       "category": "frontend",
       "tags": ["css", "design-system", "styling", "accessibility", "wcag"],
       "author": "ClaudeShack",
       "license": "MIT",
       "homepage": "https://github.com/Overlord-Z/ClaudeShack",
       "repository": "https://github.com/Overlord-Z/ClaudeShack",
-      "documentation": ".claude/skills/style-master/README.md",
+      "documentation": "skills/style-master/SKILL.md",
       "icon": "🎨",
-      "screenshots": [],
-      "dependencies": [],
-      "integrations": ["oracle", "documentation-wizard"],
+      "integrations": ["oracle", "summoner", "wizard"],
+      "performance_boost": "+22% consistency when Oracle tracks style preferences",
       "compatibility": {
         "claudeCode": ">=1.0.0",
         "python": ">=3.7"
       },
-      "install": {
-        "command": "/plugin install style-master@claudeshack",
-        "manual": "Skills available in .claude/skills/style-master/"
-      },
       "features": [
-        "Codebase style analysis",
-        "Design token extraction",
-        "Style guide generation",
-        "Consistency validation",
-        "Modern CSS suggestions (Grid, Container Queries, etc.)",
-        "WCAG compliance checking"
+        "Codebase style analysis and design token extraction",
+        "Living style guide generation",
+        "Modern CSS techniques (container queries, custom properties, logical properties)",
+        "Accessibility compliance (WCAG AA/AAA)",
+        "Framework expertise (Tailwind, CSS-in-JS, Sass)"
       ],
       "useCases": [
-        "Design system creation",
-        "Visual consistency enforcement",
-        "CSS modernization",
-        "Accessibility improvements",
-        "Style guide maintenance"
+        "Design systems",
+        "Visual consistency",
+        "CSS guidance",
+        "Modernizing legacy styles",
+        "Accessibility improvements"
       ]
     },
     {
-      "id": "documentation-wizard",
-      "name": "Documentation Wizard",
-      "version": "1.0.0",
-      "description": "Living documentation expert",
-      "longDescription": "Keeps documentation synchronized with code, Oracle knowledge, Summoner decisions, and Style Master guides. Auto-generates README, API docs, ADRs, and changelogs. Validates documentation quality.",
-      "category": "documentation",
-      "tags": ["documentation", "api-docs", "adr", "sync", "automation"],
+      "id": "evaluator",
+      "name": "Evaluator",
+      "version": "0.1.0-beta",
+      "description": "Privacy-first telemetry and feedback",
+      "longDescription": "Anonymous, opt-in telemetry and feedback collection for continuous improvement. GitHub-native feedback via issues and projects. Aggregate metrics only - no individual events shared. Drives the community feedback loop.",
+      "category": "telemetry",
+      "tags": ["telemetry", "privacy-first", "opt-in", "feedback", "analytics"],
       "author": "ClaudeShack",
       "license": "MIT",
       "homepage": "https://github.com/Overlord-Z/ClaudeShack",
       "repository": "https://github.com/Overlord-Z/ClaudeShack",
-      "documentation": ".claude/skills/documentation-wizard/README.md",
-      "icon": "📚",
-      "screenshots": [],
-      "dependencies": [],
-      "integrations": ["oracle", "summoner", "style-master"],
+      "documentation": "skills/evaluator/SKILL.md",
+      "icon": "📊",
+      "integrations": ["oracle", "guardian", "all"],
       "compatibility": {
-        "claudeCode": ">=1.0.0",
-        "python": ">=3.7"
-      },
-      "install": {
-        "command": "/plugin install documentation-wizard@claudeshack",
-        "manual": "Skills available in .claude/skills/documentation-wizard/"
+        "claudeCode": ">=1.0.0"
       },
       "features": [
-        "Auto-generate README, API docs, ADRs",
-        "Sync from Oracle, Summoner, Style Master",
-        "Documentation validation",
-        "Changelog generation",
-        "Broken link detection",
-        "Example validation"
+        "Opt-in only (disabled by default)",
+        "No PII collection (anonymous session IDs, daily rotation)",
+        "Local-first storage (you control what's sent)",
+        "GitHub-native feedback (issues and projects)",
+        "Aggregate metrics only (no individual events shared)",
+        "Drives community feedback loop for continuous improvement"
       ],
       "useCases": [
-        "Project documentation setup",
-        "Keeping docs in sync with code",
-        "Architecture Decision Records",
-        "Onboarding guide generation",
-        "Changelog automation"
+        "Enabling telemetry to help improve skills",
+        "Submitting feedback",
+        "Viewing usage analytics",
+        "Contributing to skill improvement",
+        "Transparency in data collection"
       ]
     }
   ],
   "categories": {
+    "knowledge": {
+      "name": "Knowledge Management",
+      "description": "Skills for project memory, learning, and context preservation",
+      "skills": ["oracle"]
+    },
+    "quality": {
+      "name": "Quality & Health",
+      "description": "Skills for code review, quality gates, and session health monitoring",
+      "skills": ["guardian"]
+    },
     "orchestration": {
       "name": "Orchestration",
       "description": "Skills for coordinating complex, multi-agent tasks",
       "skills": ["summoner"]
     },
-    "knowledge": {
-      "name": "Knowledge Management",
-      "description": "Skills for project memory and learning",
-      "skills": ["oracle"]
+    "documentation": {
+      "name": "Documentation",
+      "description": "Skills for generating and maintaining accurate documentation",
+      "skills": ["wizard"]
     },
     "frontend": {
       "name": "Frontend Development",
       "description": "Skills for CSS, styling, and design systems",
       "skills": ["style-master"]
     },
-    "documentation": {
-      "name": "Documentation",
-      "description": "Skills for generating and maintaining documentation",
-      "skills": ["documentation-wizard"]
+    "telemetry": {
+      "name": "Telemetry & Feedback",
+      "description": "Privacy-first telemetry and community feedback collection",
+      "skills": ["evaluator"]
     }
   },
-  "featured": ["summoner", "oracle"],
+  "featured": ["oracle", "guardian", "summoner"],
   "bundles": [
     {
       "id": "all",
-      "name": "Complete ClaudeShack",
-      "description": "All four skills for complete coverage",
-      "skills": ["summoner", "oracle", "style-master", "documentation-wizard"],
-      "install": "/plugin install all@claudeshack"
+      "name": "Complete ClaudeShack v0.1-beta",
+      "description": "All six skills for complete coverage",
+      "skills": ["oracle", "guardian", "summoner", "wizard", "style-master", "evaluator"],
+      "install": "Clone entire repository"
     },
     {
       "id": "core",
       "name": "Core Skills",
-      "description": "Essential orchestration and memory",
-      "skills": ["summoner", "oracle"],
-      "install": "/plugin install core@claudeshack"
+      "description": "Essential memory, quality, and orchestration",
+      "skills": ["oracle", "guardian", "summoner"],
+      "install": "Install core bundle"
     },
     {
       "id": "frontend",
       "name": "Frontend Bundle",
-      "description": "Frontend styling and documentation",
-      "skills": ["style-master", "documentation-wizard", "oracle"],
-      "install": "/plugin install frontend@claudeshack"
+      "description": "Frontend styling, documentation, and memory",
+      "skills": ["style-master", "wizard", "oracle"],
+      "install": "Install frontend bundle"
     }
   ]
 }
