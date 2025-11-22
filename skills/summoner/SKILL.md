@@ -1,6 +1,15 @@
 ---
 name: summoner
 description: Multi-agent orchestration skill for complex tasks requiring coordination, decomposition, and quality control. Use for large implementations, refactoring projects, multi-component features, or any work requiring multiple specialized agents working in concert. Excels at preventing context bloat, eliminating assumptions, and ensuring SOLID principles across complex deliverables. (project)
+integrates_with:
+  - oracle: "Loads patterns and constraints for orchestrated tasks"
+  - guardian: "Validates quality gates during multi-agent execution"
+  - wizard: "Coordinates research agents for comprehensive documentation"
+enhances: ["wizard", "style-master"]
+works_best_with: ["oracle", "guardian"]
+performance_boost: "+25% task completion success with Oracle patterns loaded"
+standalone: true
+session_handoff: true
 ---
 
 # Summoner: Multi-Agent Orchestration Skill

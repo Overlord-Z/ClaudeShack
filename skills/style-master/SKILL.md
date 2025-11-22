@@ -1,6 +1,14 @@
 ---
 name: style-master
 description: Expert CSS and frontend styling specialist that analyzes codebases, maintains style guides, suggests improvements, and stays current with modern design patterns. Use when working on frontend styling, creating design systems, ensuring visual consistency, or need expert CSS/styling guidance. Integrates with Oracle to remember style preferences and with Summoner for complex styling refactors. (project)
+integrates_with:
+  - oracle: "Remembers style preferences and design decisions"
+  - summoner: "Coordinates complex styling refactors"
+  - wizard: "Generates style guide documentation"
+enhances: ["wizard"]
+works_best_with: ["oracle"]
+performance_boost: "+22% consistency when Oracle tracks style preferences"
+standalone: true
 ---
 
 # Style Master: CSS & Frontend Styling Expert

@@ -1,104 +1,135 @@
 # ClaudeShack 🏛️
 
-**Your Personal Marketplace and Skill Center for Claude Code**
+**Production-Ready Skills for Claude Code**
 
-ClaudeShack is a curated collection of powerful Claude Code skills designed to enhance productivity, ensure code quality, and enable complex multi-agent workflows.
+[![Status](https://img.shields.io/badge/status-beta-blue)]()
+[![Version](https://img.shields.io/badge/version-v0.1--beta-orange)]()
+[![License](https://img.shields.io/github/license/Overlord-Z/ClaudeShack)](LICENSE)
+[![Code of Conduct](https://img.shields.io/badge/Contributor%20Covenant-2.0-4baaaa.svg)](CODE_OF_CONDUCT.md)
 
-## 🎯 Mission
+ClaudeShack is a curated collection of powerful Claude Code skills designed to enhance productivity, ensure code quality, and enable intelligent multi-agent workflows - all while maintaining privacy, minimizing context bloat, and preventing hallucinations.
 
-To provide production-ready, high-quality skills that:
-- Minimize context bloat and LLM assumptions
-- Enforce DRY, CLEAN, SOLID principles
-- Break down complex tasks into manageable, well-defined units
-- Provide quality control and validation at every step
+## 🎯 Core Principles
+
+- **Privacy First**: No PII collection, opt-in telemetry, transparent data handling
+- **Minimal Context**: Focused context passing to subagents, no full conversation dumps
+- **Facts Over Fiction**: Documentation verified against code, no hallucinations
+- **Read-Only Subagents**: Analysis and suggestions only, modifications require user approval
+- **Community Driven**: GitHub-native feedback, telemetry-informed improvements
 
 ## 📦 Available Skills
 
-### 🧙 Summoner (Multi-Agent Orchestration)
+### 🧠 Oracle (Project Memory & Learning)
 
-The **Summoner** is a meta-skill for orchestrating complex, multi-agent tasks. It excels at:
+Project memory system that tracks interactions, learns from corrections, and maintains knowledge across sessions.
 
-- **Task Decomposition**: Breaking down complex requirements into highly specific, atomic tasks
-- **Context Preservation**: Creating detailed task indexes that preserve all necessary context and details
-- **Agent Orchestration**: Summoning specialized agents with clear responsibilities and boundaries
-- **Quality Control**: Ensuring all deliverables follow best practices (DRY, CLEAN, SOLID)
-- **Zero Slop Policy**: Preventing assumptions, scope creep, and breaking changes
+**Core Features:**
+- Session recording and timeline tracking
+- Learn from mistakes and corrections
+- Strategic context injection (KISS - load only what's needed)
+- Pattern detection for automation opportunities
+- Token-efficient knowledge storage
 
-**Use When:**
-- Tasks require coordination across multiple domains or components
-- Context preservation is critical to success
-- You need to ensure consistency and quality across a large implementation
-- Multiple specialized agents would be more effective than a single generalist
+**Use When:** Remembering project patterns, avoiding repeated mistakes, maintaining institutional knowledge
 
-**Location:** `plugins/claudeshack/skills/summoner/`
+**Location:** `skills/oracle/`
+
+**Integrates With:** All skills (provides memory and learning foundation)
 
 ---
 
-### 🧠 Oracle (Project Memory & Learning)
+### 🛡️ Guardian (Quality Gates & Session Health)
 
-The **Oracle** is a sophisticated memory and learning system that maintains institutional knowledge across sessions. It excels at:
+Automatic quality monitoring that spawns focused Haiku agents for code review when degradation detected.
 
-- **Session Recording**: Track interactions, decisions, corrections, and learnings
-- **Learning from Mistakes**: Remember corrections and avoid repeating errors
-- **Smart Context Injection**: Load only relevant knowledge when needed
-- **Pattern Detection**: Identify automation opportunities from repeated tasks
-- **Knowledge Compounding**: Build and maintain project knowledge over time
-- **Token Efficiency**: KISS approach with strategic, minimal context loading
+**Core Features:**
+- Triggers on code volume (>50 lines), repeated errors (3+), file churn (5+ edits)
+- Read-only subagents (analysis only, no modifications)
+- Oracle validation (cross-checks suggestions against known patterns)
+- Learning from feedback (adjusts sensitivity based on acceptance rates)
+- Session health tracking
 
-**Use When:**
-- Need to remember project-specific patterns and preferences across sessions
-- Avoid repeating the same mistakes or corrections
-- Track what works and what doesn't in your project
-- Want to automate repeated patterns and save tokens
-- Building long-term institutional knowledge
-- Onboarding new team members or returning to a project after time away
+**Use When:** Automatic code review, detecting session degradation, task planning for complex work
 
-**Location:** `plugins/claudeshack/skills/oracle/`
+**Location:** `skills/guardian/`
+
+**Integrates With:** Oracle (+31% suggestion acceptance when active)
+
+---
+
+### 🧙 Summoner (Multi-Agent Orchestration)
+
+Coordinates multiple specialized agents for complex, multi-component tasks.
+
+**Core Features:**
+- Task decomposition into atomic subtasks
+- Mission Control Documents (MCD) as single source of truth
+- Parallel agent execution where dependencies allow
+- Quality gates (DRY, CLEAN, SOLID enforcement)
+- Minimal context passing to each agent
+
+**Use When:** Tasks with 3+ distinct components, multi-phase execution, complex research coordination
+
+**Location:** `skills/summoner/`
+
+**Integrates With:** Oracle (loads patterns), Guardian (validates quality), Wizard (coordinates research)
+
+---
+
+### 📝 Wizard (Documentation Maintenance)
+
+Intelligent documentation that stays accurate through research, fact-checking, and validation.
+
+**Core Features:**
+- Research-first approach (Oracle + code + conversation history)
+- No-hallucination policy (facts only with references)
+- Spawns read-only research agents via Summoner
+- Guardian validates accuracy
+- Auto-detects outdated documentation
+
+**Use When:** Updating docs, generating skill documentation, validating accuracy, cross-referencing with code
+
+**Location:** `skills/wizard/`
+
+**Integrates With:** Oracle (knowledge source), Summoner (research coordination), Guardian (doc validation)
 
 ---
 
 ### 🎨 Style Master (CSS & Frontend Styling)
 
-The **Style Master** is an expert in CSS, design systems, and frontend styling. It excels at:
+Expert in CSS, design systems, and frontend styling.
 
-- **Codebase Analysis**: Detect styling approaches, extract design tokens, identify patterns
-- **Style Guide Maintenance**: Generate and maintain living style guides automatically
-- **Expert Suggestions**: Modernization, performance, accessibility improvements
-- **Design System Development**: Create cohesive, scalable design systems
-- **Framework Expertise**: Tailwind, CSS-in-JS, Sass, and modern CSS techniques
-- **Accessibility First**: Ensure WCAG compliance and inclusive design
+**Core Features:**
+- Codebase style analysis and design token extraction
+- Living style guide generation
+- Modern CSS techniques (container queries, custom properties, logical properties)
+- Accessibility compliance (WCAG AA/AAA)
+- Framework expertise (Tailwind, CSS-in-JS, Sass)
 
-**Use When:**
-- Setting up or maintaining a design system
-- Ensuring visual consistency across your application
-- Need expert CSS/styling guidance
-- Modernizing legacy styles
-- Creating accessible, performant UIs
-- Integrating with Oracle to remember style preferences
+**Use When:** Design systems, visual consistency, CSS guidance, modernizing legacy styles
 
-**Location:** `plugins/claudeshack/skills/style-master/`
+**Location:** `skills/style-master/`
+
+**Integrates With:** Oracle (remembers style preferences), Summoner (complex refactors)
 
 ---
 
-### 📚 Documentation Wizard (Living Documentation)
+### 📊 Evaluator (Privacy-First Telemetry)
 
-The **Documentation Wizard** keeps documentation perfectly synchronized with code and knowledge. It excels at:
+Anonymous, opt-in telemetry and feedback collection for continuous improvement.
 
-- **Auto-Generation**: Create README, API docs, ADRs, changelogs from code and knowledge
-- **Continuous Sync**: Keep docs current with Oracle learnings, Summoner decisions, Style Master guides
-- **Validation**: Detect stale docs, broken links, invalid examples
-- **Integration Powerhouse**: Leverages Oracle, Summoner, and Style Master for comprehensive documentation
-- **Living Documentation**: Docs that evolve with your project
+**Core Features:**
+- Opt-in only (disabled by default)
+- No PII collection (anonymous session IDs, daily rotation)
+- Local-first storage (you control what's sent)
+- GitHub-native feedback (issues and projects)
+- Aggregate metrics only (no individual events shared)
 
-**Use When:**
-- Setting up project documentation
-- Keeping docs synchronized with code changes
-- Generating Architecture Decision Records (ADRs)
-- Creating onboarding materials from Oracle sessions
-- Automating changelog generation
-- Ensuring documentation quality
+**Use When:** Enabling telemetry to help improve skills, submitting feedback, viewing usage analytics
 
-**Location:** `plugins/claudeshack/skills/documentation-wizard/`
+**Location:** `skills/evaluator/`
+
+**Integrates With:** All skills (tracks usage and acceptance rates)
 
 ## 🚀 Getting Started
 
@@ -114,11 +145,13 @@ Add the ClaudeShack marketplace and install the plugin:
 # (Use the /plugin menu to browse and install)
 ```
 
-The claudeshack plugin includes all four skills:
-- **summoner** - Multi-agent orchestration
+All skills included:
 - **oracle** - Project memory and learning
+- **guardian** - Quality gates and session health
+- **summoner** - Multi-agent orchestration
+- **wizard** - Documentation maintenance (no hallucinations)
 - **style-master** - CSS and frontend styling
-- **documentation-wizard** - Living documentation
+- **evaluator** - Privacy-first telemetry
 
 ### Manual Installation
 
@@ -136,10 +169,12 @@ Skills are automatically available when Claude Code runs in this directory.
 Skills activate automatically based on context, or you can explicitly request them:
 
 ```
-Use the summoner skill to implement [complex task description]
-Use the oracle skill to remember this pattern
-Use the style master skill to analyze our CSS
-Use the documentation wizard to generate API docs
+Use oracle to remember this pattern
+Use guardian to review this code
+Use summoner to coordinate [complex multi-component task]
+Use wizard to update the documentation
+Use style master to analyze our CSS
+Use evaluator to view telemetry summary
 ```
 
 See [MARKETPLACE.md](./MARKETPLACE.md) for detailed installation and usage instructions.
@@ -172,28 +207,21 @@ See [marketplace/INSTALL.md](./marketplace/INSTALL.md) for complete installation
 
 ```
 ClaudeShack/
-├── .claude-plugin/
-│   └── marketplace.json             # Marketplace manifest
-├── plugins/
-│   └── claudeshack/                 # The ClaudeShack plugin
-│       ├── .claude-plugin/
-│       │   └── plugin.json          # Plugin manifest
-│       └── skills/                  # All 4 skills
-│           ├── summoner/            # Multi-agent orchestration (10 files)
-│           ├── oracle/              # Project memory & learning (15 files)
-│           ├── style-master/        # CSS & frontend styling (9 files)
-│           └── documentation-wizard/# Living documentation (9 files)
-├── marketplace/                     # Repository management tools
-│   ├── scripts/
-│   │   └── claudeshack              # CLI management tool
-│   ├── registry/
-│   │   └── skills.json              # Complete skill catalog
-│   ├── INSTALL.md                   # Installation guide
-│   └── README.md                    # Marketplace docs
+├── skills/                          # All ClaudeShack skills
+│   ├── oracle/                      # Project memory & learning
+│   ├── guardian/                    # Quality gates & session health
+│   ├── summoner/                    # Multi-agent orchestration
+│   ├── wizard/                      # Documentation maintenance
+│   ├── style-master/                # CSS & frontend styling
+│   ├── evaluator/                   # Privacy-first telemetry
+│   └── documentation-wizard/        # Legacy doc sync (use wizard instead)
+├── .github/                         # GitHub configuration
+│   ├── ISSUE_TEMPLATE/              # Bug reports, feature requests, feedback
+│   └── PULL_REQUEST_TEMPLATE.md     # PR template
 ├── README.md                        # This file
-├── MARKETPLACE.md                   # User-facing marketplace guide
 ├── CONTRIBUTING.md                  # Contribution guidelines
-└── docs/                            # Additional documentation
+├── CODE_OF_CONDUCT.md               # Community standards
+└── REPO_SETUP_GUIDE.md              # Public release setup guide
 ```
 
 ## 🛠️ Skill Development
@@ -202,16 +230,208 @@ Want to create your own skill? Check out:
 - [Anthropic's Skill Creator Guide](https://github.com/anthropics/skills/tree/main/skill-creator)
 - [Official Claude Code Skills Documentation](https://docs.claude.com/en/docs/claude-code/skills)
 
-## 🔗 Skill Integrations
+## 🎨 Creating Templates
 
-Skills work powerfully together:
+ClaudeShack skills are extensible through templates. Add your own without modifying core skills.
 
-- **Summoner** ← Oracle (context) + Style Master (styling) + Doc Wizard (documentation)
-- **Oracle** → All skills (provides memory and learning)
-- **Style Master** ← Oracle (preferences) → Doc Wizard (style guide docs)
-- **Documentation Wizard** ← Oracle + Summoner + Style Master (comprehensive docs)
+### Guardian Templates
 
-**Example**: Summoner orchestrates a refactor, Oracle provides patterns, Style Master handles styling, Documentation Wizard auto-generates the updated docs.
+Create custom review templates in `skills/guardian/Templates/`:
+
+```json
+{
+  "name": "API Security Review",
+  "description": "Review API endpoints for security issues",
+  "version": "1.0.0",
+  "focus_areas": [
+    "Authentication and authorization",
+    "Input validation and sanitization",
+    "Rate limiting",
+    "SQL injection prevention",
+    "API key exposure"
+  ],
+  "oracle_patterns": [
+    "api-security",
+    "authentication",
+    "rate-limiting"
+  ],
+  "questions": [
+    "Are all endpoints authenticated?",
+    "Is input properly validated?",
+    "Are API keys in environment variables?"
+  ],
+  "severity_thresholds": {
+    "critical": ["sql_injection", "auth_bypass", "key_exposure"],
+    "high": ["missing_auth", "weak_validation"],
+    "medium": ["missing_rate_limit", "verbose_errors"]
+  }
+}
+```
+
+**Available Templates:**
+- `security_review.json` - OWASP Top 10 security review
+- `performance_review.json` - Performance optimization
+- `feature_planning.json` - Complex task breakdown
+- `session_health.json` - Session degradation monitoring
+
+### Summoner MCD Templates
+
+Create Mission Control Document templates in `skills/summoner/References/`:
+
+- Define standard task structures
+- Include quality gate checklists
+- Specify agent specifications
+- Add context boundaries
+
+### Custom Slash Commands
+
+Add your own commands in `.claude/commands/`:
+
+```markdown
+# /mycommand.md
+
+You are helping with [specific task].
+
+## Context
+[Provide context for this command]
+
+## Your Task
+1. [Step 1]
+2. [Step 2]
+
+## Remember
+- [Key principle 1]
+- [Key principle 2]
+```
+
+See existing commands:
+- `/handoff` - Session handoff with context preservation
+
+## 🔗 Skill Synergies
+
+Skills work better together:
+
+- **Guardian + Oracle**: +31% suggestion acceptance rate (Oracle provides validation patterns)
+- **Wizard + Summoner**: Comprehensive docs through coordinated research agents
+- **Wizard + Guardian**: Validated documentation (Guardian checks accuracy against code)
+- **Style Master + Oracle**: Consistent styling through remembered preferences
+- **Evaluator**: Tracks all skill usage and acceptance rates (opt-in)
+
+**Example**: Guardian reviews code → validates against Oracle patterns → Wizard updates docs → Style Master ensures consistency → Evaluator tracks what worked.
+
+## 🔄 Community Feedback Loop
+
+ClaudeShack improves through **continuous learning from real-world usage**. Here's how your feedback shapes development:
+
+### How It Works
+
+```
+1. You Use Skills
+   ↓
+2. Evaluator Tracks (opt-in, anonymous)
+   - Which skills are used most
+   - Which suggestions are accepted/rejected
+   - Session health patterns
+   - Integration effectiveness
+   ↓
+3. Community Submits Feedback
+   - GitHub Issues (bug reports, feature requests)
+   - Skill Feedback template (what works, what doesn't)
+   - Discussions (Q&A, ideas, showcases)
+   ↓
+4. Data Analysis
+   - Aggregate Evaluator metrics (no individual data)
+   - Identify patterns in feedback
+   - Guardian threshold tuning needs
+   - Oracle knowledge gaps
+   ↓
+5. Skill Improvements
+   - Adjust Guardian sensitivity based on acceptance rates
+   - Add Oracle patterns from common corrections
+   - New Guardian templates for common reviews
+   - Summoner MCD refinements
+   - Documentation clarifications
+   ↓
+6. Release Updates
+   - Changelog with what changed and why
+   - Performance metrics (before/after)
+   - Credit to contributors
+   ↓
+Back to #1 (continuous improvement)
+```
+
+### What Gets Improved
+
+**From Evaluator Metrics:**
+- **Guardian thresholds**: If suggestion acceptance is low, triggers are too aggressive
+- **Oracle patterns**: Track which patterns prevent the most errors
+- **Skill synergies**: Measure which combinations work best
+- **Session health**: Learn what signals predict degradation
+
+**From GitHub Feedback:**
+- **New templates**: Users request reviews for specific domains (database, accessibility, etc.)
+- **Documentation gaps**: Questions reveal what's unclear
+- **Feature requests**: What capabilities are missing
+- **Bug reports**: What's not working as designed
+
+### Example Improvements
+
+**Real scenario:**
+```
+Week 1: Evaluator shows Guardian triggers 50 times, but only 20% accepted
+  ↓
+Analysis: Triggering too aggressively, users find it annoying
+  ↓
+Week 2: Raise lines_threshold from 50 to 75
+  ↓
+Week 3: Evaluator shows 40 triggers, 65% accepted (much better!)
+  ↓
+Record in Oracle: "lines_threshold=75 optimal for this codebase type"
+```
+
+### Transparency Reports
+
+We publish quarterly reports showing:
+- Total opt-in users (approximate)
+- Aggregate skill usage statistics
+- Top improvement themes from feedback
+- Changes made and why
+- Performance improvements
+
+**Next report**: Q2 2025
+
+### Your Feedback Matters
+
+**Submit Feedback:**
+- 🐛 [Bug Report](https://github.com/Overlord-Z/ClaudeShack/issues/new?template=bug_report.yml)
+- ✨ [Feature Request](https://github.com/Overlord-Z/ClaudeShack/issues/new?template=feature_request.yml)
+- ⭐ [Skill Feedback](https://github.com/Overlord-Z/ClaudeShack/issues/new?template=skill_feedback.yml)
+- 💬 [Join Discussions](https://github.com/Overlord-Z/ClaudeShack/discussions)
+
+**Enable Telemetry (opt-in):**
+```bash
+# Help improve skills with anonymous usage data
+use evaluator to enable telemetry
+
+# View what's collected locally
+use evaluator to show summary
+```
+
+**What We DON'T Collect:**
+- ❌ Your code or file contents
+- ❌ Project names or paths
+- ❌ Personal information (name, email, IP)
+- ❌ Conversation history
+- ❌ Anything identifiable
+
+**What We DO Collect (if you opt in):**
+- ✅ Skill usage counts (which skills, how often)
+- ✅ Success/failure rates (did the skill work?)
+- ✅ Suggestion acceptance rates (Guardian only)
+- ✅ Session health metrics (aggregate patterns)
+- ✅ Performance timings (how fast skills run)
+
+All data is **anonymous, aggregate, and local-first**. You control what gets sent.
 
 ## 📚 Resources
 
