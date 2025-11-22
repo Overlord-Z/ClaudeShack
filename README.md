@@ -230,6 +230,83 @@ Want to create your own skill? Check out:
 - [Anthropic's Skill Creator Guide](https://github.com/anthropics/skills/tree/main/skill-creator)
 - [Official Claude Code Skills Documentation](https://docs.claude.com/en/docs/claude-code/skills)
 
+## 🎨 Creating Templates
+
+ClaudeShack skills are extensible through templates. Add your own without modifying core skills.
+
+### Guardian Templates
+
+Create custom review templates in `skills/guardian/Templates/`:
+
+```json
+{
+  "name": "API Security Review",
+  "description": "Review API endpoints for security issues",
+  "version": "1.0.0",
+  "focus_areas": [
+    "Authentication and authorization",
+    "Input validation and sanitization",
+    "Rate limiting",
+    "SQL injection prevention",
+    "API key exposure"
+  ],
+  "oracle_patterns": [
+    "api-security",
+    "authentication",
+    "rate-limiting"
+  ],
+  "questions": [
+    "Are all endpoints authenticated?",
+    "Is input properly validated?",
+    "Are API keys in environment variables?"
+  ],
+  "severity_thresholds": {
+    "critical": ["sql_injection", "auth_bypass", "key_exposure"],
+    "high": ["missing_auth", "weak_validation"],
+    "medium": ["missing_rate_limit", "verbose_errors"]
+  }
+}
+```
+
+**Available Templates:**
+- `security_review.json` - OWASP Top 10 security review
+- `performance_review.json` - Performance optimization
+- `feature_planning.json` - Complex task breakdown
+- `session_health.json` - Session degradation monitoring
+
+### Summoner MCD Templates
+
+Create Mission Control Document templates in `skills/summoner/References/`:
+
+- Define standard task structures
+- Include quality gate checklists
+- Specify agent specifications
+- Add context boundaries
+
+### Custom Slash Commands
+
+Add your own commands in `.claude/commands/`:
+
+```markdown
+# /mycommand.md
+
+You are helping with [specific task].
+
+## Context
+[Provide context for this command]
+
+## Your Task
+1. [Step 1]
+2. [Step 2]
+
+## Remember
+- [Key principle 1]
+- [Key principle 2]
+```
+
+See existing commands:
+- `/handoff` - Session handoff with context preservation
+
 ## 🔗 Skill Synergies
 
 Skills work better together:
@@ -241,6 +318,120 @@ Skills work better together:
 - **Evaluator**: Tracks all skill usage and acceptance rates (opt-in)
 
 **Example**: Guardian reviews code → validates against Oracle patterns → Wizard updates docs → Style Master ensures consistency → Evaluator tracks what worked.
+
+## 🔄 Community Feedback Loop
+
+ClaudeShack improves through **continuous learning from real-world usage**. Here's how your feedback shapes development:
+
+### How It Works
+
+```
+1. You Use Skills
+   ↓
+2. Evaluator Tracks (opt-in, anonymous)
+   - Which skills are used most
+   - Which suggestions are accepted/rejected
+   - Session health patterns
+   - Integration effectiveness
+   ↓
+3. Community Submits Feedback
+   - GitHub Issues (bug reports, feature requests)
+   - Skill Feedback template (what works, what doesn't)
+   - Discussions (Q&A, ideas, showcases)
+   ↓
+4. Data Analysis
+   - Aggregate Evaluator metrics (no individual data)
+   - Identify patterns in feedback
+   - Guardian threshold tuning needs
+   - Oracle knowledge gaps
+   ↓
+5. Skill Improvements
+   - Adjust Guardian sensitivity based on acceptance rates
+   - Add Oracle patterns from common corrections
+   - New Guardian templates for common reviews
+   - Summoner MCD refinements
+   - Documentation clarifications
+   ↓
+6. Release Updates
+   - Changelog with what changed and why
+   - Performance metrics (before/after)
+   - Credit to contributors
+   ↓
+Back to #1 (continuous improvement)
+```
+
+### What Gets Improved
+
+**From Evaluator Metrics:**
+- **Guardian thresholds**: If suggestion acceptance is low, triggers are too aggressive
+- **Oracle patterns**: Track which patterns prevent the most errors
+- **Skill synergies**: Measure which combinations work best
+- **Session health**: Learn what signals predict degradation
+
+**From GitHub Feedback:**
+- **New templates**: Users request reviews for specific domains (database, accessibility, etc.)
+- **Documentation gaps**: Questions reveal what's unclear
+- **Feature requests**: What capabilities are missing
+- **Bug reports**: What's not working as designed
+
+### Example Improvements
+
+**Real scenario:**
+```
+Week 1: Evaluator shows Guardian triggers 50 times, but only 20% accepted
+  ↓
+Analysis: Triggering too aggressively, users find it annoying
+  ↓
+Week 2: Raise lines_threshold from 50 to 75
+  ↓
+Week 3: Evaluator shows 40 triggers, 65% accepted (much better!)
+  ↓
+Record in Oracle: "lines_threshold=75 optimal for this codebase type"
+```
+
+### Transparency Reports
+
+We publish quarterly reports showing:
+- Total opt-in users (approximate)
+- Aggregate skill usage statistics
+- Top improvement themes from feedback
+- Changes made and why
+- Performance improvements
+
+**Next report**: Q2 2025
+
+### Your Feedback Matters
+
+**Submit Feedback:**
+- 🐛 [Bug Report](https://github.com/Overlord-Z/ClaudeShack/issues/new?template=bug_report.yml)
+- ✨ [Feature Request](https://github.com/Overlord-Z/ClaudeShack/issues/new?template=feature_request.yml)
+- ⭐ [Skill Feedback](https://github.com/Overlord-Z/ClaudeShack/issues/new?template=skill_feedback.yml)
+- 💬 [Join Discussions](https://github.com/Overlord-Z/ClaudeShack/discussions)
+
+**Enable Telemetry (opt-in):**
+```bash
+# Help improve skills with anonymous usage data
+use evaluator to enable telemetry
+
+# View what's collected locally
+use evaluator to show summary
+```
+
+**What We DON'T Collect:**
+- ❌ Your code or file contents
+- ❌ Project names or paths
+- ❌ Personal information (name, email, IP)
+- ❌ Conversation history
+- ❌ Anything identifiable
+
+**What We DO Collect (if you opt in):**
+- ✅ Skill usage counts (which skills, how often)
+- ✅ Success/failure rates (did the skill work?)
+- ✅ Suggestion acceptance rates (Guardian only)
+- ✅ Session health metrics (aggregate patterns)
+- ✅ Performance timings (how fast skills run)
+
+All data is **anonymous, aggregate, and local-first**. You control what gets sent.
 
 ## 📚 Resources
 
