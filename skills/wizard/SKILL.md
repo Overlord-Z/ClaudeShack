@@ -1,6 +1,6 @@
 ---
 name: wizard
-description: Documentation wizard that intelligently maintains, updates, and generates accurate documentation. Uses Oracle knowledge, searches conversation history, and spawns focused research agents. No hallucinations - only facts with references. (project, gitignored)
+description: Documentation wizard that intelligently maintains, updates, and generates accurate documentation. Uses Oracle knowledge, searches conversation history, and spawns focused research agents. No hallucinations - only facts with references. (project)
 integrates_with:
   - oracle: "Provides knowledge for documentation content"
   - summoner: "Coordinates multi-agent research for comprehensive docs"
