@@ -177,6 +177,39 @@ Use style master to analyze our CSS
 Use evaluator to view telemetry summary
 ```
 
+### Initialize in Your Project
+
+After installing ClaudeShack skills, initialize them in your project:
+
+**Option 1: Use the slash command**
+```
+/init-claudeshack
+```
+
+**Option 2: Run the initialization script**
+```bash
+python /path/to/ClaudeShack/scripts/init_project.py
+```
+
+This will:
+- Create/update `claude.md` with ClaudeShack context
+- Set up `.oracle/` directory structure for project memory
+- Create `.guardian/config.json` with default thresholds
+- Update `.gitignore` to exclude project-specific data
+
+**What gets created:**
+```
+your-project/
+├── claude.md              # Updated with ClaudeShack context
+├── .oracle/               # Project memory (gitignored)
+│   ├── knowledge/         # Patterns, corrections, gotchas
+│   ├── sessions/          # Session logs
+│   └── timeline/          # Project history
+├── .guardian/             # Session health (gitignored)
+│   └── config.json        # Guardian thresholds
+└── .gitignore             # Updated with ClaudeShack entries
+```
+
 See [MARKETPLACE.md](./MARKETPLACE.md) for detailed installation and usage instructions.
 
 ### ClaudeShack CLI
