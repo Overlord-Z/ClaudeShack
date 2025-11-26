@@ -1,17 +1,7 @@
 ---
 name: oracle
-description: Project memory and learning system that tracks interactions, learns from corrections, maintains knowledge across sessions, and generates token-efficient context. Use when you need to remember project-specific patterns, avoid repeating mistakes, track what works and what doesn't, or maintain institutional knowledge across multiple sessions. Excels at preventing context loss and wasted effort. (project)
-integrates_with:
-  - guardian: "Provides validation patterns for suggestion review"
-  - wizard: "Supplies knowledge for documentation generation"
-  - summoner: "Loads patterns for orchestrated tasks"
-  - style-master: "Remembers style preferences and decisions"
-  - evaluator: "Tracks usage patterns and learnings"
-enhances: "all"
-works_best_with: ["guardian", "wizard"]
-performance_boost: "Guardian: +31% suggestion acceptance | Wizard: +19% doc accuracy"
-standalone: true
-session_handoff: true
+description: Project memory and learning system that tracks interactions, learns from corrections, maintains knowledge across sessions, and generates token-efficient context. Use when you need to remember project-specific patterns, avoid repeating mistakes, track what works and what doesn't, or maintain institutional knowledge across multiple sessions. Integrates with guardian, wizard, summoner, and style-master.
+allowed-tools: Read, Write, Edit, Bash, Glob, Grep
 ---
 
 # Oracle: Project Memory & Learning System
@@ -224,7 +214,7 @@ Create a `.claude/hooks/session-start.sh`:
 ```bash
 #!/bin/bash
 # Load Oracle context at session start
-python .claude/skills/oracle/Scripts/load_context.py
+python .claude/skills/oracle/scripts/load_context.py
 ```
 
 ### 3. Pre-Commit Hook
@@ -234,7 +224,7 @@ Create a `.oracle/hooks/pre-commit.sh`:
 ```bash
 #!/bin/bash
 # Record commit in Oracle timeline
-python .claude/skills/oracle/Scripts/record_commit.py
+python .claude/skills/oracle/scripts/record_commit.py
 ```
 
 ## Using Oracle
@@ -242,7 +232,7 @@ python .claude/skills/oracle/Scripts/record_commit.py
 ### Initialize Oracle for a Project
 
 ```bash
-python .claude/skills/oracle/Scripts/init_oracle.py
+python .claude/skills/oracle/scripts/init_oracle.py
 ```
 
 This creates the `.oracle/` directory structure.
@@ -252,7 +242,7 @@ This creates the `.oracle/` directory structure.
 During or after a session:
 
 ```bash
-python .claude/skills/oracle/Scripts/record_session.py \
+python .claude/skills/oracle/scripts/record_session.py \
   --summary "Implemented user authentication" \
   --learnings "Use bcrypt for password hashing, not md5" \
   --corrections "Don't store passwords in plain text"
@@ -264,13 +254,13 @@ Find relevant knowledge:
 
 ```bash
 # Search by keyword
-python .claude/skills/oracle/Scripts/query_knowledge.py "authentication"
+python .claude/skills/oracle/scripts/query_knowledge.py "authentication"
 
 # Get specific category
-python .claude/skills/oracle/Scripts/query_knowledge.py --category patterns
+python .claude/skills/oracle/scripts/query_knowledge.py --category patterns
 
 # Get high-priority items
-python .claude/skills/oracle/Scripts/query_knowledge.py --priority critical
+python .claude/skills/oracle/scripts/query_knowledge.py --priority critical
 ```
 
 ### Generate Context
@@ -279,13 +269,13 @@ Create context summary for injection:
 
 ```bash
 # For current task
-python .claude/skills/oracle/Scripts/generate_context.py --task "implement API endpoints"
+python .claude/skills/oracle/scripts/generate_context.py --task "implement API endpoints"
 
 # For claude.md
-python .claude/skills/oracle/Scripts/generate_context.py --output claude.md
+python .claude/skills/oracle/scripts/generate_context.py --output claude.md
 
 # For session start
-python .claude/skills/oracle/Scripts/generate_context.py --session-start
+python .claude/skills/oracle/scripts/generate_context.py --session-start
 ```
 
 ### Analyze Patterns
@@ -293,7 +283,7 @@ python .claude/skills/oracle/Scripts/generate_context.py --session-start
 Identify automation opportunities:
 
 ```bash
-python .claude/skills/oracle/Scripts/analyze_patterns.py
+python .claude/skills/oracle/scripts/analyze_patterns.py
 ```
 
 This detects:

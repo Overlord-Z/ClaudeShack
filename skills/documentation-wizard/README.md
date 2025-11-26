@@ -37,16 +37,16 @@ Documentation Wizard keeps your documentation perfectly synchronized with code, 
 
 ```bash
 # Generate initial documentation
-python .claude/skills/documentation-wizard/Scripts/generate_docs.py
+python .claude/skills/documentation-wizard/scripts/generate_docs.py
 
 # Validate documentation
-python .claude/skills/documentation-wizard/Scripts/validate_docs.py
+python .claude/skills/documentation-wizard/scripts/validate_docs.py
 
 # Sync from Oracle knowledge
-python .claude/skills/documentation-wizard/Scripts/sync_docs.py --source oracle
+python .claude/skills/documentation-wizard/scripts/sync_docs.py --source oracle
 
 # Generate changelog
-python .claude/skills/documentation-wizard/Scripts/generate_changelog.py
+python .claude/skills/documentation-wizard/scripts/generate_changelog.py
 ```
 
 ## Use Cases
@@ -196,15 +196,15 @@ Run validation as part of CI/CD.
 
 ```bash
 # Daily: After development session
-python .claude/skills/documentation-wizard/Scripts/generate_docs.py --type api
-python .claude/skills/documentation-wizard/Scripts/validate_docs.py
+python .claude/skills/documentation-wizard/scripts/generate_docs.py --type api
+python .claude/skills/documentation-wizard/scripts/validate_docs.py
 
 # Weekly: Comprehensive sync
-python .claude/skills/documentation-wizard/Scripts/sync_docs.py --source all
-python .claude/skills/documentation-wizard/Scripts/generate_changelog.py
+python .claude/skills/documentation-wizard/scripts/sync_docs.py --source all
+python .claude/skills/documentation-wizard/scripts/generate_changelog.py
 
 # Before release: Full documentation review
-python .claude/skills/documentation-wizard/Scripts/validate_docs.py --strict
+python .claude/skills/documentation-wizard/scripts/validate_docs.py --strict
 ```
 
 ## Templates Available

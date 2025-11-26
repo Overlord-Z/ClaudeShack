@@ -28,7 +28,7 @@ Oracle provides:
 ### 1. Initialize Oracle
 
 ```bash
-python .claude/skills/oracle/Scripts/init_oracle.py
+python .claude/skills/oracle/scripts/init_oracle.py
 ```
 
 This creates `.oracle/` directory with knowledge management structure.
@@ -38,7 +38,7 @@ This creates `.oracle/` directory with knowledge management structure.
 After working with Claude:
 
 ```bash
-python .claude/skills/oracle/Scripts/record_session.py --interactive
+python .claude/skills/oracle/scripts/record_session.py --interactive
 ```
 
 Answer prompts to record what you learned, what was corrected, decisions made.
@@ -46,7 +46,7 @@ Answer prompts to record what you learned, what was corrected, decisions made.
 ### 3. Load Context Next Session
 
 ```bash
-python .claude/skills/oracle/Scripts/load_context.py
+python .claude/skills/oracle/scripts/load_context.py
 ```
 
 Oracle loads relevant knowledge so Claude starts context-aware.
@@ -54,7 +54,7 @@ Oracle loads relevant knowledge so Claude starts context-aware.
 ### 4. Query Knowledge Anytime
 
 ```bash
-python .claude/skills/oracle/Scripts/query_knowledge.py "authentication"
+python .claude/skills/oracle/scripts/query_knowledge.py "authentication"
 ```
 
 Search the knowledge base for relevant information.
@@ -74,10 +74,10 @@ Track every session's:
 **Usage:**
 ```bash
 # Interactive mode (recommended)
-python .claude/skills/oracle/Scripts/record_session.py --interactive
+python .claude/skills/oracle/scripts/record_session.py --interactive
 
 # Quick mode
-python .claude/skills/oracle/Scripts/record_session.py \
+python .claude/skills/oracle/scripts/record_session.py \
   --summary "Implemented auth" \
   --learnings "Use bcrypt not md5" \
   --corrections "innerHTML->textContent for user input"
@@ -98,16 +98,16 @@ Oracle maintains categorized knowledge:
 **Usage:**
 ```bash
 # Search all knowledge
-python .claude/skills/oracle/Scripts/query_knowledge.py "database"
+python .claude/skills/oracle/scripts/query_knowledge.py "database"
 
 # Filter by category
-python .claude/skills/oracle/Scripts/query_knowledge.py --category gotchas
+python .claude/skills/oracle/scripts/query_knowledge.py --category gotchas
 
 # Filter by priority
-python .claude/skills/oracle/Scripts/query_knowledge.py --priority critical
+python .claude/skills/oracle/scripts/query_knowledge.py --priority critical
 
 # Recent learnings
-python .claude/skills/oracle/Scripts/query_knowledge.py --recent 10
+python .claude/skills/oracle/scripts/query_knowledge.py --recent 10
 ```
 
 ### 💡 Smart Context Injection
@@ -132,13 +132,13 @@ Oracle uses **tiered context loading**:
 **Usage:**
 ```bash
 # Session start context
-python .claude/skills/oracle/Scripts/generate_context.py --session-start
+python .claude/skills/oracle/scripts/generate_context.py --session-start
 
 # Task-specific context
-python .claude/skills/oracle/Scripts/generate_context.py --task "implement API"
+python .claude/skills/oracle/scripts/generate_context.py --task "implement API"
 
 # Update claude.md
-python .claude/skills/oracle/Scripts/generate_context.py --output claude.md --update
+python .claude/skills/oracle/scripts/generate_context.py --output claude.md --update
 ```
 
 ### 🔍 Pattern Detection & Automation
@@ -152,10 +152,10 @@ Oracle analyzes sessions to find:
 **Usage:**
 ```bash
 # Analyze patterns
-python .claude/skills/oracle/Scripts/analyze_patterns.py
+python .claude/skills/oracle/scripts/analyze_patterns.py
 
 # Generate automation scripts
-python .claude/skills/oracle/Scripts/analyze_patterns.py --generate-scripts --threshold 3
+python .claude/skills/oracle/scripts/analyze_patterns.py --generate-scripts --threshold 3
 ```
 
 ## Integration
@@ -168,13 +168,13 @@ Add Oracle context to `claude.md`:
 ## Project Knowledge (Oracle)
 
 <!-- ORACLE_CONTEXT_START -->
-<!-- Auto-generated - Run: python .claude/skills/oracle/Scripts/generate_context.py --output claude.md --update -->
+<!-- Auto-generated - Run: python .claude/skills/oracle/scripts/generate_context.py --output claude.md --update -->
 <!-- ORACLE_CONTEXT_END -->
 ```
 
 Update it:
 ```bash
-python .claude/skills/oracle/Scripts/generate_context.py --output claude.md --update
+python .claude/skills/oracle/scripts/generate_context.py --output claude.md --update
 ```
 
 ### Session Start Hook
@@ -185,7 +185,7 @@ Auto-load context at session start:
 # Create hook
 cat > .claude/hooks/session-start.sh << 'EOF'
 #!/bin/bash
-python .claude/skills/oracle/Scripts/load_context.py
+python .claude/skills/oracle/scripts/load_context.py
 EOF
 
 chmod +x .claude/hooks/session-start.sh
@@ -199,7 +199,7 @@ Auto-track commits:
 # Create post-commit hook
 cat > .git/hooks/post-commit << 'EOF'
 #!/bin/bash
-python .claude/skills/oracle/Scripts/record_commit.py
+python .claude/skills/oracle/scripts/record_commit.py
 EOF
 
 chmod +x .git/hooks/post-commit
@@ -249,24 +249,24 @@ Run any script with `--help` for detailed options.
 
 ```bash
 # Morning - load context
-python .claude/skills/oracle/Scripts/load_context.py
+python .claude/skills/oracle/scripts/load_context.py
 
 # Work with Claude...
 
 # Evening - record session
-python .claude/skills/oracle/Scripts/record_session.py --interactive
+python .claude/skills/oracle/scripts/record_session.py --interactive
 ```
 
 ### Example 2: Bug Fix
 
 ```bash
 # Search for related knowledge
-python .claude/skills/oracle/Scripts/query_knowledge.py "bug keywords"
+python .claude/skills/oracle/scripts/query_knowledge.py "bug keywords"
 
 # Fix bug with Claude...
 
 # Record the fix
-python .claude/skills/oracle/Scripts/record_session.py \
+python .claude/skills/oracle/scripts/record_session.py \
   --summary "Fixed bug in authentication" \
   --learnings "Root cause was connection timeout - added retry logic"
 ```
@@ -275,12 +275,12 @@ python .claude/skills/oracle/Scripts/record_session.py \
 
 ```bash
 # Get context for the feature
-python .claude/skills/oracle/Scripts/generate_context.py --task "user profile feature"
+python .claude/skills/oracle/scripts/generate_context.py --task "user profile feature"
 
 # Implement feature...
 
 # Record decisions and patterns
-python .claude/skills/oracle/Scripts/record_session.py --interactive
+python .claude/skills/oracle/scripts/record_session.py --interactive
 # Document: decisions made, patterns used, learnings
 ```
 
@@ -288,13 +288,13 @@ python .claude/skills/oracle/Scripts/record_session.py --interactive
 
 ```bash
 # Analyze for patterns
-python .claude/skills/oracle/Scripts/analyze_patterns.py --generate-scripts
+python .claude/skills/oracle/scripts/analyze_patterns.py --generate-scripts
 
 # Review knowledge base
-python .claude/skills/oracle/Scripts/query_knowledge.py --summary
+python .claude/skills/oracle/scripts/query_knowledge.py --summary
 
 # Update claude.md
-python .claude/skills/oracle/Scripts/generate_context.py --output claude.md --update
+python .claude/skills/oracle/scripts/generate_context.py --output claude.md --update
 ```
 
 ## Best Practices
@@ -376,27 +376,27 @@ Oracle operates on:
 ls -la .oracle/
 
 # Test manually
-python .claude/skills/oracle/Scripts/load_context.py --verbose
+python .claude/skills/oracle/scripts/load_context.py --verbose
 ```
 
 ### Knowledge Not Relevant
 
 ```bash
 # Use task-specific context
-python .claude/skills/oracle/Scripts/generate_context.py --task "specific task"
+python .claude/skills/oracle/scripts/generate_context.py --task "specific task"
 
 # Review and update tags
-python .claude/skills/oracle/Scripts/query_knowledge.py --category patterns
+python .claude/skills/oracle/scripts/query_knowledge.py --category patterns
 ```
 
 ### Too Much Context
 
 ```bash
 # Use tier 1 only (critical)
-python .claude/skills/oracle/Scripts/generate_context.py --tier 1
+python .claude/skills/oracle/scripts/generate_context.py --tier 1
 
 # Review priorities
-python .claude/skills/oracle/Scripts/query_knowledge.py --priority critical
+python .claude/skills/oracle/scripts/query_knowledge.py --priority critical
 ```
 
 ## Use Cases

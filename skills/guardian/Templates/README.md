@@ -47,23 +47,23 @@ This directory contains templates for different Guardian review and planning tas
 
 ```bash
 # List available templates
-python guardian/Scripts/template_loader.py --list
+python guardian/scripts/template_loader.py --list
 
 # Load a template
-python guardian/Scripts/template_loader.py --template security_review
+python guardian/scripts/template_loader.py --template security_review
 
 # Show template configuration
-python guardian/Scripts/template_loader.py --template security_review --show-config
+python guardian/scripts/template_loader.py --template security_review --show-config
 ```
 
 ### Via Guardian Skill
 
 ```bash
 # Use a template for review
-python guardian/Scripts/guardian.py review --file auth.py --template security_review
+python guardian/scripts/guardian.py review --file auth.py --template security_review
 
 # Use a template for planning
-python guardian/Scripts/guardian.py plan --task "Build REST API" --template feature_planning
+python guardian/scripts/guardian.py plan --task "Build REST API" --template feature_planning
 ```
 
 ### In Code
@@ -86,7 +86,7 @@ config = get_template_config(template)
 ### Option 1: Base on Existing Template
 
 ```bash
-python guardian/Scripts/template_loader.py \
+python guardian/scripts/template_loader.py \
     --create my_security_review \
     --based-on security_review \
     --description "Custom security review for our codebase"
@@ -97,7 +97,7 @@ This creates `my_security_review.json` which you can then customize.
 ### Option 2: Create from Scratch
 
 ```bash
-python guardian/Scripts/template_loader.py \
+python guardian/scripts/template_loader.py \
     --create my_custom_review \
     --description "Custom review template"
 ```
@@ -260,7 +260,7 @@ Good templates help the entire community!
 
 ```bash
 # Run security review on auth file
-python guardian/Scripts/guardian.py review \
+python guardian/scripts/guardian.py review \
     --file src/auth.py \
     --template security_review
 
@@ -277,7 +277,7 @@ python guardian/Scripts/guardian.py review \
 
 ```bash
 # Run performance review on database queries
-python guardian/Scripts/guardian.py review \
+python guardian/scripts/guardian.py review \
     --file src/database/queries.py \
     --template performance_review
 
@@ -292,7 +292,7 @@ python guardian/Scripts/guardian.py review \
 
 ```bash
 # Plan a new REST API
-python guardian/Scripts/guardian.py plan \
+python guardian/scripts/guardian.py plan \
     --task "Build REST API with auth and rate limiting" \
     --template feature_planning
 

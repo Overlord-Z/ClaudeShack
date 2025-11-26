@@ -1,15 +1,7 @@
 ---
 name: evaluator
-description: Skill evaluation and telemetry framework. Collects anonymous usage data and feedback via GitHub Issues and Projects. Privacy-first, opt-in, transparent. Helps improve ClaudeShack skills based on real-world usage. (project)
-integrates_with:
-  - oracle: "Records usage patterns and learnings"
-  - guardian: "Tracks suggestion acceptance rates and session health"
-  - all: "Monitors usage and effectiveness of all skills"
-enhances: ["all"]
-works_best_with: ["guardian", "oracle"]
-standalone: true
-privacy_first: true
-opt_in_only: true
+description: Skill evaluation and telemetry framework. Collects anonymous usage data and feedback via GitHub Issues and Projects. Privacy-first, opt-in, transparent. Helps improve ClaudeShack skills based on real-world usage. Integrates with oracle and guardian.
+allowed-tools: Read, Write, Bash, Glob
 ---
 
 # Evaluator: Skill Evaluation & Telemetry Framework

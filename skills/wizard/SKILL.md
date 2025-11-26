@@ -1,15 +1,7 @@
 ---
 name: wizard
-description: Documentation wizard that intelligently maintains, updates, and generates accurate documentation. Uses Oracle knowledge, searches conversation history, and spawns focused research agents. No hallucinations - only facts with references. (project)
-integrates_with:
-  - oracle: "Provides knowledge for documentation content"
-  - summoner: "Coordinates multi-agent research for comprehensive docs"
-  - guardian: "Validates documentation accuracy against code"
-enhances: ["all"]
-works_best_with: ["oracle", "summoner", "guardian"]
-performance_boost: "+19% doc accuracy with Oracle | +35% completeness with Summoner research"
-standalone: true
-no_hallucinations: true
+description: Documentation wizard that intelligently maintains, updates, and generates accurate documentation. Uses Oracle knowledge, searches conversation history, and spawns focused research agents. No hallucinations - only facts with references. Integrates with oracle, summoner, and guardian.
+allowed-tools: Read, Write, Edit, Glob, Grep, Task
 ---
 
 # Documentation Wizard: Intelligent Documentation Maintenance
@@ -476,7 +468,7 @@ Include session IDs for reference.
 
 # ✅ RIGHT (Fact-Checked)
 "The Oracle skill searches knowledge stored in `.oracle/knowledge/`
-directory (see oracle/Scripts/search_oracle.py:45-67)."
+directory (see oracle/scripts/search_oracle.py:45-67)."
 ```
 
 ## Wizard Commands
@@ -514,7 +506,7 @@ User: "Update README.md to include the Evaluator skill"
 
 Wizard:
 1. Reads skills/evaluator/SKILL.md for description
-2. Reads skills/evaluator/Scripts/track_event.py for features
+2. Reads skills/evaluator/scripts/track_event.py for features
 3. Searches Oracle for "evaluator" patterns
 4. Searches conversation history for Evaluator design discussions
 5. Spawns code analysis agent to extract API
@@ -538,10 +530,10 @@ skills. Based on 2025 best practices from OpenTelemetry and GitHub Copilot.
 
 ```bash
 # Enable telemetry (opt-in)
-python skills/evaluator/Scripts/track_event.py --enable
+python skills/evaluator/scripts/track_event.py --enable
 
 # View local statistics
-python skills/evaluator/Scripts/track_event.py --summary
+python skills/evaluator/scripts/track_event.py --summary
 ```
 
 **Reference**: See [skills/evaluator/SKILL.md](skills/evaluator/SKILL.md)

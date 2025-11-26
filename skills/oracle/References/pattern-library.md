@@ -152,7 +152,7 @@ Refactored [what] to [improvement]
 
 **Command:**
 ```bash
-python .claude/skills/oracle/Scripts/query_knowledge.py --task "implement [feature]" --priority high
+python .claude/skills/oracle/scripts/query_knowledge.py --task "implement [feature]" --priority high
 ```
 
 **What it does:**
@@ -166,8 +166,8 @@ python .claude/skills/oracle/Scripts/query_knowledge.py --task "implement [featu
 
 **Command:**
 ```bash
-python .claude/skills/oracle/Scripts/record_session.py --corrections "wrong->right"
-python .claude/skills/oracle/Scripts/query_knowledge.py --category corrections --recent 10
+python .claude/skills/oracle/scripts/record_session.py --corrections "wrong->right"
+python .claude/skills/oracle/scripts/query_knowledge.py --category corrections --recent 10
 ```
 
 **What it does:**
@@ -181,13 +181,13 @@ python .claude/skills/oracle/Scripts/query_knowledge.py --category corrections -
 **Commands:**
 ```bash
 # See what we've learned
-python .claude/skills/oracle/Scripts/query_knowledge.py --recent 20
+python .claude/skills/oracle/scripts/query_knowledge.py --recent 20
 
 # Find automation opportunities
-python .claude/skills/oracle/Scripts/analyze_patterns.py
+python .claude/skills/oracle/scripts/analyze_patterns.py
 
 # Update documentation
-python .claude/skills/oracle/Scripts/generate_context.py --output claude.md --update
+python .claude/skills/oracle/scripts/generate_context.py --output claude.md --update
 ```
 
 ## Integration Patterns
@@ -334,7 +334,7 @@ Add to claude.md auto-inject:
 **Solution:**
 ```bash
 # Generate comprehensive onboarding context
-python .claude/skills/oracle/Scripts/generate_context.py --tier 2 > onboarding.md
+python .claude/skills/oracle/scripts/generate_context.py --tier 2 > onboarding.md
 
 # Include:
 # - Critical gotchas
@@ -350,10 +350,10 @@ python .claude/skills/oracle/Scripts/generate_context.py --tier 2 > onboarding.m
 **Solution:**
 ```bash
 # Load session start context
-python .claude/skills/oracle/Scripts/load_context.py
+python .claude/skills/oracle/scripts/load_context.py
 
 # Review recent sessions
-python .claude/skills/oracle/Scripts/query_knowledge.py --recent 10
+python .claude/skills/oracle/scripts/query_knowledge.py --recent 10
 
 # Review project timeline
 cat .oracle/timeline/project_timeline.md | tail -50
@@ -366,13 +366,13 @@ cat .oracle/timeline/project_timeline.md | tail -50
 **Solution:**
 ```bash
 # Search for related issues
-python .claude/skills/oracle/Scripts/query_knowledge.py "bug-related-keywords"
+python .claude/skills/oracle/scripts/query_knowledge.py "bug-related-keywords"
 
 # Check if similar bug was fixed before
-python .claude/skills/oracle/Scripts/query_knowledge.py --category gotchas --tags bug
+python .claude/skills/oracle/scripts/query_knowledge.py --category gotchas --tags bug
 
 # After fix, record to prevent recurrence
-python .claude/skills/oracle/Scripts/record_session.py --interactive
+python .claude/skills/oracle/scripts/record_session.py --interactive
 ```
 
 ### Use Case 4: Architecture Decision
@@ -382,13 +382,13 @@ python .claude/skills/oracle/Scripts/record_session.py --interactive
 **Solution:**
 ```bash
 # Review existing patterns
-python .claude/skills/oracle/Scripts/query_knowledge.py --category patterns
+python .claude/skills/oracle/scripts/query_knowledge.py --category patterns
 
 # Review past decisions
 grep "Decision:" .oracle/sessions/*.md
 
 # After deciding, record rationale
-python .claude/skills/oracle/Scripts/record_session.py \
+python .claude/skills/oracle/scripts/record_session.py \
   --summary "Decided to use [approach]" \
   --learnings "Use [approach] because [rationale]"
 ```
@@ -416,7 +416,7 @@ grep -c "## Corrections" .oracle/sessions/*.md
 
 **How:**
 ```bash
-python .claude/skills/oracle/Scripts/query_knowledge.py --sort used
+python .claude/skills/oracle/scripts/query_knowledge.py --sort used
 ```
 
 ### Metric 3: Automation Adoption

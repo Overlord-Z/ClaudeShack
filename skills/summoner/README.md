@@ -91,7 +91,7 @@ All templates and quality standards are in the `References/` directory.
 summoner/
 ├── SKILL.md                    # Main skill definition
 ├── README.md                   # This file
-├── Scripts/
+├── scripts/
 │   ├── init_mission.py        # MCD initializer
 │   └── validate_quality.py    # Quality validator
 ├── References/
@@ -177,7 +177,7 @@ The Summoner prevents:
 ### Initialize a Mission
 
 ```bash
-python .claude/skills/summoner/Scripts/init_mission.py "Add User Authentication"
+python .claude/skills/summoner/scripts/init_mission.py "Add User Authentication"
 ```
 
 Creates `mission-add-user-authentication.md` ready for editing.
@@ -186,10 +186,10 @@ Creates `mission-add-user-authentication.md` ready for editing.
 
 ```bash
 # Interactive validation
-python .claude/skills/summoner/Scripts/validate_quality.py --level task --interactive
+python .claude/skills/summoner/scripts/validate_quality.py --level task --interactive
 
 # Print checklist for manual review
-python .claude/skills/summoner/Scripts/validate_quality.py --level project
+python .claude/skills/summoner/scripts/validate_quality.py --level project
 ```
 
 ## Quality Standards

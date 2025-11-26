@@ -1,14 +1,7 @@
 ---
 name: style-master
-description: Expert CSS and frontend styling specialist that analyzes codebases, maintains style guides, suggests improvements, and stays current with modern design patterns. Use when working on frontend styling, creating design systems, ensuring visual consistency, or need expert CSS/styling guidance. Integrates with Oracle to remember style preferences and with Summoner for complex styling refactors. (project)
-integrates_with:
-  - oracle: "Remembers style preferences and design decisions"
-  - summoner: "Coordinates complex styling refactors"
-  - wizard: "Generates style guide documentation"
-enhances: ["wizard"]
-works_best_with: ["oracle"]
-performance_boost: "+22% consistency when Oracle tracks style preferences"
-standalone: true
+description: Expert CSS and frontend styling specialist that analyzes codebases, maintains style guides, suggests improvements, and stays current with modern design patterns. Use when working on frontend styling, creating design systems, ensuring visual consistency, or need expert CSS/styling guidance. Integrates with oracle, summoner, and wizard.
+allowed-tools: Read, Write, Edit, Glob, Grep, Bash
 ---
 
 # Style Master: CSS & Frontend Styling Expert
@@ -486,7 +479,7 @@ Stay current by:
 ### Analysis Script
 
 ```bash
-python .claude/skills/style-master/Scripts/analyze_styles.py
+python .claude/skills/style-master/scripts/analyze_styles.py
 ```
 
 **Outputs**:
@@ -498,7 +491,7 @@ python .claude/skills/style-master/Scripts/analyze_styles.py
 ### Style Guide Generator
 
 ```bash
-python .claude/skills/style-master/Scripts/generate_styleguide.py
+python .claude/skills/style-master/scripts/generate_styleguide.py
 ```
 
 **Outputs**:
@@ -510,7 +503,7 @@ python .claude/skills/style-master/Scripts/generate_styleguide.py
 ### Consistency Validator
 
 ```bash
-python .claude/skills/style-master/Scripts/validate_consistency.py
+python .claude/skills/style-master/scripts/validate_consistency.py
 ```
 
 **Checks**:
@@ -522,7 +515,7 @@ python .claude/skills/style-master/Scripts/validate_consistency.py
 ### Improvement Suggester
 
 ```bash
-python .claude/skills/style-master/Scripts/suggest_improvements.py
+python .claude/skills/style-master/scripts/suggest_improvements.py
 ```
 
 **Suggests**:
