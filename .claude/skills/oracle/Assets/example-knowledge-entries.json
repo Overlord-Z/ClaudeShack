@@ -1,0 +1,108 @@
+[
+  {
+    "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+    "category": "gotcha",
+    "priority": "critical",
+    "title": "Always sanitize user input before rendering",
+    "content": "User input must be sanitized before being rendered in the DOM to prevent XSS attacks. Use textContent instead of innerHTML, or use a sanitization library like DOMPurify.",
+    "context": "When displaying user-generated content (comments, profile data, search queries, etc.)",
+    "examples": [
+      "element.textContent = userInput  // Safe",
+      "element.innerHTML = DOMPurify.sanitize(userInput)  // Safe with library",
+      "element.innerHTML = userInput  // DANGEROUS - XSS vulnerability"
+    ],
+    "learned_from": "2025-11-19_session_001",
+    "created": "2025-11-19T10:30:00Z",
+    "last_used": "2025-11-19T15:45:00Z",
+    "use_count": 5,
+    "tags": ["security", "xss", "dom", "user-input"]
+  },
+  {
+    "id": "b2c3d4e5-f6g7-8901-bcde-fg2345678901",
+    "category": "pattern",
+    "priority": "high",
+    "title": "Use factory pattern for database connections",
+    "content": "All database connections should be created through DatabaseFactory.create() which handles connection pooling, configuration, error handling, and automatic retry logic. Direct connection creation bypasses these safeguards.",
+    "context": "When creating new database connections or initializing data access layers",
+    "examples": [
+      "const db = DatabaseFactory.create('postgres', config)",
+      "const cache = DatabaseFactory.create('redis', cacheConfig)",
+      "// NOT: const db = new PostgresClient(config)  // Bypasses pooling"
+    ],
+    "learned_from": "architecture_decision_2025_11_15",
+    "created": "2025-11-15T09:00:00Z",
+    "last_used": "2025-11-19T14:20:00Z",
+    "use_count": 12,
+    "tags": ["database", "factory-pattern", "architecture", "connections"]
+  },
+  {
+    "id": "c3d4e5f6-g7h8-9012-cdef-gh3456789012",
+    "category": "preference",
+    "priority": "medium",
+    "title": "Prefer async/await over promise chains",
+    "content": "Team prefers async/await syntax for asynchronous code over .then() chains for better readability and error handling. Exceptions: when parallel execution is needed (use Promise.all), or when working with non-async APIs.",
+    "context": "When writing asynchronous JavaScript/TypeScript code",
+    "examples": [
+      "// Preferred:\nasync function fetchUser() {\n  const response = await fetch('/api/user');\n  return await response.json();\n}",
+      "// Avoid:\nfunction fetchUser() {\n  return fetch('/api/user')\n    .then(r => r.json());\n}"
+    ],
+    "learned_from": "team_decision_2025_11_10",
+    "created": "2025-11-10T11:00:00Z",
+    "last_used": "2025-11-19T16:00:00Z",
+    "use_count": 8,
+    "tags": ["javascript", "async", "code-style", "promises"]
+  },
+  {
+    "id": "d4e5f6g7-h8i9-0123-defg-hi4567890123",
+    "category": "solution",
+    "priority": "high",
+    "title": "Use cursor-based pagination for large datasets",
+    "content": "For datasets with millions of records, use cursor-based pagination instead of offset-based to avoid performance degradation and inconsistencies. Cursor-based pagination uses a unique, sequential identifier (like ID or timestamp) to mark position.",
+    "context": "When implementing pagination for tables with 100k+ rows or when data changes frequently",
+    "examples": [
+      "// Cursor-based (recommended):\nSELECT * FROM users WHERE id > $cursor ORDER BY id LIMIT 100",
+      "// API: GET /users?cursor=abc123&limit=100",
+      "// Offset-based (avoid for large datasets):\nSELECT * FROM users OFFSET 1000000 LIMIT 100  // Slow on large tables"
+    ],
+    "learned_from": "2025-11-18_performance_optimization",
+    "created": "2025-11-18T13:00:00Z",
+    "last_used": "2025-11-19T10:15:00Z",
+    "use_count": 3,
+    "tags": ["pagination", "performance", "database", "api"]
+  },
+  {
+    "id": "e5f6g7h8-i9j0-1234-efgh-ij5678901234",
+    "category": "correction",
+    "priority": "high",
+    "title": "Don't mutate React state directly",
+    "content": "❌ Wrong: state.items.push(newItem)\n✓ Right: setState({ items: [...state.items, newItem] })\n\nReason: Direct state mutation doesn't trigger re-renders in React and violates React's immutability principles. Always create new objects/arrays when updating state.",
+    "context": "When updating state in React components (both class and functional)",
+    "examples": [
+      "// Correct - Array update:\nsetItems(prevItems => [...prevItems, newItem])",
+      "// Correct - Object update:\nsetUser(prevUser => ({ ...prevUser, name: newName }))",
+      "// Wrong:\nitems.push(newItem); setItems(items)  // Same reference, no re-render"
+    ],
+    "learned_from": "2025-11-17_session_005",
+    "created": "2025-11-17T14:30:00Z",
+    "last_used": "2025-11-19T11:00:00Z",
+    "use_count": 7,
+    "tags": ["react", "state-management", "immutability", "common-mistake"]
+  },
+  {
+    "id": "f6g7h8i9-j0k1-2345-fghi-jk6789012345",
+    "category": "gotcha",
+    "priority": "medium",
+    "title": "Environment variables must be prefixed with NEXT_PUBLIC_ to be exposed to browser",
+    "content": "In Next.js, environment variables are only available server-side by default. To expose them to the browser, they must be prefixed with NEXT_PUBLIC_. Never prefix sensitive variables (API keys, secrets) with NEXT_PUBLIC_.",
+    "context": "When using environment variables in Next.js applications",
+    "examples": [
+      "// Server-side only:\nAPI_SECRET=abc123\nDATABASE_URL=postgres://...",
+      "// Exposed to browser:\nNEXT_PUBLIC_API_URL=https://api.example.com\nNEXT_PUBLIC_ANALYTICS_ID=GA-123456"
+    ],
+    "learned_from": "2025-11-16_session_003",
+    "created": "2025-11-16T16:00:00Z",
+    "last_used": "2025-11-19T09:30:00Z",
+    "use_count": 4,
+    "tags": ["nextjs", "environment-variables", "security"]
+  }
+]
