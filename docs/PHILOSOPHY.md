@@ -140,6 +140,30 @@ Knowledge compounds over time
 ✅ Combine both in response
 ```
 
+## Skill Responsibilities
+
+### Oracle
+- Store/retrieve project-specific knowledge
+- Record corrections immediately
+- Track patterns, gotchas, preferences
+- Provide historical context
+
+### Context7 (External MCP)
+- Fetch current library documentation
+- Provide version-specific API references
+- Eliminate outdated training data assumptions
+
+### Guardian
+- Auto-review significant code changes
+- Validate against Oracle patterns
+- Learn from acceptance/rejection
+
+### Smart-Init
+- Discover project context interactively
+- Seed Oracle with confirmed knowledge
+- Set up Context7 if not installed
+- Establish autonomous behavior from start
+
 ## Setup for Autonomous Operation
 
 1. **Install Context7 MCP**
@@ -162,6 +186,10 @@ Knowledge compounds over time
    ## Critical Gotchas
    - [Only 3-5 most critical items]
    ```
+
+4. **Oracle Hook (Optional but Recommended)**
+   - Auto-loads critical context at session start
+   - See `.claude/skills/oracle/scripts/HOOK_SETUP.md`
 
 ## Success Metrics
 
