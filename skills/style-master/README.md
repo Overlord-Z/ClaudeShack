@@ -35,25 +35,25 @@ Style Master is your go-to expert for all things CSS, design systems, and fronte
 ### Analyze Your Codebase
 
 ```bash
-python .claude/skills/style-master/Scripts/analyze_styles.py --detailed
+python .claude/skills/style-master/scripts/analyze_styles.py --detailed
 ```
 
 ### Generate Style Guide
 
 ```bash
-python .claude/skills/style-master/Scripts/generate_styleguide.py --output docs/STYLEGUIDE.md
+python .claude/skills/style-master/scripts/generate_styleguide.py --output docs/STYLEGUIDE.md
 ```
 
 ### Validate Consistency
 
 ```bash
-python .claude/skills/style-master/Scripts/validate_consistency.py
+python .claude/skills/style-master/scripts/validate_consistency.py
 ```
 
 ### Get Suggestions
 
 ```bash
-python .claude/skills/style-master/Scripts/suggest_improvements.py
+python .claude/skills/style-master/scripts/suggest_improvements.py
 ```
 
 ## Use Cases
@@ -175,18 +175,18 @@ Style Master ensures:
 
 ```bash
 # 1. Analyze current state
-python .claude/skills/style-master/Scripts/analyze_styles.py --detailed
+python .claude/skills/style-master/scripts/analyze_styles.py --detailed
 
 # 2. Generate style guide
-python .claude/skills/style-master/Scripts/generate_styleguide.py
+python .claude/skills/style-master/scripts/generate_styleguide.py
 
 # 3. Review and customize STYLEGUIDE.md
 
 # 4. Validate consistency
-python .claude/skills/style-master/Scripts/validate_consistency.py
+python .claude/skills/style-master/scripts/validate_consistency.py
 
 # 5. Get improvement suggestions
-python .claude/skills/style-master/Scripts/suggest_improvements.py
+python .claude/skills/style-master/scripts/suggest_improvements.py
 
 # 6. Use Style Master skill in Claude Code
 # "Use the style master skill to implement the new design system"

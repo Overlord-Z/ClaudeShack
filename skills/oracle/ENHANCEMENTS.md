@@ -15,7 +15,7 @@ The original Oracle skill had several limitations:
 
 ### Enhancement #1: Conversation History Analyzer
 
-**File**: `Scripts/analyze_history.py`
+**File**: `scripts/analyze_history.py`
 
 **Purpose**: Mine existing Claude Code conversation history to automatically extract patterns, corrections, preferences, and automation opportunities.
 
@@ -53,8 +53,8 @@ python analyze_history.py --recent-days 30 --auto-populate
 ### Enhancement #2: SessionStart Hook
 
 **Files**:
-- `Scripts/session_start_hook.py`
-- `Scripts/HOOK_SETUP.md` (configuration guide)
+- `scripts/session_start_hook.py`
+- `scripts/HOOK_SETUP.md` (configuration guide)
 
 **Purpose**: Automatically inject Oracle context when Claude Code sessions start or resume.
 
@@ -75,7 +75,7 @@ python analyze_history.py --recent-days 30 --auto-populate
         "hooks": [
           {
             "type": "command",
-            "command": "python /path/to/ClaudeShack/skills/oracle/Scripts/session_start_hook.py"
+            "command": "python /path/to/ClaudeShack/skills/oracle/scripts/session_start_hook.py"
           }
         ]
       }
@@ -93,7 +93,7 @@ python analyze_history.py --recent-days 30 --auto-populate
 
 ### Enhancement #3: Smart Context Generation
 
-**File**: `Scripts/smart_context.py`
+**File**: `scripts/smart_context.py`
 
 **Purpose**: Generate context that's intelligently aware of current work (git status, files being edited) and ranks knowledge by relevance.
 
@@ -152,7 +152,7 @@ export ORACLE_MIN_TASK_OCCURRENCES=3      # Min occurrences for automation candi
 
 ### Claude Code Hook Setup
 
-See `Scripts/HOOK_SETUP.md` for complete Claude Code hook configuration instructions.
+See `scripts/HOOK_SETUP.md` for complete Claude Code hook configuration instructions.
 
 Quick setup:
 1. Add SessionStart hook to Claude Code settings.json
@@ -172,21 +172,21 @@ Quick setup:
 
 # Evening: Mine history (weekly recommended)
 cd /path/to/project
-python /path/to/ClaudeShack/skills/oracle/Scripts/analyze_history.py --auto-populate
+python /path/to/ClaudeShack/skills/oracle/scripts/analyze_history.py --auto-populate
 ```
 
 **Project Setup** (one-time):
 ```bash
 # 1. Initialize Oracle for project
-python /path/to/ClaudeShack/skills/oracle/Scripts/init_oracle.py
+python /path/to/ClaudeShack/skills/oracle/scripts/init_oracle.py
 
 # 2. Mine existing conversation history
-python /path/to/ClaudeShack/skills/oracle/Scripts/analyze_history.py --auto-populate
+python /path/to/ClaudeShack/skills/oracle/scripts/analyze_history.py --auto-populate
 
 # 3. Configure SessionStart hook (see HOOK_SETUP.md)
 
 # 4. Test smart context
-python /path/to/ClaudeShack/skills/oracle/Scripts/smart_context.py
+python /path/to/ClaudeShack/skills/oracle/scripts/smart_context.py
 ```
 
 ## Performance Characteristics

@@ -28,7 +28,7 @@ touch claude.md
 
 Run to update:
 ```bash
-python .claude/skills/oracle/Scripts/generate_context.py --output claude.md --update
+python .claude/skills/oracle/scripts/generate_context.py --output claude.md --update
 ```
 
 <!-- ORACLE_CONTEXT_END -->
@@ -41,7 +41,7 @@ python .claude/skills/oracle/Scripts/generate_context.py --output claude.md --up
 3. Update Oracle context:
 
 ```bash
-python .claude/skills/oracle/Scripts/generate_context.py --output claude.md --update
+python .claude/skills/oracle/scripts/generate_context.py --output claude.md --update
 ```
 
 4. (Optional) Add to your workflow to auto-update after sessions.
@@ -52,8 +52,8 @@ Add to your session workflow:
 
 ```bash
 # After recording a session
-python .claude/skills/oracle/Scripts/record_session.py --interactive
-python .claude/skills/oracle/Scripts/generate_context.py --output claude.md --update
+python .claude/skills/oracle/scripts/record_session.py --interactive
+python .claude/skills/oracle/scripts/generate_context.py --output claude.md --update
 ```
 
 ### 2. Session Start Hooks
@@ -75,7 +75,7 @@ cat > .claude/hooks/session-start.sh << 'EOF'
 #!/bin/bash
 # Load Oracle context at session start
 
-python .claude/skills/oracle/Scripts/load_context.py
+python .claude/skills/oracle/scripts/load_context.py
 EOF
 
 chmod +x .claude/hooks/session-start.sh
@@ -96,7 +96,7 @@ cat > .git/hooks/post-commit << 'EOF'
 #!/bin/bash
 # Record commit in Oracle timeline
 
-python .claude/skills/oracle/Scripts/record_commit.py
+python .claude/skills/oracle/scripts/record_commit.py
 EOF
 
 chmod +x .git/hooks/post-commit
@@ -125,11 +125,11 @@ jobs:
 
       - name: Update Oracle Timeline
         run: |
-          python .claude/skills/oracle/Scripts/record_commit.py
+          python .claude/skills/oracle/scripts/record_commit.py
 
       - name: Update claude.md
         run: |
-          python .claude/skills/oracle/Scripts/generate_context.py --output claude.md --update
+          python .claude/skills/oracle/scripts/generate_context.py --output claude.md --update
 
       - name: Commit changes
         run: |
@@ -148,7 +148,7 @@ jobs:
 
 **Workflow:**
 1. Work on tasks
-2. When corrected, immediately record: `python .claude/skills/oracle/Scripts/record_session.py --corrections "wrong->right"`
+2. When corrected, immediately record: `python .claude/skills/oracle/scripts/record_session.py --corrections "wrong->right"`
 3. Context auto-updates for next session
 4. Corrections are avoided in future
 
@@ -160,7 +160,7 @@ jobs:
 
 **Workflow:**
 1. Record sessions regularly
-2. Weekly: Run pattern analysis `python .claude/skills/oracle/Scripts/analyze_patterns.py --generate-scripts`
+2. Weekly: Run pattern analysis `python .claude/skills/oracle/scripts/analyze_patterns.py --generate-scripts`
 3. Review and customize generated scripts
 4. Use scripts for repeated tasks
 
@@ -197,7 +197,7 @@ jobs:
 Load only critical and high-priority items.
 
 ```bash
-python .claude/skills/oracle/Scripts/generate_context.py --tier 1
+python .claude/skills/oracle/scripts/generate_context.py --tier 1
 ```
 
 **Pros:** Low token usage, fast loading
@@ -209,7 +209,7 @@ python .claude/skills/oracle/Scripts/generate_context.py --tier 1
 Load context relevant to current task.
 
 ```bash
-python .claude/skills/oracle/Scripts/generate_context.py --task "implement authentication"
+python .claude/skills/oracle/scripts/generate_context.py --task "implement authentication"
 ```
 
 **Pros:** Highly relevant, moderate token usage
@@ -221,7 +221,7 @@ python .claude/skills/oracle/Scripts/generate_context.py --task "implement authe
 Load all available knowledge.
 
 ```bash
-python .claude/skills/oracle/Scripts/generate_context.py --tier 3
+python .claude/skills/oracle/scripts/generate_context.py --tier 3
 ```
 
 **Pros:** Complete picture, no missing context
@@ -234,16 +234,16 @@ python .claude/skills/oracle/Scripts/generate_context.py --tier 3
 
 ```bash
 # 1. Analyze patterns
-python .claude/skills/oracle/Scripts/analyze_patterns.py
+python .claude/skills/oracle/scripts/analyze_patterns.py
 
 # 2. Generate automation scripts
-python .claude/skills/oracle/Scripts/analyze_patterns.py --generate-scripts
+python .claude/skills/oracle/scripts/analyze_patterns.py --generate-scripts
 
 # 3. Update claude.md
-python .claude/skills/oracle/Scripts/generate_context.py --output claude.md --update
+python .claude/skills/oracle/scripts/generate_context.py --output claude.md --update
 
 # 4. Review knowledge base
-python .claude/skills/oracle/Scripts/query_knowledge.py --summary
+python .claude/skills/oracle/scripts/query_knowledge.py --summary
 ```
 
 ### Monthly Maintenance
@@ -260,10 +260,10 @@ Periodically review and curate:
 
 ```bash
 # Find rarely used knowledge
-python .claude/skills/oracle/Scripts/query_knowledge.py --sort used
+python .claude/skills/oracle/scripts/query_knowledge.py --sort used
 
 # Find old corrections (may be outdated)
-python .claude/skills/oracle/Scripts/query_knowledge.py --category corrections --sort recent
+python .claude/skills/oracle/scripts/query_knowledge.py --category corrections --sort recent
 ```
 
 ## Troubleshooting
@@ -275,7 +275,7 @@ python .claude/skills/oracle/Scripts/query_knowledge.py --category corrections -
 **Solutions:**
 1. Check `.claude/hooks/session-start.sh` exists and is executable
 2. Verify Oracle is initialized: `ls -la .oracle/`
-3. Test manually: `python .claude/skills/oracle/Scripts/load_context.py --verbose`
+3. Test manually: `python .claude/skills/oracle/scripts/load_context.py --verbose`
 
 ### Context Too Large
 

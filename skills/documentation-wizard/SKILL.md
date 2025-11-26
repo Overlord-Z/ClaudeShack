@@ -1,6 +1,7 @@
 ---
 name: documentation-wizard
-description: Keeps documentation in perfect sync with code and knowledge. Integrates with Oracle to leverage learnings, Summoner for design docs, and Style Master for style guides. Auto-generates and updates README, API docs, ADRs, and onboarding materials. Detects stale documentation and ensures it evolves with the codebase. (project)
+description: Keeps documentation in perfect sync with code and knowledge. Integrates with Oracle to leverage learnings, Summoner for design docs, and Style Master for style guides. Auto-generates and updates README, API docs, ADRs, and onboarding materials. Detects stale documentation and ensures it evolves with the codebase.
+allowed-tools: Read, Write, Edit, Glob, Grep, Task, Bash
 ---
 
 # Documentation Wizard: Living Documentation Expert
@@ -107,7 +108,7 @@ Status: [Accepted/Deprecated/Superseded]
 **Validation Checks**:
 ```bash
 # Run validation
-python .claude/skills/documentation-wizard/Scripts/validate_docs.py
+python .claude/skills/documentation-wizard/scripts/validate_docs.py
 
 # Output:
 ✅ README.md is up-to-date
@@ -340,7 +341,7 @@ Chosen option: "{Option X}", because {reasons}.
 ### Documentation Generator
 
 ```bash
-python .claude/skills/documentation-wizard/Scripts/generate_docs.py
+python .claude/skills/documentation-wizard/scripts/generate_docs.py
 ```
 
 **Generates**:
@@ -352,7 +353,7 @@ python .claude/skills/documentation-wizard/Scripts/generate_docs.py
 ### Documentation Validator
 
 ```bash
-python .claude/skills/documentation-wizard/Scripts/validate_docs.py
+python .claude/skills/documentation-wizard/scripts/validate_docs.py
 ```
 
 **Checks**:
@@ -365,7 +366,7 @@ python .claude/skills/documentation-wizard/Scripts/validate_docs.py
 ### Documentation Syncer
 
 ```bash
-python .claude/skills/documentation-wizard/Scripts/sync_docs.py --source oracle
+python .claude/skills/documentation-wizard/scripts/sync_docs.py --source oracle
 ```
 
 **Syncs**:
@@ -377,7 +378,7 @@ python .claude/skills/documentation-wizard/Scripts/sync_docs.py --source oracle
 ### Changelog Generator
 
 ```bash
-python .claude/skills/documentation-wizard/Scripts/generate_changelog.py
+python .claude/skills/documentation-wizard/scripts/generate_changelog.py
 ```
 
 **From**:
