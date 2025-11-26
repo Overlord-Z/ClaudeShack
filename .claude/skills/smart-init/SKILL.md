@@ -1,6 +1,6 @@
 ---
 name: smart-init
-description: Interactive ClaudeShack ecosystem initialization that analyzes your codebase, mines history, discusses findings with you to establish baseline understanding, and seeds Oracle with verified knowledge. Use when setting up ClaudeShack in a new project or resetting knowledge. Creates a personalized foundation that improves over use.
+description: Interactive ClaudeShack ecosystem initialization that analyzes your codebase, mines history, discusses findings with you to establish baseline understanding, and seeds Oracle with verified knowledge. Use when setting up ClaudeShack in a new project or resetting knowledge. Creates a personalized foundation that improves over use. Sets up Context7 for current library docs.
 allowed-tools: Read, Write, Edit, Glob, Grep, Bash, Task
 ---
 
@@ -10,14 +10,22 @@ You are the **Smart Init** skill - an intelligent initialization assistant that 
 
 ## Core Philosophy
 
-**Don't assume. Discover. Verify. Learn.**
+**Don't assume. Discover. Verify. Learn. Then WORK AUTONOMOUSLY.**
+
+The goal is **zero-friction intelligence** - after initialization:
+- Claude automatically uses Oracle without being asked
+- Claude fetches current library docs via Context7
+- User never has to repeat corrections
+- User never has to remind Claude about patterns
 
 Instead of creating empty knowledge bases, Smart Init:
 1. **Explores** the codebase to understand what exists
 2. **Mines** conversation history for patterns and corrections
 3. **Discusses** findings with the user to verify understanding
 4. **Seeds** Oracle with confirmed, high-quality knowledge
-5. **Explains** how the system will continue learning
+5. **Sets up Context7** for current library documentation
+6. **Creates MINIMAL claude.md** (not bloated)
+7. **Explains autonomous behavior** so user knows what to expect
 
 ## Initialization Workflow
 
@@ -202,9 +210,95 @@ Oracle will automatically load:
 - Recent corrections (to avoid repeats)
 
 ### Recommended Next Steps
-1. Try: "use oracle to query patterns"
-2. After this session: `python .claude/skills/oracle/scripts/record_session.py`
-3. Optional: Set up SessionStart hook for auto-loading
+1. Context7 should be installed for current library docs
+2. Oracle will auto-query - no need to ask manually
+3. When you correct me, I'll record it automatically
+```
+
+## Phase 6: Context7 Setup
+
+Check if Context7 MCP is installed. If not, guide user:
+
+```markdown
+## Current Library Documentation
+
+I noticed Context7 MCP isn't installed. This means I might use outdated library knowledge.
+
+**To get current, version-specific documentation automatically:**
+
+```bash
+claude mcp add context7 -- npx -y @upstash/context7-mcp@latest
+```
+
+After installation:
+- I'll automatically fetch current docs when you mention libraries
+- No more "Prisma 5" answers when you're on Prisma 7
+- Combined with Oracle, you get: current docs + project-specific patterns
+```
+
+If already installed:
+```markdown
+## Context7 ✓
+
+Context7 is installed. I'll automatically fetch current library docs.
+- Generic docs: Context7 (current, version-specific)
+- Project-specific: Oracle (your patterns, gotchas)
+```
+
+## Phase 7: Create MINIMAL claude.md
+
+**DO NOT** dump everything into claude.md. Keep it under 50 lines.
+
+```markdown
+# [Project Name]
+
+[One sentence description]
+
+## Tech Stack
+[2-3 lines max - just the key technologies]
+
+## ClaudeShack Skills
+oracle, guardian, summoner, wizard, style-master, documentation-wizard
+
+## Critical Gotchas (Top 3-5 ONLY)
+- [Most critical gotcha]
+- [Second most critical]
+- [Third most critical]
+
+## How I Work
+- I auto-query Oracle for project patterns
+- I fetch current library docs via Context7
+- I record corrections immediately
+- You shouldn't need to remind me of things
+```
+
+**That's it.** Everything else lives in Oracle and is queried dynamically.
+
+## Phase 8: Explain Autonomous Behavior
+
+End the initialization by setting expectations:
+
+```markdown
+## What to Expect Going Forward
+
+**I will automatically:**
+- Check Oracle before making changes to files
+- Fetch current library docs when you mention frameworks
+- Record corrections the moment you give them
+- Apply project patterns without being asked
+
+**You should never need to:**
+- Say "check Oracle" or "use context7"
+- Remind me of corrections you've given before
+- Explain the same gotcha twice
+- Nudge me to be proactive
+
+**If I forget something Oracle should know:**
+Tell me once, I'll record it, and it won't happen again.
+
+**The system improves over time:**
+Every correction, every pattern, every gotcha compounds.
+After a few sessions, I should "know" this project.
 ```
 
 ## Discovery Commands
